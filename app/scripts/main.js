@@ -19,35 +19,6 @@
 (function () {
   'use strict';
 
-  var querySelector = document.querySelector.bind(document);
-
-  var navdrawerContainer = querySelector('.navdrawer-container');
-  var body = document.body;
-  var appbarElement = querySelector('.app-bar');
-  var menuBtn = querySelector('.menu');
-  var main = querySelector('main');
-
-  function closeMenu() {
-    body.classList.remove('open');
-    appbarElement.classList.remove('open');
-    navdrawerContainer.classList.remove('open');
-  }
-
-  function toggleMenu() {
-    body.classList.toggle('open');
-    appbarElement.classList.toggle('open');
-    navdrawerContainer.classList.toggle('open');
-    navdrawerContainer.classList.add('opened');
-  }
-
-  main.addEventListener('click', closeMenu);
-  menuBtn.addEventListener('click', toggleMenu);
-  navdrawerContainer.addEventListener('click', function (event) {
-    if (event.target.nodeName === 'A' || event.target.nodeName === 'LI') {
-      closeMenu();
-    }
-  });
-
   // Check to make sure service workers are supported in the current browser,
   // and that the current page is accessed from a secure origin. Using a
   // service worker from an insecure origin will trigger JS console errors. See
@@ -98,4 +69,32 @@
   }
 
   // Your custom JavaScript goes here
+  function convertXML() {
+    var textField = document.getElementById('inputXML');
+    var data = textField.value;
+    var xml;
+    if ( window.DOMParser ) { // Standard
+      var tmp = new DOMParser();
+      xml = tmp.parseFromString( data , 'text/xml');
+    } else { // IE
+      xml = new ActiveXObject('Microsoft.XMLDOM');
+      xml.async = 'false';
+      xml.loadXML(data);
+    }
+    var projectNode = xml.documentElement;
+    var blocksNode;
+    var i;
+    for(i = 0; i<projectNode.childNodes.length;i++){
+      if(projectNode.childNodes[i].nodeName === 'blocks'){
+        blocksNode = projectNode.childNodes[i];
+      }
+    }
+    var children = blocksNode.childNodes; //each of these is a block-definition or #text
+    for (i = 0; i < children.length; i++){
+      if (children[i].nodeName === 'block-definition') {
+        console.log("child:" + children[i].nodeName); //block-definitions
+      }
+    }
+  }
+
 })();
