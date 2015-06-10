@@ -1,0 +1,16 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=description content="A tool to convert snap projects for the hummingbird."><meta name=viewport content="width=device-width, initial-scale=1"><title>Birdbrain Snap Converter</title><link rel=manifest href=manifest.json><meta name=mobile-web-app-capable content=yes><meta name=application-name content="Web Starter Kit"><link rel=icon sizes=192x192 href=images/touch/chrome-touch-icon-192x192.png><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=black><meta name=apple-mobile-web-app-title content="Web Starter Kit"><link rel=apple-touch-icon href=images/touch/apple-touch-icon.png><meta name=msapplication-TileImage content=images/touch/ms-touch-icon-144x144-precomposed.png><meta name=msapplication-TileColor content=#3372DF><meta name=theme-color content=#3372DF><link rel=stylesheet href=styles/main.css><script src=https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js></script></head><body><header class="app-bar promote-layer"><div class=app-bar-container><button class=menu><img src=images/hamburger.svg alt=Menu></button><h1 class=logo>Birdbrain <strong>Snap Converter</strong></h1><section class=app-bar-actions></section></div></header><main><script>
+      var upload = function() {
+      var project = document.getElementById("projectFile");
+      // the file is the first element in the files property
+      var file = project.files[0];
+
+      console.log("File name: " + file.fileName);
+      console.log("File size: " + file.fileSize);
+      console.log("Binary content: " + file.getAsBinary());
+      console.log("Text content: " + file.getAsText(""));
+      // or
+      // console.log("Text content: " + file.getAsText("utf8"));
+
+      return false;
+    };
+  </script><h3>Copy your xml file into the box below</h3><br><form action=upload.php method=post enctype=multipart/form-data><fieldset><legend>Upload Project</legend><input type=file name=projectFile id=projectFile><input type=submit value=Upload></fieldset></form><form><div style=float:left><h4>Source:</h4><br><input type=radio name=startType value=1 checked>iPad<br><input type=radio name=startType value=2>BirdBrain Server<br><input type=radio name=startType value=3>Chrome App</div><div style=float:right><h4>Output:</h4><br><input type=radio name=endType value=1 checked>iPad<br><input type=radio name=endType value=2>BirdBrain Server<br><input type=radio name=endType value=3>Chrome App</div></form></main><script src=../../scripts/main.min.js></script></body></html>
