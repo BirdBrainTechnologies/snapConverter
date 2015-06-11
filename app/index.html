@@ -39,20 +39,19 @@
 </head>
 <body>
 <header class="app-bar promote-layer">
-  <div class="app-bar-container">
-    <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
+  <div>
+    <img src="images/birdbrain-technologies.png" hspace="20" style="float:left">
     <h1 class="logo">Birdbrain <strong>Snap Converter</strong></h1>
-    <section class="app-bar-actions">
-      <!-- Put App Bar Buttons Here -->
-      <!-- e.g <button><i class="icon icon-star"></i></button> -->
-    </section>
   </div>
 </header>
 
-<h3>Select the source and desired output type of your snap project and then upload your project xml</h3><br>
-<input type=file id=files>
+<main>
+<h3 style="text-align:center">Select the source and desired output type of your snap project and then upload your project xml</h3>
+<br>
+<input style="margin-left: 27%" type=file id=files>
 <button id=upload>Upload</button>
-<form>
+
+<form style="margin-left: 30%">
   <div style="float:left">
     <h4>Source:</h4><br>
     <input type="radio" name="startType" value="1" checked>iPad
@@ -61,7 +60,7 @@
     <br>
     <input type="radio" name="startType" value="2">Chrome App
   </div>
-  <div style="float:left">
+  <div style="float:left;margin-left: 20%">
     <h4>Output:</h4><br>
     <input type="radio" name="endType" value="1">iPad
     <br>
@@ -70,6 +69,8 @@
     <input type="radio" name="endType" value="2" checked>Chrome App
   </div>
 </form>
+  <br><br><br><br><br><br><br>
+  <a style="margin-left: 30%;display: none" download="newSnapProject.xml" href="" id="downloadLink">Click here to download your converted project file!</a>
 </main>
 
 <!-- build:js(app/) ../../scripts/main.min.js -->

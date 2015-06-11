@@ -19,54 +19,6 @@
 (function () {
   'use strict';
 
-  // Check to make sure service workers are supported in the current browser,
-  // and that the current page is accessed from a secure origin. Using a
-  // service worker from an insecure origin will trigger JS console errors. See
-  // http://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features
-  if ('serviceWorker' in navigator &&
-    (window.location.protocol === 'https:' ||
-    window.location.hostname === 'localhost' ||
-    window.location.hostname.indexOf('127.') === 0)) {
-    navigator.serviceWorker.register('/service-worker.js', {
-      scope: './'
-    }).then(function (registration) {
-      // Check to see if there's an updated version of service-worker.js with
-      // new files to cache:
-      // https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-update-method
-      if (typeof registration.update === 'function') {
-        registration.update();
-      }
-
-      // updatefound is fired if service-worker.js changes.
-      registration.onupdatefound = function () {
-        // updatefound is also fired the very first time the SW is installed,
-        // and there's no need to prompt for a reload at that point.
-        // So check here to see if the page is already controlled,
-        // i.e. whether there's an existing service worker.
-        if (navigator.serviceWorker.controller) {
-          // The updatefound event implies that registration.installing is set:
-          // https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-container-updatefound-event
-          var installingWorker = registration.installing;
-
-          installingWorker.onstatechange = function () {
-            switch (installingWorker.state) {
-              case 'installed':
-                // At this point, the old content will have been purged and the
-                // fresh content will have been added to the cache.
-                // It's the perfect time to display a "New content is
-                // available; please refresh." message in the page's interface.
-                break;
-
-              case 'redundant':
-                throw new Error('The installing service worker became redundant.');
-            }
-          };
-        }
-      };
-    }).catch(function (e) {
-      console.error('Error during service worker registration:', e);
-    });
-  }
   //base64/utf utilities from:
   // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#Solution_.232_.E2.80.93_rewriting_atob()_and_btoa()_using_TypedArrays_and_UTF-8
   function uint6ToB64(nUint6) {
@@ -154,9 +106,10 @@
   var chromeBlocks = {};
   var httpBlocks = {};
 
+  //begin making databases of block for chrome and http
   var chromeFileSrc;
   var httpFileSrc;
-  $(function() {
+  $(function () {
     $.get('chromeHB.xml', function (data) {
       chromeFileSrc = data;
     });
@@ -165,9 +118,9 @@
     });
     setTimeout(setUpBlocks, 1000);
   });
-
-  var setUpBlocks = function() {
-    if(chromeFileSrc === undefined || httpFileSrc === undefined){
+  //main function for setting up database of blocks
+  var setUpBlocks = function () {
+    if (chromeFileSrc === undefined || httpFileSrc === undefined) {
       setTimeout(setUpBlocks, 1000);
     }
     var xmlChrome = chromeFileSrc;
@@ -188,7 +141,7 @@
     for (i = 0; i < children.length; i++) {
       if (children[i].nodeName === 'block-definition') {
         //isolate block-definitions as this is all we care about
-        chromeBlocks[children[i].getAttribute("s").trim()] = children[i];
+        chromeBlocks[children[i].getAttribute('s').trim()] = children[i];
       }
     }
 
@@ -205,14 +158,12 @@
     for (i = 0; i < children2.length; i++) {
       if (children2[i].nodeName === 'block-definition') {
         //isolate block-definitions as this is all we care about
-        httpBlocks[children2[i].getAttribute("s").trim()] = children2[i];
+        httpBlocks[children2[i].getAttribute('s').trim()] = children2[i];
       }
     }
     isReady = true;
-    console.log("Ready!");
   };
-
-
+  //done with setup stuff
 
   //input file
   var fileInput = $('#files');
@@ -225,8 +176,8 @@
     if (!window.FileReader) {
       alert('Your browser is not supported');
     }
-    if(!isReady){
-      alert('Resources are still being loaded, please wait a moment and then try again')
+    if (!isReady) {
+      alert('Resources are still being loaded, please wait a moment and then try again');
     }
     var input = fileInput.get(0);
     // Create a reader object
@@ -235,7 +186,8 @@
       var textFile = input.files[0];
       reader.readAsText(textFile);
       $(reader).on('load', processFile);
-    } else {
+    }
+    else {
       alert('Please upload a file before continuing');
     }
   });
@@ -256,38 +208,49 @@
   //takes the parsed xml file and returns it as a new file export.xml
   function returnXMLFile(xml) {
     var outputXML = new XMLSerializer().serializeToString(xml);
-    var a = document.body.appendChild(
-      document.createElement('a')
-    );
-    a.download = 'export.xml';
+    var a = document.getElementById('downloadLink');
     a.href = 'data:text;charset=utf-8;base64,' + betterBtoa(outputXML);
-    a.innerHTML = 'Click here to download new project';
+    a.style.display = 'inline';
   }
 
-  function httpToChrome(blockDefNode) {
-    var blockName = blockDefNode.getAttribute("s").trim();
-    return;
-  }
-
-  function chromeToHttp(blockDefNode) {
-    var blockName = blockDefNode.getAttribute("s").trim();
-    return;
-  }
-
-  //takes a block definition node and converts it appropriately
-  function convertBlock(blockDefNode) {
-    var startTypeNum = $('input[name="startType"]:checked').val();
-    var endTypeNum = $('input[name="endType"]:checked').val();
-    if (startTypeNum == endTypeNum) {
-      return;
-    } else if (startTypeNum === 1 && endTypeNum === 2) {
-      httpToChrome(blockDefNode);
-    } else if (endTypeNum === 2 && startTypeNum === 1) {
-      chromeToHttp(blockDefNode);
+  //convert an httpBlock to a chrome block
+  function httpToChrome(blockDefNode, parentNode) {
+    var blockName = blockDefNode.getAttribute('s').trim();
+    if (blockName in chromeBlocks) {
+      parentNode.replaceChild(chromeBlocks[blockName], blockDefNode);
     }
   }
 
-  function textToDocument(data){
+  //convert a chrome block to http block
+  function chromeToHttp(blockDefNode, parentNode) {
+    var blockName = blockDefNode.getAttribute('s').trim();
+    if (blockName in httpBlocks) {
+      parentNode.replaceChild(httpBlocks[blockName], blockDefNode);
+    }
+  }
+
+  //takes a block definition node and converts it appropriately
+  function convertBlock(blockDefNode, parent) {
+    var startTypeNum = parseInt($('input[name="startType"]:checked').val());
+    var endTypeNum = parseInt($('input[name="endType"]:checked').val());
+    //the TypeNum variables represent what we're converting to/from
+    //1 is http and 2 is chrome
+    if (startTypeNum === endTypeNum) {
+      //do nothing
+    }
+    else if (startTypeNum === 1 && endTypeNum === 2) {
+      httpToChrome(blockDefNode, parent);
+    }
+    else if (startTypeNum === 2 && endTypeNum === 1) {
+      chromeToHttp(blockDefNode, parent);
+    }
+    else {
+      console.log('this shouldn\'t happen     start num: '  + startTypeNum + ' end num: ' + endTypeNum);
+    }
+  }
+
+  //converts the uploaded to a new file
+  function convertXML(data) {
     var xml;
     //initial parse of xml
     if (window.DOMParser) { // Standard
@@ -298,11 +261,6 @@
       xml.async = 'false';
       xml.loadXML(data);
     }
-    return xml;
-  }
-
-  function convertXML(data) {
-    var xml = textToDocument(data);
 
     //this is the highest level node in the snap xml, the project node
     var projectNode = xml.documentElement;
@@ -317,12 +275,12 @@
     for (i = 0; i < children.length; i++) {
       if (children[i].nodeName === 'block-definition') {
         //isolate block-definitions as this is all we care about
-        convertBlock(children[i]);
-        //console.log('child:' + children[i].nodeName); //block-definitions
-        //console.log(children[i].getAttribute("s"));
+        convertBlock(children[i], blocksNode);
       }
     }
-    returnXMLFile(xml);
+    setTimeout(function () {
+      returnXMLFile(xml);
+    }, 100);
   }
 
 })

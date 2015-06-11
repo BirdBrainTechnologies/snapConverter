@@ -13,5 +13,11 @@
   "quotmark": "single",
   "undef": true,
   "unused": "vars",
-  "strict": true
+  "strict": true,
+  "-W100": true,
+  "maxerr": 200,
+  "jquery": true,
+  "devel": true,
+  "predef": ["XDomainRequest","ActiveXObject"],
+  "bitwise": false
 }
