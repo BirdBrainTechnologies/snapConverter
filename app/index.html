@@ -49,49 +49,27 @@
   </div>
 </header>
 
-<main>
-  <script>
-      var upload = function() {
-      var project = document.getElementById("projectFile");
-      // the file is the first element in the files property
-      var file = project.files[0];
-
-      console.log("File name: " + file.fileName);
-      console.log("File size: " + file.fileSize);
-      console.log("Binary content: " + file.getAsBinary());
-      console.log("Text content: " + file.getAsText(""));
-      // or
-      // console.log("Text content: " + file.getAsText("utf8"));
-
-      return false;
-    };
-  </script>
-  <h3>Copy your xml file into the box below</h3><br>
-  <form action="upload.php" method="post" enctype="multipart/form-data">
-    <fieldset>
-      <legend>Upload Project</legend>
-      <input type="file" name="projectFile" id="projectFile">
-      <input type="submit" value="Upload">
-    </fieldset>
-  </form>
-  <form>
-    <div style="float:left">
-      <h4>Source:</h4><br>
-      <input type="radio" name="startType" value="1" checked>iPad
-      <br>
-      <input type="radio" name="startType" value="2">BirdBrain Server
-      <br>
-      <input type="radio" name="startType" value="3">Chrome App
-    </div>
-    <div style="float:right">
-      <h4>Output:</h4><br>
-      <input type="radio" name="endType" value="1" checked>iPad
-      <br>
-      <input type="radio" name="endType" value="2">BirdBrain Server
-      <br>
-      <input type="radio" name="endType" value="3">Chrome App
-    </div>
-  </form>
+<h3>Select the source and desired output type of your snap project and then upload your project xml</h3><br>
+<input type=file id=files>
+<button id=upload>Upload</button>
+<form>
+  <div style="float:left">
+    <h4>Source:</h4><br>
+    <input type="radio" name="startType" value="1" checked>iPad
+    <br>
+    <input type="radio" name="startType" value="1">BirdBrain Server
+    <br>
+    <input type="radio" name="startType" value="2">Chrome App
+  </div>
+  <div style="float:left">
+    <h4>Output:</h4><br>
+    <input type="radio" name="endType" value="1">iPad
+    <br>
+    <input type="radio" name="endType" value="1">BirdBrain Server
+    <br>
+    <input type="radio" name="endType" value="2" checked>Chrome App
+  </div>
+</form>
 </main>
 
 <!-- build:js(app/) ../../scripts/main.min.js -->
