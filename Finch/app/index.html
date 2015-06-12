@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="A tool to convert snap projects for the hummingbird.">
+  <meta name="description" content="A tool to convert snap projects for the finch.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Birdbrain Snap Converter</title>
 
@@ -41,7 +41,7 @@
 <header class="app-bar promote-layer">
   <div>
     <img src="images/birdbrain-technologies.png" hspace="20" style="float:left">
-    <h1 class="logo">Birdbrain <strong>Snap Converter</strong> for Hummingbird</h1>
+    <h1 class="logo">Birdbrain <strong>Snap Converter</strong> for Finch</h1>
   </div>
 </header>
 
@@ -51,19 +51,25 @@
 <input style="margin-left: 27%" type=file id=files>
 <button id=upload>Upload</button>
 
-<form style="margin-left: 30%">
+<form style="margin-left: 10%">
   <div style="float:left">
-    <h4>Source:</h4><br>
-    <input type="radio" name="startType" value="1" checked> iPad
+    <h4>Level:</h4><br>
+    <input type="radio" name="level" value="1"> Level 1 (simple blocks)
     <br>
-    <input type="radio" name="startType" value="1"> BirdBrain Server
+    <input type="radio" name="level" value="2"> Level 2 (blocks with parameters)
+    <br>
+    <input type="radio" name="level" value="3"> Level 3 (parameters and time)
+    <br>
+    <input type="radio" name="level" value="0" checked> Level 4 (regular snap)
+  </div>
+  <div style="float:left;margin-left: 20%">
+    <h4>Source:</h4><br>
+    <input type="radio" name="startType" value="1" checked> BirdBrain Server
     <br>
     <input type="radio" name="startType" value="2"> Chrome App
   </div>
   <div style="float:left;margin-left: 20%">
     <h4>Output:</h4><br>
-    <input type="radio" name="endType" value="1"> iPad
-    <br>
     <input type="radio" name="endType" value="1"> BirdBrain Server
     <br>
     <input type="radio" name="endType" value="2" checked> Chrome App

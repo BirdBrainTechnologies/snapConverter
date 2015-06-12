@@ -1,7 +1,7 @@
 /**
  *
  *  Web Starter Kit
- *  Copyright 2015 Google Inc. All rights reserved.
+ *  Copyright 2014 Google Inc. All rights reserved.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 
 'use strict';
 
-// Include gulp & tools we'll use
+// Include Gulp & tools we'll use
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
@@ -27,10 +27,18 @@ var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var pagespeed = require('psi');
 var reload = browserSync.reload;
-var swPrecache = require('sw-precache');
-var fs = require('fs');
-var path = require('path');
-var packageJson = require('./package.json');
+
+var AUTOPREFIXER_BROWSERS = [
+  'ie >= 10',
+  'ie_mob >= 10',
+  'ff >= 30',
+  'chrome >= 34',
+  'safari >= 7',
+  'opera >= 23',
+  'ios >= 7',
+  'android >= 4.4',
+  'bb >= 10'
+];
 
 // Lint JavaScript
 gulp.task('jshint', function () {
@@ -71,66 +79,44 @@ gulp.task('fonts', function () {
     .pipe($.size({title: 'fonts'}));
 });
 
-
 // Compile and automatically prefix stylesheets
 gulp.task('styles', function () {
-
-  var AUTOPREFIXER_BROWSERS = [
-    'ie >= 10',
-    'ie_mob >= 10',
-    'ff >= 30',
-    'chrome >= 34',
-    'safari >= 7',
-    'opera >= 23',
-    'ios >= 7',
-    'android >= 4.4',
-    'bb >= 10'
-  ];
-
-
-
   // For best performance, don't add Sass partials to `gulp.src`
   return gulp.src([
-    'app/**/*.scss',
-    'app/styles/**/*.css'
+    'app/styles/*.scss',
+    'app/styles/**/*.css',
+    'app/styles/components/components.scss'
   ])
-    .pipe($.changed('.tmp/styles', {extension: '.css'}))
     .pipe($.sourcemaps.init())
+    .pipe($.changed('.tmp/styles', {extension: '.css'}))
     .pipe($.sass({
-      precision: 10
-    }).on('error', $.sass.logError))
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-    .pipe(gulp.dest('.tmp'))
+      precision: 10,
+      onError: console.error.bind(console, 'Sass error:')
+    }))
+    .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
+    .pipe($.sourcemaps.write())
+    .pipe(gulp.dest('.tmp/styles'))
     // Concatenate and minify styles
     .pipe($.if('*.css', $.csso()))
-    .pipe($.sourcemaps.write())
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('dist/styles'))
     .pipe($.size({title: 'styles'}));
-});
-
-// Concatenate and minify JavaScript
-gulp.task('scripts', function () {
-  var sources = ['./app/scripts/main.js'];
-  return gulp.src(sources)
-    .pipe($.concat('main.min.js'))
-    .pipe($.uglify({preserveComments: 'some'}))
-    // Output files
-    .pipe(gulp.dest('dist/scripts'))
-    .pipe($.size({title: 'scripts'}));
 });
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
-  return gulp.src('app/**/**/*.html')
+  return gulp.src('app/**/*.html')
     .pipe(assets)
+    // Concatenate and minify JavaScript
+    .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
     // Remove any unused CSS
-    // Note: If not using the Style Guide, you can delete it from
-    // the next line to only include styles your project uses.
+    // Note: if not using the Style Guide, you can delete it from
+    //       the next line to only include styles your project uses.
     .pipe($.if('*.css', $.uncss({
       html: [
-        'app/index.html'
+        'app/index.html',
+        'app/styleguide.html'
       ],
       // CSS Selectors for UnCSS to ignore
       ignore: [
@@ -138,13 +124,13 @@ gulp.task('html', function () {
         /.app-bar.open/
       ]
     })))
-
     // Concatenate and minify styles
     // In case you are still using useref build blocks
     .pipe($.if('*.css', $.csso()))
     .pipe(assets.restore())
     .pipe($.useref())
-
+    // Update production Style Guide paths
+    .pipe($.replace('components/components.css', 'components/main.min.css'))
     // Minify any HTML
     .pipe($.if('*.html', $.minifyHtml()))
     // Output files
@@ -183,24 +169,20 @@ gulp.task('serve:dist', ['default'], function () {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: 'dist',
-    baseDir: 'dist'
+    server: 'dist'
   });
 });
 
 // Build production files, the default task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence(
-    'styles',
-    ['jshint', 'html', 'scripts', 'images', 'fonts', 'copy'],
-    cb);
+  runSequence('styles', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
 });
 
 // Run PageSpeed Insights
 gulp.task('pagespeed', function (cb) {
   // Update the below URL to the public URL of your site
   pagespeed.output('example.com', {
-    strategy: 'mobile'
+    strategy: 'mobile',
     // By default we use the PageSpeed Insights free (no API key) tier.
     // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
     // key: 'YOUR_API_KEY'
