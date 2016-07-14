@@ -1,0 +1,118 @@
+/* FONT Avenir
+font-family:'Avenir LT W02 45 Book';
+font-family:'Avenir LT W02 85 Heavy';
+font-family:'AvenirLTW02-45BookObliq';
+*/
+
+body {
+	background-color: #125D58;
+	font-family: 'Avenir LT W02 45 Book', Helvetica, Arial, sans-serif;
+	padding-top: 7px;
+}
+
+.full {
+	background-color: #fff;
+	background-image: url(../img/hummingbird-bg.png);
+	background-position: right top;
+	background-repeat: no-repeat;
+}
+
+.container-fluid {
+	max-width: 1000px;
+}
+
+header { 
+	padding-top: 25px;
+	padding-bottom: 10px;
+}
+
+.btn-green {
+	background-color: #84CE3D;
+	border-radius: 12px;
+	color: #fff;
+	display: block;
+	font-size: 1.3em;
+	padding-top: 9px; padding-bottom: 9px;
+	margin-top: 6px;
+	transition: all 0.65s ease;
+}
+.btn-green:hover {
+	background-color: #71BA27;
+	color: #fff;	
+}
+.btn-size {
+	margin-top: 1em;
+	margin-left: auto; margin-right: auto;
+	max-width: 400px;
+	width: 80%;
+}
+
+.btn-submit { 
+	background-color: #125D58;
+	border-radius: 16px;
+	color: #fff;
+	font-family:'Avenir LT W02 85 Heavy'; font-size: 2em;
+	max-width: 400px;
+	padding: 0.5em;
+	text-transform: uppercase;
+	transition: all 0.65s ease;
+	width: 80%;
+}
+.btn-submit:hover, .btn-submit:active {
+	background-color: #84CE3D;
+	color: #fff !important;
+}
+
+.btn-link {
+	background-color: rgba(18,93,88, 0.1);
+	border-radius: 12px;
+	color: #125D58;
+	display: block !important;;
+	font-size: 1.5em;
+	margin-top: 1em;
+	padding: 0.75em;
+	text-align: center;
+	text-decoration: none;
+	transition: all 0.65s ease;
+}
+.btn-link:hover, .btn-link:active {
+	background-color: #125D58;
+	color: #fff;
+	text-decoration: none;
+}
+
+main { 
+	margin: 0;
+	padding-bottom: 70px;
+}
+
+p.instructions { 
+	background-color: rgba(18,93,88, 0.1);
+	border-left: 4px solid #125D58; border-right: 4px solid #125D58;
+	color: #125D58;
+	font-size: 1.2em;
+	padding: 1em;
+	text-align: center;
+}
+
+main h1 {
+	color: #125D58;
+	font-family:'Avenir LT W02 85 Heavy';
+	text-align: center;
+}
+
+main h2 { 
+	color: #125D58;
+	font-family:'Avenir LT W02 85 Heavy'; font-size: 1.4em;
+	margin-bottom: 0.75em;
+}
+
+.form-group {
+	font-size: 1.15em;
+	margin-bottom: 8px;
+}
+.form-group input[type=radio] {
+	margin-right: 6px;
+}
+
+.row-submit { padding-top: 2em; }

@@ -210,7 +210,10 @@
     var outputXML = new XMLSerializer().serializeToString(xml);
     var a = document.getElementById('downloadLink');
     a.href = 'data:text;charset=utf-8;base64,' + betterBtoa(outputXML);
-    a.style.display = 'inline';
+    
+    var ele = document.getElementById('downloadComplete');
+    ele.style.display = 'block';
+    $('form').slideUp();
   }
 
   //convert an httpBlock to a chrome block
@@ -232,16 +235,13 @@
   //takes a block definition node and converts it appropriately
   function convertBlock(blockDefNode, parent) {
     var startTypeNum = parseInt($('input[name="startType"]:checked').val());
-    var endTypeNum = parseInt($('input[name="endType"]:checked').val());
     //the TypeNum variables represent what we're converting to/from
-    //1 is http and 2 is chrome
-    if (startTypeNum === endTypeNum) {
-      //do nothing
-    }
-    else if (startTypeNum === 1 && endTypeNum === 2) {
+    //1 is http->Chrome and 2 is chrome->http
+    
+    if (startTypeNum === 1) {
       httpToChrome(blockDefNode, parent);
     }
-    else if (startTypeNum === 2 && endTypeNum === 1) {
+    else if (startTypeNum === 2) {
       chromeToHttp(blockDefNode, parent);
     }
     else {
