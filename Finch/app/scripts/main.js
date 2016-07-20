@@ -280,7 +280,8 @@
         block = blocksNode.childNodes[i];
         if (block.nodeName === 'block-definition') {
           if(block.getAttribute('category').trim() === 'other'){
-            if (block.getAttribute('s') in cBlocks){
+            console.log('Checking if block ' + block.getAttribute('s').trim() + ' should be removed');
+            if (block.getAttribute('s').trim() in cBlocks){
               blocksNode.removeChild(block);
             }
           }
