@@ -280,7 +280,7 @@
         block = blocksNode.childNodes[i];
         if (block.nodeName === 'block-definition') {
           if(block.getAttribute('category').trim() === 'other'){
-            if (block.getAttribute('s').trim() in cBlocks){
+            if (block.getAttribute('s') in cBlocks){
               blocksNode.removeChild(block);
             }
           }
@@ -293,10 +293,10 @@
   function convertBlock(blockDefNode, parent) {
     //the TypeNum variables represent what we're converting to/from
     //1 is http and 2 is chrome
-    if (startTypeNum === 1) {
+    if (startTypeNum === 1) { //http->chrome
       httpToChrome(blockDefNode, parent);
     }
-    else if (startTypeNum === 2) {
+    else if (startTypeNum === 2) { //chrome->http
       chromeToHttp(blockDefNode, parent);
     }
     else {
