@@ -278,10 +278,13 @@
       //remove extra blocks
       for(var i = 0; i < blocksNode.childNodes.length; i++){
         block = blocksNode.childNodes[i];
+        console.log('Checking if block ' + block.getAttribute('s').trim() + ' should be removed');
         if (block.nodeName === 'block-definition') {
+          console.log('It is a block');
           if(block.getAttribute('category').trim() === 'other'){
-            console.log('Checking if block ' + block.getAttribute('s').trim() + ' should be removed');
+            console.log('It has the correct category');
             if (block.getAttribute('s').trim() in cBlocks){
+              console.log('It is in the chrome starter project');
               blocksNode.removeChild(block);
             }
           }
