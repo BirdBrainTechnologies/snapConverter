@@ -276,7 +276,8 @@
     }
     else if(startTypeNum === 2){//chrome->http
       //remove extra blocks
-      for(var i = 0; i < blocksNode.childNodes.length; i++){
+      var childLength = blocksNode.childNodes.length
+      for(var i = 0; i < childLength; i++){
         block = blocksNode.childNodes[i];
         console.log('Checking if block ' + block.getAttribute('s').trim() + ' should be removed');
         if (block.nodeName === 'block-definition') {
@@ -286,6 +287,8 @@
             if (block.getAttribute('s').trim() in cBlocks){
               console.log('It is in the chrome starter project');
               blocksNode.removeChild(block);
+              childLength--;
+              i--;
             }
           }
         }
