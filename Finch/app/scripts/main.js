@@ -191,7 +191,7 @@
   //button clicked to upload file
   var uploadButton = $('#upload');
   //which level of snap we're working with
-  var level, startTypeNum, endTypeNum;
+  var level, startTypeNum;
 
   //when the button is clicked, read and load the file
   //on load, process the file
@@ -205,7 +205,7 @@
     //figure out what level of snap this is based on radio button
     level = parseInt($('input[name="level"]:checked').val());
     startTypeNum = parseInt($('input[name="startType"]:checked').val());
-    endTypeNum = parseInt($('input[name="endType"]:checked').val());
+    
     var input = fileInput.get(0);
     // Create a reader object
     var reader = new FileReader();
@@ -237,7 +237,10 @@
     var outputXML = new XMLSerializer().serializeToString(xml);
     var a = document.getElementById('downloadLink');
     a.href = 'data:text;charset=utf-8;base64,' + betterBtoa(outputXML);
-    a.style.display = 'inline';
+    
+    var ele = document.getElementById('downloadComplete');
+    ele.style.display = 'block';
+    $('form').slideUp();
   }
 
   //convert an httpBlock to a chrome block
@@ -262,7 +265,7 @@
     }
     var cBlocks = chromeBlocks[level];
     var block;
-    if(startTypeNum === 1 && endTypeNum === 2){//http->chrome
+    if(startTypeNum === 1){//http->chrome
       //add in extra blocks
       for(var key in cBlocks) {
         block = cBlocks[key];
@@ -271,7 +274,7 @@
         }
       }
     }
-    else if(startTypeNum === 2 && endTypeNum === 1){//chrome->http
+    else if(startTypeNum === 2){//chrome->http
       //remove extra blocks
       for(var i = 0; i < blocksNode.childNodes.length; i++){
         block = blocksNode.childNodes[i];
@@ -290,17 +293,14 @@
   function convertBlock(blockDefNode, parent) {
     //the TypeNum variables represent what we're converting to/from
     //1 is http and 2 is chrome
-    if (startTypeNum === endTypeNum) {
-      //do nothing
-    }
-    else if (startTypeNum === 1 && endTypeNum === 2) {
+    if (startTypeNum === 1) {
       httpToChrome(blockDefNode, parent);
     }
-    else if (startTypeNum === 2 && endTypeNum === 1) {
+    else if (startTypeNum === 2) {
       chromeToHttp(blockDefNode, parent);
     }
     else {
-      console.log('this shouldn\'t happen     start num: '  + startTypeNum + ' end num: ' + endTypeNum);
+      console.log('this shouldn\'t happen     start num: '  + startTypeNum);
     }
   }
 
