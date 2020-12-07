@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="A tool to convert snap projects for BirdBrain products.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>BirdBrain Converter for Snap!</title>
+
+	<!-- Web Application Manifest -->
+	<!--<link rel="manifest" href="manifest.json">-->
+
+	<!-- Add to homescreen for Chrome on Android -->
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="application-name" content="Snap! Converter">
+	<link rel="icon" sizes="192x192" href="img/icon_192x192.png">
+
+	<!-- Add to homescreen for Safari on iOS -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="Snap! Converter">
+	<link rel="icon" sizes="192x192" href="img/icon_192x192.png">
+
+	<!-- Tile icon for Win8 (144x144 + tile color) -->
+	<meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+	<meta name="msapplication-TileColor" content="#089BAB">
+
+	<meta name="theme-color" content="#089BAB">
+
+	<link rel="stylesheet" id="fontscom-fonts-css" href="//fast.fonts.net/cssapi/be2b07cb-f69a-453e-abe3-52e1384e4727.css" type="text/css" media="all">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+
+	<script src="https://kit.fontawesome.com/2ecd3a4521.js" crossorigin="anonymous"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+</head>
+<body>
+	<div class="full">
+		<header>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-12 col-sm-3">
+						<a href="https://birdbraintechnologies.com">
+							<img src="https://www.birdbraintechnologies.com/wp-content/themes/birdbrain2017/img/birdbrain-technologies-llc-r.svg" alt="BirdBrain Technologies" />
+						</a>
+					</div>
+					<div class="col-xs-12 col-sm-9 text-right">
+						<h1>BirdBrain Snap! Converter</h1>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main>
+			<div class="container-fluid">
+				<div class="row">
+					<h2 class="section-heading"><a id="finchBitAnchor"></a>Finch 2.0 and Hummingbird Bit</h2>
+				</div>
+
+				<form onsubmit="return false;">
+					<p class="instructions">Select the desired output type of your Finch 2.0 and/or Hummingbird Bit Snap! project, and then upload your project XML. Your project will be converted into a multi device project for use in the selected software.</p>
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-6">
+							<h2>Select Output Software</h2>
+							<div class="form-group"><label for="WebApp"><input type="radio" name="software" id="WebApp" value="1" checked> Web App</label></div>
+							<div class="form-group"><label for="BlueBird"><input type="radio" name="software" id="BlueBird" value="0"> BlueBird Connector</label></div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<h2>Select Your XML File</h2>
+							<div class="form-group"><input type="file" id="fbFiles" class="form-control" accept=".xml" onchange="onFileChoice(this)" /></div>
+						</div>
+					</div>
+
+					<div class="row justify-content-center">
+						<div class="col-xs-12 col-sm-4 hidden-xs"></div>
+						<div class="col-xs-12 col-sm-4">
+							<div class="row row-submit text-center">
+								<button class="btn btn-submit" id="finchBitUpload" style="display: none;">Convert</button>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-4 hidden-xs"></div>
+					</div>
+
+					<div class="row text-center">
+						<span id="spinner" style="color: #089BAB; display: none;">
+							<i class="fas fa-sync-alt fa-spin fa-5x"></i>
+						</span>
+					</div>
+
+					<div class="row row-submit">
+						<div class="col-xs-12 col-sm-2 hidden-xs"></div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="row">
+								<h2  id="convertionInfo"></h2>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-2">
+							<div style="display: none;" class="row text-center" id="fbDownloadComplete">
+								<a class="btn btn-link" download="newSnapProject.xml" href="" id="fbDownloadLink"><i class="fas fa-download"></i></a>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-2 hidden-xs"></div>
+					</div>
+
+				</form>
+
+		</main>
+	</div>
+
+	<script src="main.js"></script>
+
+</body>
+</html>

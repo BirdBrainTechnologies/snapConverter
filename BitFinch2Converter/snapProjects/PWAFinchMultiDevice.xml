@@ -1,0 +1,1519 @@
+<project name="PWAFinchMultiDevice" app="Snap! 5.0, http://snap.berkeley.edu" version="1">
+    <notes></notes>
+    <thumbnail>
+        data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAB4CAYAAAB1ovlvAAADXklEQVR4Xu3XvUqjYRSF0TdYiKU2Wilo6w+IFt6Znd6Kt+RF2GprlWEsBqaY8TTbDWGlSXM4h6zvCSGb7Xa7XV4ESgIbAZbknf0SEKAQqgICrPI7LkANVAUEWOV3XIAaqAoIsMrvuAA1UBUQYJXfcQFqoCogwCq/4wLUQFVAgFV+xwWogaqAAKv8jgtQA1UBAVb5HRegBqoCAqzyOy5ADVQFBFjld1yAGqgKCLDK77gANVAVEGCV33EBaqAqIMAqv+MC1EBVQIBVfscFqIGqgACr/I4LUANVAQFW+R0XoAaqAgKs8jsuQA1UBQRY5XdcgBqoCgiwyu+4ADVQFRBgld9xAWqgKiDAKr/jAtRAVUCAVX7HBaiBqoAAq/yOC1ADVQEBVvkdF6AGqgICrPI7LkANVAUEWOV3XIAaqAoIsMrvuAA1UBUQ4D/4X15e1t7e3rq+vl5XV1drs9lUH9SuHhfgP57s29vbenx8XB8fH2t/f3/d39+v8/Pzr/ezs7Nd7eHHP5cA/0P++vq6np6e/pr4/Pxcx8fH6/b29ivIh4eHdXR09OMPblcOCvCbAJ+fn9d2u/0z9TvAk5OTvwI8PDzclR5+/HMI8Juf4Pf393VwcLDu7u7WxcXF10/w6enpjz+oXT0owG/+hNzc3KzLy0t/QkLfAAGGYK2dCQhw5mQqJCDAEKy1MwEBzpxMhQQEGIK1diYgwJmTqZCAAEOw1s4EBDhzMhUSEGAI1tqZgABnTqZCAgIMwVo7ExDgzMlUSECAIVhrZwICnDmZCgkIMARr7UxAgDMnUyEBAYZgrZ0JCHDmZCokIMAQrLUzAQHOnEyFBAQYgrV2JiDAmZOpkIAAQ7DWzgQEOHMyFRIQYAjW2pmAAGdOpkICAgzBWjsTEODMyVRIQIAhWGtnAgKcOZkKCQgwBGvtTECAMydTIQEBhmCtnQkIcOZkKiQgwBCstTMBAc6cTIUEBBiCtXYmIMCZk6mQgABDsNbOBAQ4czIVEhBgCNbamYAAZ06mQgICDMFaOxMQ4MzJVEhAgCFYa2cCApw5mQoJCDAEa+1MQIAzJ1MhAQGGYK2dCQhw5mQqJCDAEKy1MwEBzpxMhQQEGIK1diYgwJmTqZCAAEOw1s4EBDhzMhUSEGAI1tqZwC+DkAu3aOeKRQAAAABJRU5ErkJggg==
+    </thumbnail>
+    <stage name="Stage" width="480" height="360" costume="0" color="255,255,255,1" tempo="60" threadsafe="false"
+           volume="100" pan="0" lines="round" ternary="false" codify="false" inheritance="true" sublistIDs="false"
+           scheduled="false" id="1">
+        <pentrails>
+            data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAAFoCAYAAACPNyggAAAOhUlEQVR4Xu3VwQkAAAjEMN1/abewn7jAQRC64wgQIECAAIF3gX1fNEiAAAECBAiMAHsCAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQIHLFxAWmhEwHPAAAAAElFTkSuQmCC
+        </pentrails>
+        <costumes>
+            <list struct="atomic" id="2"></list>
+        </costumes>
+        <sounds>
+            <list struct="atomic" id="3"></list>
+        </sounds>
+        <variables></variables>
+        <blocks></blocks>
+        <scripts>
+            <script x="29" y="22">
+                <block s="receiveInteraction">
+                    <l>
+                        <option>stopped</option>
+                    </l>
+                </block>
+                <custom-block s="stop all %txt">
+                    <l>A</l>
+                </custom-block>
+            </script>
+            <script x="188" y="24">
+                <block s="receiveInteraction">
+                    <l>
+                        <option>stopped</option>
+                    </l>
+                </block>
+                <custom-block s="stop all %txt">
+                    <l>B</l>
+                </custom-block>
+            </script>
+            <script x="347" y="19">
+                <block s="receiveInteraction">
+                    <l>
+                        <option>stopped</option>
+                    </l>
+                </block>
+                <custom-block s="stop all %txt">
+                    <l>C</l>
+                </custom-block>
+            </script>
+            <script x="152" y="13">
+              <block s="receiveGo"></block>
+              <custom-block s="BirdBrain Setup"></custom-block>
+            </script>
+        </scripts>
+        <sprites>
+            <sprite name="Sprite" idx="1" x="0" y="0" heading="90" scale="1" volume="100" pan="0" rotation="1"
+                    draggable="true" costume="0" color="80,80,80,1" pen="tip" id="20">
+                <costumes>
+                    <list struct="atomic" id="21"></list>
+                </costumes>
+                <sounds>
+                    <list struct="atomic" id="22"></list>
+                </sounds>
+                <blocks></blocks>
+                <variables></variables>
+                <scripts></scripts>
+            </sprite>
+        </sprites>
+    </stage>
+    <hidden>receiveCondition</hidden>
+    <headers></headers>
+    <code></code>
+    <blocks>
+      <block-definition s="BirdBrain Setup" type="command">
+        <header></header>
+        <code></code>
+        <translations></translations>
+        <script>
+          <block s="doRun">
+              <block s="reportJSFunction">
+                <list></list>
+                  <l>
+                    if (window.birdbrain === undefined) {
+                      window.birdbrain = {};
+                      window.birdbrain.sensorData = {};
+                      window.birdbrain.sensorData.A = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+                      window.birdbrain.sensorData.B = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+                      window.birdbrain.sensorData.C = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+                      window.birdbrain.robotType = {
+                        FINCH: 1,
+                        HUMMINGBIRDBIT: 2,
+                        MICROBIT: 3,
+                        //connected robots default to type MICROBIT
+                        A: 3,
+                        B: 3,
+                        C: 3
+                      };
+
+                      console.log("setting up message channel")
+                      window.birdbrain.messageChannel = new MessageChannel();
+                      window.birdbrain.messageChannel.port1.onmessage = function (e) {
+                          //console.log("Got a message: ");
+                          //console.log(e.data);
+                          if (e.data.sensorData != null && e.data.robot != null) {
+                            let robot = e.data.robot;
+                            window.birdbrain.sensorData[robot] = e.data.sensorData;
+                            window.birdbrain.robotType[robot] = e.data.robotType;
+                          }
+                      }
+                      window.parent.postMessage("hello from snap", "*", [window.birdbrain.messageChannel.port2]);
+
+                      window.birdbrain.sendCommand = function(command) {
+                        window.parent.postMessage(command, "*");
+                      }
+
+                      window.birdbrain.finchIsMoving = function(finch) {
+                        return (window.birdbrain.sensorData[finch][4] > 127);
+                      }
+
+                      //  Converts byte range 0 - 255 to -127 - 127 represented as a 32 bit signe int
+                      function byteToSignedInt8 (byte) {
+                        var sign = (byte & (1 &lt;&lt; 7));
+                        var value = byte & 0x7F;
+                        if (sign) { value  = byte | 0xFFFFFF00; }
+                        return value;
+                      }
+
+                      //  Converts byte range 0 - 255 to -127 - 127 represented as a 32 bit signe int
+                      function byteToSignedInt16 (msb, lsb) {
+                        var sign = msb & (1 &lt;&lt; 7);
+                        var value = (((msb & 0xFF) &lt;&lt; 8) | (lsb & 0xFF));
+                        if (sign) {
+                          value = 0xFFFF0000 | value;  // fill in most significant bits with 1's
+                        }
+                        return value;
+                      }
+
+                      window.birdbrain.getMicrobitAcceleration = function(axis, robot) {
+                        const rawToMperS = 196/1280; //convert to meters per second squared
+                        let sensorData = window.birdbrain.sensorData[robot];
+                        let accVal = 0;
+                        switch (axis) {
+                          case 'X':
+                            accVal = byteToSignedInt8(sensorData[4]);
+                            break;
+                          case 'Y':
+                            accVal = byteToSignedInt8(sensorData[5]);
+                            break;
+                          case 'Z':
+                            accVal = byteToSignedInt8(sensorData[6]);
+                            break;
+                        }
+                        return (accVal * rawToMperS);
+                      }
+
+                      window.birdbrain.getMicrobitMagnetometer = function(axis, finch) {
+                        const rawToUT = 1/10; //convert to uT
+                        let sensorData = window.birdbrain.sensorData[finch];
+                        let msb = 0;
+                        let lsb = 0;
+                        switch (axis) {
+                          case 'X':
+                            msb = sensorData[8];
+                            lsb = sensorData[9];
+                            break;
+                          case 'Y':
+                            msb = sensorData[10];
+                            lsb = sensorData[11];
+                            break;
+                          case 'Z':
+                            msb = sensorData[12];
+                            lsb = sensorData[13];
+                            break;
+                        }
+                        let magVal = byteToSignedInt16(msb, lsb);
+                        return Math.round(magVal * rawToUT);
+                      }
+
+                      window.birdbrain.getFinchAcceleration = function(axis, finch) {
+                        let sensorData = window.birdbrain.sensorData[finch];
+                        let accVal = 0;
+                        switch (axis) {
+                          case 'X':
+                            accVal = byteToSignedInt8(sensorData[13]);
+                            break;
+                          case 'Y':
+                          case 'Z':
+                            const rawY = byteToSignedInt8(sensorData[14]);
+                            const rawZ = byteToSignedInt8(sensorData[15]);
+                            const rad = 40 * Math.PI / 180; //40° in radians
+
+                            switch(axis) {
+                              case 'Y':
+                                accVal = (rawY*Math.cos(rad) - rawZ*Math.sin(rad));
+                                break;
+                              case 'Z':
+                                accVal = (rawY*Math.sin(rad) + rawZ*Math.cos(rad));
+                                break;
+                            }
+                          }
+                          return (accVal * 196/1280);
+                      }
+
+                      window.birdbrain.getFinchMagnetometer = function(axis, finch) {
+                        let sensorData = window.birdbrain.sensorData[finch];
+                        switch (axis) {
+                          case 'X':
+                            return byteToSignedInt8(sensorData[17]);
+                          case 'Y':
+                          case 'Z':
+                            const rawY = byteToSignedInt8(sensorData[18]);
+                            const rawZ = byteToSignedInt8(sensorData[19]);
+                            const rad = 40 * Math.PI / 180 //40° in radians
+
+                            let magVal = 0;
+                            switch(axis) {
+                              case 'Y':
+                                magVal = (rawY*Math.cos(rad) + rawZ*Math.sin(rad));
+                                break;
+                              case 'Z':
+                                magVal = (rawZ*Math.cos(rad) - rawY*Math.sin(rad));
+                                break;
+                            }
+                            return Math.round(magVal);
+                        }
+                      }
+
+                    } else {
+                      //console.log("BirdBrain already set up");
+                    }
+                  </l>
+              </block>
+            </block>
+          </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; Distance (cm)" type="reporter" category="sensing">
+            <header></header>
+            <code></code>
+            <translations>ca:Finch _ Distància (cm)&#xD;de:Finch _ Entfernung (cm)&#xD;es:Finch _ Distancia (cm)&#xD;fr:Finch _ Distance (cm)&#xD;he:Finch _ מרחק (cm)&#xD;ko:Finch _ 거리 센서 (cm)&#xD;nl:Finch _ Afstand (cm)&#xD;pt:Finch _ Distância (cm)&#xD;zh_CN:Finch _ 距离 (cm)&#xD;zh_TW:Finch _ 距離 (cm)&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doReport">
+                  <block s="evaluate">
+                    <block s="reportJSFunction">
+                        <list>
+                          <l>devId</l>
+                        </list>
+                        <l>
+                          if (window.birdbrain.getFinchDistance === undefined) {
+                            window.birdbrain.getFinchDistance = function (robot) {
+                              const cmPerDistance = 0.0919;
+                              const msb = window.birdbrain.sensorData[robot][0];
+                              const lsb = window.birdbrain.sensorData[robot][1];
+
+                              const distance = msb &lt;&lt; 8 | lsb;
+                              return Math.round(distance * cmPerDistance);
+                            }
+                          }
+
+                          return window.birdbrain.getFinchDistance(devId);
+                        </l>
+                    </block>
+                    <list>
+                      <block var="devId"/>
+                    </list>
+                  </block>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; %&apos;port&apos; Light" type="reporter" category="sensing">
+            <header></header>
+            <code></code>
+            <translations>ca:Finch _ _ Llum&#xD;de:Finch _ _ Licht&#xD;es:Finch _ _ Luz&#xD;fr:Finch _ _ Lumière&#xD;he:Finch _ _ אור&#xD;ko:Finch _ _ 빛 센서&#xD;nl:Finch _ _ Licht&#xD;pt:Finch _ _ Luz&#xD;zh_CN:Finch _ _ 灯光&#xD;zh_TW:Finch _ _ 燈光&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%txt" readonly="true">Right<options>Left&#xD;Right</options></input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doReport">
+                  <block s="evaluate">
+                    <block s="reportJSFunction">
+                        <list>
+                            <l>devId</l>
+                            <l>port</l>
+                        </list>
+                        <l>
+                          if (window.birdbrain.getFinchLight === undefined) {
+                            window.birdbrain.getFinchLight = function (port, robot) {
+                              const beak = window.birdbrain.currentBeak || [0,0,0];
+                              const R = beak[0]*100/255;
+                              const G = beak[1]*100/255;
+                              const B = beak[2]*100/255;
+                              var raw = 0;
+                              var correction = 0;
+                              switch (port) {
+                                case 'Right':
+                                  raw = window.birdbrain.sensorData[robot][3];
+                                  correction = 6.40473070e-03*R + 1.41015162e-02*G + 5.05547817e-02*B + 3.98301391e-04*R*G + 4.41091223e-04*R*B + 6.40756862e-04*G*B + -4.76971242e-06*R*G*B;
+                                  break;
+                                case 'Left':
+                                  raw = window.birdbrain.sensorData[robot][2];
+                                  correction = 1.06871493e-02*R + 1.94526614e-02*G + 6.12409825e-02*B + 4.01343475e-04*R*G + 4.25761981e-04*R*B + 6.46091068e-04*G*B + -4.41056971e-06*R*G*B;
+                                  break;
+                                default:
+                                  console.log("unknown light port " + port);
+                                  return 0;
+                              }
+
+                              return Math.round(Math.max(0, Math.min(100, (raw - correction))));
+                            }
+                          }
+
+                          return window.birdbrain.getFinchLight(port, devId);
+                        </l>
+                    </block>
+                    <list>
+                        <block var="devId"/>
+                        <block var="port"/>
+                    </list>
+                  </block>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; %&apos;port&apos; Line" type="reporter" category="sensing">
+            <header></header>
+            <code></code>
+            <translations>ca:Finch _ _ Línia&#xD;de:Finch _ _ Linie&#xD;es:Finch _ _ Línea&#xD;fr:Finch _ _ Ligne&#xD;he:Finch _ _ קו&#xD;ko:Finch _ _ 선&#xD;nl:Finch _ _ Lijn&#xD;pt:Finch _ _ Linha&#xD;zh_CN:Finch _ _ 线&#xD;zh_TW:Finch _ _ 線&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%txt" readonly="true">Right<options>Left&#xD;Right</options></input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doReport">
+                  <block s="evaluate">
+                    <block s="reportJSFunction">
+                        <list>
+                            <l>devId</l>
+                            <l>port</l>
+                        </list>
+                        <l>
+                          if (window.birdbrain.getFinchLine === undefined) {
+                            window.birdbrain.getFinchLine = function (port, robot) {
+                              var rawVal = 0;
+                              switch (port) {
+                                case 'Right':
+                                  rawVal = window.birdbrain.sensorData[robot][5];
+                                  break;
+                                case 'Left':
+                                  rawVal = window.birdbrain.sensorData[robot][4];
+                                  //first bit is for position control
+                                  rawVal = (0x7F & rawVal)
+                                  break;
+                                default:
+                                  console.log("unknown line port " + port);
+                              }
+                              var returnVal = 100 - ((rawVal - 6) * 100/121);
+                              return Math.min(100, Math.max(0, Math.round(returnVal)));
+                            }
+                          }
+
+                          return window.birdbrain.getFinchLine(port, devId);
+                        </l>
+                    </block>
+                    <list>
+                        <block var="devId"/>
+                        <block var="port"/>
+                    </list>
+                  </block>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; %&apos;port&apos; Encoder (rotations)" type="reporter" category="sensing">
+            <header></header>
+            <code></code>
+            <translations>ca:Finch _ Recompte de voltes _&#xD;de:Finch _ _ Kodierer&#xD;es:Finch _ Recuento de vueltas _&#xD;fr:Finch _ _ Encodeur&#xD;he:Finch _ _ קודאי&#xD;ko:Finch _ _ 인코더&#xD;nl:Finch _ _ Encoder&#xD;pt:Finch _ _ Código&#xD;zh_CN:Finch _ _ 编码器&#xD;zh_TW:Finch _ _ 編碼器&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%txt" readonly="true">Right<options>Left&#xD;Right</options></input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doReport">
+                  <block s="evaluate">
+                    <block s="reportJSFunction">
+                        <list>
+                            <l>devId</l>
+                            <l>port</l>
+                        </list>
+                        <l>
+                          if (window.birdbrain.getFinchEncoder === undefined) {
+                            window.birdbrain.getFinchEncoder = function (port, robot) {
+                              let TICKS_PER_ROTATION = 792
+                              var msb = 0;
+                              var ssb = 0;
+                              var lsb = 0;
+                              switch (port) {
+                                case 'Right':
+                                  msb = window.birdbrain.sensorData[robot][10];
+                                  ssb = window.birdbrain.sensorData[robot][11];
+                                  lsb = window.birdbrain.sensorData[robot][12];
+                                  break;
+                                case 'Left':
+                                  msb = window.birdbrain.sensorData[robot][7];
+                                  ssb = window.birdbrain.sensorData[robot][8];
+                                  lsb = window.birdbrain.sensorData[robot][9];
+                                  break;
+                                default:
+                                  console.log("unknown encoder port " + port);
+                              }
+                              var encoder = msb &lt;&lt; 16 | ssb &lt;&lt; 8 | lsb
+                              if (encoder >= 0x800000) {
+                                encoder = encoder | 0xFF000000;
+                              }
+                              return Math.round( encoder * 10 / TICKS_PER_ROTATION ) / 10
+                            }
+                          }
+
+                          return window.birdbrain.getFinchEncoder(port, devId);
+                        </l>
+                    </block>
+                    <list>
+                        <block var="devId"/>
+                        <block var="port"/>
+                    </list>
+                  </block>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; Reset Encoders" type="command" category="sensing">
+            <header></header>
+            <code></code>
+            <translations>ca:Finch _ Reinicialitza els comptadors de voltes&#xD;de:Finch _ Kodierer Zurücksetzen&#xD;es:Finch _ Reinicializar los contadores de vueltas&#xD;fr:Finch _ Réinitialiser les encodeurs&#xD;he:Finch _ לאפס קודאי&#xD;ko:Finch _ 인코더 리셋하기&#xD;nl:Finch _ Encoders Resetten&#xD;pt:Finch _ Redefinir Código&#xD;zh_CN:Finch _ 重置编码器&#xD;zh_TW:Finch _ 重置編碼器&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doRun">
+                  <block s="reportJSFunction">
+                      <list>
+                        <l>devId</l>
+                      </list>
+                      <l>
+                        var thisCommand = {
+                          robot: devId,
+                          cmd: "resetEncoders"
+                        }
+                        window.birdbrain.sendCommand(thisCommand)
+                      </l>
+                  </block>
+                  <list>
+                    <block var="devId"/>
+                  </list>
+                </block>
+                <block s="doWait">
+                  <l>0.1</l>
+                  <comment w="205" collapsed="false">block until reset happens</comment>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; Play Note %&apos;note&apos; for %&apos;beats&apos; beats" type="command"
+                          category="sound">
+            <header></header>
+            <code></code>
+            <translations>ko:Finch _ _ 번 음을 _ 박자로 연주하기&#xD;de:Finch _ Spiele Note _ für _ Schläge&#xD;pt:Finch _ Toque Notas _ por _ Batidas&#xD;fr:Finch _ Jouer la note _ pour _ battement(s)&#xD;nl:Finch _ Speel Noot _ voor _ Beats&#xD;zh_CN:Finch _ 演奏 音阶 _ 于 _ 拍&#xD;zh_TW:Finch _ 演奏 音階 _ 於 _ 拍&#xD;ar:Finch _ تشغيل الموسيقى _ _&#xD;dk:Finch _ Spil tone _ i _ slag&#xD;he:Finch _ נגן תו _ במשך _ פעימות&#xD;es:Finch _ Emitir un sonido _ por _ pulsos&#xD;ca:Finch _ Toca nota _ durant _ temps&#xD;fi:Finch _ Soita sävel _ _ iskun ajan&#xD;sv:Finch _ Spela not _ _&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%n">60<options>§_pianoKeyboardMenu</options></input>
+                <input type="%n">0.5</input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doIf">
+                    <block s="reportGreaterThan">
+                        <block var="note"/>
+                        <l>135</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>note</l>
+                            <l>135</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doIf">
+                    <block s="reportGreaterThan">
+                        <l>32</l>
+                        <block var="note"/>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>note</l>
+                            <l>32</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doIf">
+                    <block s="reportGreaterThan">
+                        <block var="beats"/>
+                        <l>16</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>beats</l>
+                            <l>16</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doIf">
+                    <block s="reportGreaterThan">
+                        <l>0</l>
+                        <block var="beats"/>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>beats</l>
+                            <l>0</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doSetVar">
+                    <l>beats</l>
+                    <block s="reportRound">
+                        <block s="reportProduct">
+                            <block s="reportQuotient">
+                                <l>60000</l>
+                                <block s="getTempo"></block>
+                            </block>
+                            <block var="beats"/>
+                        </block>
+                        <comment w="242" collapsed="false">BPM = tempo&#xD;60 * 1000/BPM = BPMS beats per millisecond&#xD;beats
+                            = Duration in ms = BPMS * number of beats
+                        </comment>
+                    </block>
+                </block>
+                <block s="doSetVar">
+                  <l>note</l>
+                  <block s="reportRound">
+                    <block var="note"/>
+                  </block>
+                </block>
+                <block s="doRun">
+                  <block s="reportJSFunction">
+                      <list>
+                          <l>devId</l>
+                          <l>note</l>
+                          <l>duration</l>
+                      </list>
+                      <l>
+                        var thisCommand = {
+                          robot: devId,
+                          cmd: "playNote",
+                          note: note,
+                          duration: duration
+                        }
+                        window.birdbrain.sendCommand(thisCommand)
+                      </l>
+                  </block>
+                  <list>
+                      <block var="devId"/>
+                      <block var="note"/>
+                      <block var="beats"/>
+                  </list>
+                </block>
+                <block s="doWait">
+                    <block s="reportQuotient">
+                        <block var="beats"/>
+                        <l>1000</l>
+                    </block>
+                    <comment w="205" collapsed="false">block for number of seconds</comment>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; Move %&apos;direction&apos; %&apos;distance&apos; cm at %&apos;speed&apos; %" type="command"
+                          category="motion">
+            <header></header>
+            <code></code>
+            <translations>ca:Finch _ Mou-te cap _ _ cm  a velocitat _ %&#xD;de:Finch _ Gehe _ _ cm mit _ %&#xD;es:Finch _ Mover hacia _ _ cm a velocidad _ %&#xD;fr:Finch _ Déplacer _ _ cm sur _ %&#xD;he:Finch _ זוז _ _ ס''מ ב _ %&#xD;ko:Finch _ _ _ cm 로 움직이기 빠르기 _ %&#xD;nl:Finch _ Beweeg _ _ cm op _ %&#xD;pt:Finch _ Mova _ _ cm  a _ %&#xD;zh_CN:Finch _ 移动 _ _ cm 以 _ %&#xD;zh_TW:Finch _ 移動  _ _ 厘米在 _ %&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%txt" readonly="true">Forward<options>Forward&#xD;Backward</options></input>
+                <input type="%n">10</input>
+                <input type="%n">50</input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doIf">
+                    <block s="reportLessThan">
+                        <block var="distance"/>
+                        <l>-10000</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>distance</l>
+                            <l>-10000</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doIf">
+                    <block s="reportGreaterThan">
+                        <block var="distance"/>
+                        <l>10000</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>distance</l>
+                            <l>10000</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doIf">
+                    <block s="reportLessThan">
+                        <block var="speed"/>
+                        <l>0</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>speed</l>
+                            <l>0</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doIf">
+                    <block s="reportGreaterThan">
+                        <block var="speed"/>
+                        <l>100</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>speed</l>
+                            <l>100</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doDeclareVariables">
+                    <list><l>wasMoving</l><l>isMoving</l><l>commandSendTime</l></list>
+                </block>
+                <block s="doSetVar">
+                    <l>isMoving</l>
+                    <block s="evaluate">
+                      <block s="reportJSFunction">
+                        <list>
+                          <l>devId</l>
+                        </list>
+                        <l> return window.birdbrain.finchIsMoving(devId); </l>
+                      </block>
+                      <list>
+                        <block var="devId"/>
+                      </list>
+                    </block>
+                </block>
+                <block s="doSetVar"><l>wasMoving</l><block var="isMoving"/></block>
+                <block s="doSetVar">
+                    <l>commandSendTime</l>
+                    <block s="reportDate">
+                        <l>
+                            <option>time in milliseconds</option>
+                        </l>
+                    </block>
+                </block>
+                <block s="doRun">
+                  <block s="reportJSFunction">
+                      <list>
+                          <l>devId</l>
+                          <l>direction</l>
+                          <l>distance</l>
+                          <l>speed</l>
+                      </list>
+                      <l>
+                        var thisCommand = {
+                          robot: devId,
+                          cmd: "move",
+                          direction: direction,
+                          distance: distance,
+                          speed: speed
+                        }
+                        window.birdbrain.sendCommand(thisCommand)
+                      </l>
+                  </block>
+                  <list>
+                      <block var="devId"/>
+                      <block var="direction"/>
+                      <block var="distance"/>
+                      <block var="speed"/>
+                  </list>
+                </block>
+                <block s="doUntil">
+                  <block s="reportAnd">
+                      <block s="reportOr">
+                          <block var="wasMoving"/>
+                          <block s="reportGreaterThan">
+                              <block s="reportDate">
+                                  <l>
+                                      <option>time in milliseconds</option>
+                                  </l>
+                              </block>
+                              <block s="reportSum">
+                                  <block var="commandSendTime"/>
+                                  <l>1000</l>
+                                  <comment w="350" collapsed="true">Timeout must be longer here to accommodate slower Chromebooks</comment>
+                              </block>
+                          </block>
+                      </block>
+                      <block s="reportNot"><block var="isMoving"/></block>
+                  </block>
+                  <script>
+                      <block s="doSetVar"><l>wasMoving</l><block var="isMoving"/></block>
+                      <block s="doWait"><l>0.01</l></block>
+                      <block s="doSetVar">
+                          <l>isMoving</l>
+                          <block s="evaluate">
+                            <block s="reportJSFunction">
+                              <list>
+                                <l>devId</l>
+                              </list>
+                              <l> return window.birdbrain.finchIsMoving(devId); </l>
+                            </block>
+                            <list>
+                              <block var="devId"/>
+                            </list>
+                          </block>
+                      </block>
+                  </script>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; Turn %&apos;direction&apos; %&apos;angle&apos; ° at %&apos;speed&apos; %" type="command"
+                          category="motion">
+            <header></header>
+            <code></code>
+            <translations>ca:Finch _ Gira cap a la _ _ ° a velocitat _ %&#xD;de:Finch _ Drehe _ _ ° mit _ %&#xD;es:Finch _ Girar hacia la _ _ ° a velocidad _ %&#xD;fr:Finch _ Tournez _ _ ° à _ %&#xD;he:Finch _ הסתובב _ _ מעלות ב _ %&#xD;ko:Finch _ _ _ ° 로 회전하기 빠르기 _ %&#xD;nl:Finch _ Draai _ _ ° op _ %&#xD;pt:Finch _ Gire _ _ ° a _ %&#xD;zh_CN:Finch _ 转动 _ _ ° 以 _ %&#xD;zh_TW:Finch _ 轉動 _ _ °在 _ %&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%txt" readonly="true">Right<options>Right&#xD;Left</options></input>
+                <input type="%n">90</input>
+                <input type="%n">50</input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doIf">
+                    <block s="reportLessThan">
+                        <block var="angle"/>
+                        <l>-360000</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>angle</l>
+                            <l>-360000</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doIf">
+                    <block s="reportGreaterThan">
+                        <block var="angle"/>
+                        <l>360000</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>angle</l>
+                            <l>360000</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doIf">
+                    <block s="reportLessThan">
+                        <block var="speed"/>
+                        <l>0</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>speed</l>
+                            <l>0</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doIf">
+                    <block s="reportGreaterThan">
+                        <block var="speed"/>
+                        <l>100</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>speed</l>
+                            <l>100</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doDeclareVariables">
+                    <list><l>wasMoving</l><l>isMoving</l><l>commandSendTime</l></list>
+                </block>
+                <block s="doSetVar">
+                    <l>isMoving</l>
+                    <block s="evaluate">
+                      <block s="reportJSFunction">
+                        <list>
+                          <l>devId</l>
+                        </list>
+                        <l> return window.birdbrain.finchIsMoving(devId); </l>
+                      </block>
+                      <list>
+                        <block var="devId"/>
+                      </list>
+                    </block>
+                </block>
+                <block s="doSetVar"><l>wasMoving</l><block var="isMoving"/></block>
+                <block s="doSetVar">
+                    <l>commandSendTime</l>
+                    <block s="reportDate">
+                        <l>
+                            <option>time in milliseconds</option>
+                        </l>
+                    </block>
+                </block>
+                <block s="doRun">
+                  <block s="reportJSFunction">
+                      <list>
+                          <l>devId</l>
+                          <l>direction</l>
+                          <l>angle</l>
+                          <l>speed</l>
+                      </list>
+                      <l>
+                        var thisCommand = {
+                          robot: devId,
+                          cmd: "turn",
+                          direction: direction,
+                          angle: angle,
+                          speed: speed
+                        }
+                        window.birdbrain.sendCommand(thisCommand)
+                      </l>
+                  </block>
+                  <list>
+                      <block var="devId"/>
+                      <block var="direction"/>
+                      <block var="angle"/>
+                      <block var="speed"/>
+                  </list>
+                </block>
+                <block s="doUntil">
+                  <block s="reportAnd">
+                      <block s="reportOr">
+                          <block var="wasMoving"/>
+                          <block s="reportGreaterThan">
+                              <block s="reportDate">
+                                  <l>
+                                      <option>time in milliseconds</option>
+                                  </l>
+                              </block>
+                              <block s="reportSum">
+                                  <block var="commandSendTime"/>
+                                  <l>1000</l>
+                                  <comment w="350" collapsed="true">Timeout must be longer here to accommodate slower Chromebooks</comment>
+                              </block>
+                          </block>
+                      </block>
+                      <block s="reportNot"><block var="isMoving"/></block>
+                  </block>
+                  <script>
+                      <block s="doSetVar"><l>wasMoving</l><block var="isMoving"/></block>
+                      <block s="doWait"><l>0.01</l></block>
+                      <block s="doSetVar">
+                          <l>isMoving</l>
+                          <block s="evaluate">
+                            <block s="reportJSFunction">
+                              <list>
+                                <l>devId</l>
+                              </list>
+                              <l> return window.birdbrain.finchIsMoving(devId); </l>
+                            </block>
+                            <list>
+                              <block var="devId"/>
+                            </list>
+                          </block>
+                      </block>
+                  </script>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; Wheels L %&apos;left&apos; % R %&apos;right&apos; %" type="command" category="motion">
+            <header></header>
+            <code></code>
+            <translations>ca:Finch _ Posa les rodes a velocitat E _ % D _ %&#xD;de:Finch _ Räder L _ % R _ %&#xD;es:Finch _ Poner las ruedas a velocidad I _ % D _ %&#xD;fr:Finch _ Roues L _ % R _ %&#xD;he:Finch _ גלגלים שמאל _ % ימין _ %&#xD;ko:Finch _ 바퀴 왼쪽 _ % 오른쪽 _ %&#xD;nl:Finch _ Wielen L _ % R _ %&#xD;pt:Finch _ Rodas E _ % D _ %&#xD;zh_CN:Finch _ 左轮 _ % 右轮 _ %&#xD;zh_TW:Finch _ 車輪  左 _ % 右 _ %&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%n">0</input>
+                <input type="%n">0</input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doIf">
+                    <block s="reportLessThan">
+                        <block var="left"/>
+                        <l>-100</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>left</l>
+                            <l>-100</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doIf">
+                    <block s="reportGreaterThan">
+                        <block var="left"/>
+                        <l>100</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>left</l>
+                            <l>100</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doIf">
+                    <block s="reportLessThan">
+                        <block var="right"/>
+                        <l>-100</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>right</l>
+                            <l>-100</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doIf">
+                    <block s="reportGreaterThan">
+                        <block var="right"/>
+                        <l>100</l>
+                    </block>
+                    <script>
+                        <block s="doSetVar">
+                            <l>right</l>
+                            <l>100</l>
+                        </block>
+                    </script>
+                </block>
+                <block s="doRun">
+                  <block s="reportJSFunction">
+                      <list>
+                          <l>devId</l>
+                          <l>left</l>
+                          <l>right</l>
+                      </list>
+                      <l>
+                        var thisCommand = {
+                          robot: devId,
+                          cmd: "wheels",
+                          speedL: left,
+                          speedR: right
+                        }
+                        window.birdbrain.sendCommand(thisCommand)
+                      </l>
+                  </block>
+                  <list>
+                      <block var="devId"/>
+                      <block var="left"/>
+                      <block var="right"/>
+                  </list>
+                </block>
+                <block s="doWait"><l>0.03</l></block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; Stop" type="command" category="motion">
+            <header></header>
+            <code></code>
+            <translations>ca:Finch _ Atura&#xD;de:Finch _ Stoppe&#xD;es:Finch _ Detener&#xD;fr:Finch _ Stop&#xD;he:Finch _ להפסיק&#xD;ko:Finch _ 멈추기&#xD;nl:Finch _ Stop&#xD;pt:Finch _ Pare&#xD;zh_CN:Finch _ 停止&#xD;zh_TW:Finch _ 停止&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doRun">
+                  <block s="reportJSFunction">
+                      <list>
+                        <l>devId</l>
+                      </list>
+                      <l>
+                        var thisCommand = {
+                          robot: devId,
+                          cmd: "stopFinch"
+                        }
+                        window.birdbrain.sendCommand(thisCommand)
+                      </l>
+                  </block>
+                  <list>
+                    <block var="devId"/>
+                  </list>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; Beak R %&apos;redLED&apos; % G %&apos;greenLED&apos; % B %&apos;blueLED&apos; %"
+                          type="command" category="looks">
+            <header></header>
+            <code></code>
+            <translations>ca:Finch _ Encén el bec de color R _ % G _ % B _ %&#xD;de:Finch _ Schnabel R _ % G _ % B _ %&#xD;es:Finch _ Encender el pico de color R _ % V _ % A _ %&#xD;fr:Finch _ Bec R _ % G _ % B _ %&#xD;he:Finch _ מקור אדום _ % ירוק _ % כחול _ %&#xD;ko:Finch _ 부리 빨강 _ % 초록 _ % 파랑 _ %&#xD;nl:Finch _ Bek R _ % G _ % B _ %&#xD;pt:Finch _ Bico R _ % G _ % B _ %&#xD;zh_CN:Finch _ 鸟喙 R _ % G _ % B _ %&#xD;zh_TW:Finch _ 鳥嘴 紅 _ % 綠 _ % 藍 _ %&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%n">0</input>
+                <input type="%n">0</input>
+                <input type="%n">0</input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doRun">
+                  <block s="reportJSFunction">
+                      <list>
+                          <l>devId</l>
+                          <l>rednum</l>
+                          <l>greennum</l>
+                          <l>bluenum</l>
+                      </list>
+                      <l>
+                        var thisCommand = {
+                          robot: devId,
+                          cmd: "triled",
+                          port: 1,
+                          red: Math.floor(Math.max(Math.min(rednum*2.55, 255), 0)),
+                          green: Math.floor(Math.max(Math.min(greennum*2.55, 255), 0)),
+                          blue: Math.floor(Math.max(Math.min(bluenum*2.55, 255), 0))
+                        }
+                        window.birdbrain.currentBeak = [thisCommand.red, thisCommand.green, thisCommand.blue];
+
+                        window.birdbrain.sendCommand(thisCommand);
+                      </l>
+                  </block>
+                  <list>
+                      <block var="devId"/>
+                      <block var="redLED"/>
+                      <block var="greenLED"/>
+                      <block var="blueLED"/>
+                  </list>
+                </block>
+                <block s="doWait"><l>0.03</l></block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; Tail %&apos;port&apos; R %&apos;redLED&apos; % G %&apos;greenLED&apos; % B %&apos;blueLED&apos; %"
+                type="command" category="looks">
+            <header></header>
+            <code></code>
+            <translations>ca:Finch _ Encén la cua de color _ R _ % G _ % B _ %&#xD;de:Finch _ Schwanz _ R _ % G _ % B _ %&#xD;es:Finch _ Encender la cola de color _ R _ % V _ % A _ %&#xD;fr:Finch _ Queue _ R _ % G _ % B _ %&#xD;he:Finch _ זנב _ אדום _ % ירוק _ % כחול _ %&#xD;ko:Finch _ 꼬리 _ 빨강 _ % 초록 _ % 파랑 _ %&#xD;nl:Finch _ Staart _ R _ % G _ % B _ %&#xD;pt:Finch _ Cauda _ R _ % G _ % B _ %&#xD;zh_CN:Finch _ 鸟尾 _ R _ % G _ % B _ %&#xD;zh_TW:Finch _ 尾巴 _ 紅 _ % 綠 _ % 藍 _ %&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%txt" readonly="true">all<options>all&#xD;1&#xD;2&#xD;3&#xD;4</options></input>
+                <input type="%n">0</input>
+                <input type="%n">0</input>
+                <input type="%n">0</input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doRun">
+                  <block s="reportJSFunction">
+                      <list>
+                          <l>devId</l>
+                          <l>port</l>
+                          <l>rednum</l>
+                          <l>greennum</l>
+                          <l>bluenum</l>
+                      </list>
+                      <l>
+                        var actualPort = port;
+                        if (actualPort != "all") { actualPort = parseInt(port) + 1;}
+
+                        var thisCommand = {
+                          robot: devId,
+                          cmd: "triled",
+                          port: actualPort,
+                          red: Math.floor(Math.max(Math.min(rednum*2.55, 255), 0)),
+                          green: Math.floor(Math.max(Math.min(greennum*2.55, 255), 0)),
+                          blue: Math.floor(Math.max(Math.min(bluenum*2.55, 255), 0))
+                        }
+
+                        window.birdbrain.sendCommand(thisCommand);
+                      </l>
+                  </block>
+                  <list>
+                      <block var="devId"/>
+                      <block var="port"/>
+                      <block var="redLED"/>
+                      <block var="greenLED"/>
+                      <block var="blueLED"/>
+                  </list>
+                </block>
+                <block s="doWait"><l>0.03</l></block>
+            </script>
+        </block-definition>
+        <block-definition s="micro:bit %&apos;devId&apos; Button %&apos;button&apos;" type="predicate"
+                          category="sensing">
+            <header></header>
+            <code></code>
+            <translations>ko:micro:bit _ 버튼 _&#xD;de:micro:bit _ Knopf _&#xD;pt:micro:bit _ Tecla _&#xD;fr:micro:bit _ Bouton _&#xD;nl:micro:bit _ Knop _&#xD;zh_CN:micro:bit _ 按钮 _&#xD;zh_TW:micro:bit _ 按鈕 _&#xD;ar:micro:bit _ زر _&#xD;dk:micro:bit _ Knap _&#xD;he:micro:bit _ לחצן _&#xD;es:micro:bit _ Pulsador _&#xD;ca:micro:bit _ Botó _&#xD;fi:micro:bit _ Painike _&#xD;sv:micro:bit _ Knapp _&#xD;</translations>
+            <inputs>
+                <input type="%s" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%txt" readonly="true">A<options>A&#xD;B</options></input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doReport">
+                  <block s="evaluate">
+                    <block s="reportJSFunction">
+                        <list>
+                            <l>devId</l>
+                            <l>button</l>
+                        </list>
+                        <l>
+                          if (window.birdbrain.getButton === undefined) {
+                            window.birdbrain.getButton = function (button, robot) {
+                              const type = window.birdbrain.robotType[robot];
+                              const index = (type == window.birdbrain.robotType.FINCH) ? 16 : 7;
+                              var buttonState = window.birdbrain.sensorData[robot][index] & 0xF0; //Button Byte position = 7, clear LS Bits as it is for shake and calibrate
+
+                              switch (button) {
+                                case 'A':
+                                  return (buttonState == 0x00 || buttonState == 0x20)
+                                case 'B':
+                                  return (buttonState == 0x00 || buttonState == 0x10)
+                                default:
+                                  console.log("unknown button " + button);
+                                  return false;
+                              }
+                            }
+                          }
+
+                          return window.birdbrain.getButton(button, devId);
+                        </l>
+                    </block>
+                    <list>
+                        <block var="devId"/>
+                        <block var="button"/>
+                    </list>
+                  </block>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; %&apos;dim&apos;" type="predicate" category="sensing">
+            <header></header>
+            <code></code>
+            <translations></translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%txt" readonly="true">Beak Up<options>Beak Up&#xD;Beak Down&#xD;Tilt Left&#xD;Tilt Right&#xD;Level&#xD;Upside Down&#xD;Shake</options></input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doReport">
+                  <block s="evaluate">
+                    <block s="reportJSFunction">
+                        <list>
+                          <l>devId</l>
+                          <l>dim</l>
+                        </list>
+                        <l>
+                          if (window.birdbrain.finchOrientation === undefined) {
+                            window.birdbrain.finchOrientation = function (dim, robot) {
+                              if (dim == "Shake") {
+                                let shake = window.birdbrain.sensorData[robot][16];
+                                return ((shake & 0x01) &gt; 0);
+                              }
+                              const threshold = 7.848;
+                              let acceleration = 0;
+                              switch(dim) {
+                                case "Tilt Left":
+                                case "Tilt Right":
+                                  acceleration = window.birdbrain.getFinchAcceleration('X', robot);
+                                  break;
+                                case "Beak Up":
+                                case "Beak Down":
+                                  acceleration = window.birdbrain.getFinchAcceleration('Y', robot);
+                                  break;
+                                case "Level":
+                                case "Upside Down":
+                                  acceleration = window.birdbrain.getFinchAcceleration('Z', robot);
+                                  break;
+                              }
+                              switch(dim) {
+                                case "Tilt Right":
+                                case "Beak Up":
+                                case "Upside Down":
+                                  return (acceleration &gt; threshold);
+                                case "Tilt Left":
+                                case "Beak Down":
+                                case "Level":
+                                  return (acceleration &lt; -threshold);
+                              }
+                            }
+                          }
+
+                          return window.birdbrain.finchOrientation(dim, devId);
+                        </l>
+                    </block>
+                    <list>
+                      <block var="devId"/>
+                      <block var="dim"/>
+                    </list>
+                  </block>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; %&apos;device&apos; %&apos;dim&apos;" type="reporter" category="sensing">
+            <header></header>
+            <code></code>
+            <translations></translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%s" readonly="true">Accelerometer (m/s²)<options>Accelerometer (m/s²)&#xD;Magnetometer (µT)</options></input>
+                <input type="%txt" readonly="true">X<options>X&#xD;Y&#xD;Z</options></input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doReport">
+                  <block s="evaluate">
+                    <block s="reportJSFunction">
+                        <list>
+                            <l>devId</l>
+                            <l>device</l>
+                            <l>dim</l>
+                        </list>
+                        <l>
+                          if (window.birdbrain.getFinchAorM === undefined) {
+                            window.birdbrain.getFinchAorM = function (device, dim, robot) {
+                              switch(device) {
+                                case "Accelerometer (m/s²)":
+                                  let acc = window.birdbrain.getFinchAcceleration(dim, robot);
+                                  return Math.round(acc * 10) / 10;
+                                case "Magnetometer (µT)":
+                                  return window.birdbrain.getFinchMagnetometer(dim, robot);
+                              }
+                            }
+                          }
+
+                          return window.birdbrain.getFinchAorM(device, dim, devId);
+                        </l>
+                    </block>
+                    <list>
+                        <block var="devId"/>
+                        <block var="device"/>
+                        <block var="dim"/>
+                    </list>
+                  </block>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition s="Finch %&apos;devId&apos; Compass" type="reporter" category="sensing">
+            <header></header>
+            <code></code>
+            <translations>ko:Finch _ 나침반 센서&#xD;de:Finch _ Kompass&#xD;pt:Finch _ Bússola&#xD;fr:Finch _ Compas&#xD;nl:Finch _ Kompas&#xD;zh_CN:Finch _ 指南针&#xD;zh_TW:Finch _ 指南針&#xD;ar:Finch _ بوصلة&#xD;dk:Finch _ Kompas&#xD;he:Finch _ מצפן&#xD;es:Finch _ Brujula&#xD;ca:Finch _ Brúixola&#xD;fi:Finch _ Kompassi&#xD;sv:Finch _ Kompass&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doReport">
+                  <block s="evaluate">
+                    <block s="reportJSFunction">
+                        <list>
+                          <l>devId</l>
+                        </list>
+                        <l>
+                          if (window.birdbrain.getFinchCompass === undefined) {
+                            window.birdbrain.getFinchCompass = function (robot) {
+                              const ax = window.birdbrain.getFinchAcceleration('X', robot);
+                              const ay = window.birdbrain.getFinchAcceleration('Y', robot);
+                              const az = window.birdbrain.getFinchAcceleration('Z', robot);
+                              const mx = window.birdbrain.getFinchMagnetometer('X', robot);
+                              const my = window.birdbrain.getFinchMagnetometer('Y', robot);
+                              const mz = window.birdbrain.getFinchMagnetometer('Z', robot);
+
+                              const phi = Math.atan(-ay / az)
+                              const theta = Math.atan(ax / (ay * Math.sin(phi) + az * Math.cos(phi)))
+
+                              const xp = mx
+                              const yp = my * Math.cos(phi) - mz * Math.sin(phi)
+                              const zp = my * Math.sin(phi) + mz * Math.cos(phi)
+
+                              const xpp = xp * Math.cos(theta) + zp * Math.sin(theta)
+                              const ypp = yp
+
+                              const angle = 180.0 + ((Math.atan2(xpp, ypp)) * (180 / Math.PI)) //convert result to degrees
+
+                              return ((Math.round(angle) + 180) % 360) //turn so that beak points north
+                            }
+                          }
+
+                          return window.birdbrain.getFinchCompass(devId);
+                        </l>
+                    </block>
+                    <list>
+                      <block var="devId"/>
+                    </list>
+                  </block>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition s="micro:bit Print %&apos;devId&apos; %&apos;string&apos;" type="command" category="looks">
+            <header></header>
+            <code></code>
+            <translations>ko:micro:bit _ 출력 _&#xD;de:micro:bit _ Drucke _&#xD;pt:micro:bit _ Imprimir _&#xD;fr:micro:bit _ Imprimer _&#xD;nl:micro:bit _ Schrijf _&#xD;zh_CN:micro:bit _ 打印 _&#xD;zh_TW:micro:bit _ 打印 _&#xD;ar:micro:bit _ طباعة _&#xD;dk:micro:bit _ Vis _&#xD;he:micro:bit _ הדפס _&#xD;es:micro:bit _ Imprimir _&#xD;ca:micro:bit _ Escriu _&#xD;fi:micro:bit _ Näytä teksti _&#xD;sv:micro:bit _ Visa text _&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%s">Hello</input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doRun">
+                    <block s="reportJSFunction">
+                        <list>
+                            <l>devId</l>
+                            <l>string</l>
+                        </list>
+                        <l>
+                            var thisCommand = {
+                              robot: devId,
+                              cmd: "print",
+                              printString: string
+                            }
+
+                            window.birdbrain.sendCommand(thisCommand);
+                        </l>
+                    </block>
+                    <list>
+                        <block var="devId"/>
+                        <block var="string"/>
+                    </list>
+                </block>
+                <block s="doWait">
+                  <block s="reportProduct">
+                    <l>.6</l>
+                    <block s="reportStringSize"><block var="string"/></block>
+                  </block>
+                </block>
+            </script>
+        </block-definition>
+        <block-definition
+                s="micro:bit %&apos;devId&apos; Display $nl %&apos;11&apos; %&apos;12&apos; %&apos;13&apos; %&apos;14&apos; %&apos;15&apos; $nl %&apos;21&apos; %&apos;22&apos; %&apos;23&apos; %&apos;24&apos; %&apos;25&apos; $nl %&apos;31&apos; %&apos;32&apos; %&apos;33&apos; %&apos;34&apos; %&apos;35&apos; $nl %&apos;41&apos; %&apos;42&apos; %&apos;43&apos; %&apos;44&apos; %&apos;45&apos; $nl %&apos;51&apos; %&apos;52&apos; %&apos;53&apos; %&apos;54&apos; %&apos;55&apos;"
+                type="command" category="looks">
+            <header></header>
+            <code></code>
+            <translations>ko:micro:bit _ 보이기 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;de:micro:bit _ LED Anzeige _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;pt:micro:bit _ Visor _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;fr:micro:bit _ Display _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;nl:micro:bit _ Scherm _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;zh_CN:micro:bit _ 显示 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;zh_TW:micro:bit _ 顯示 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;ar:micro:bit _ عرض _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;dk:micro:bit _ Display _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;he:micro:bit _ מסך _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;es:micro:bit _ Monitor _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;ca:micro:bit _ Pantalla _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;fi:micro:bit _ Näytä _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;sv:micro:bit _ Skärm _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+                <input type="%b">false</input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doRun">
+                    <block s="reportJSFunction">
+                        <list>
+                            <l>devId, r1c1, r1c2, r1c3, r1c4, r1c5, r2c1, r2c2, r2c3, r2c4, r2c5, r3c1, r3c2, r3c3, r3c4, r3c5,
+                                r4c1, r4c2, r4c3, r4c4, r4c5, r5c1, r5c2, r5c3, r5c4, r5c5
+                            </l>
+                        </list>
+                        <l>
+                            // Create url representation from inputs
+                            var symbolString = r1c1 + "\/"+ r1c2 + "\/"+ r1c3 + "\/"+ r1c4 + "\/"+ r1c5 + "\/" +
+                             r2c1 + "\/"+ r2c2 + "\/"+ r2c3 + "\/"+ r2c4 + "\/"+ r2c5 + "\/" +
+                             r3c1 + "\/"+ r3c2 + "\/"+ r3c3 + "\/"+ r3c4 + "\/"+ r3c5 + "\/" +
+                             r4c1 + "\/"+ r4c2 + "\/"+ r4c3 + "\/"+ r4c4 + "\/"+ r4c5 + "\/" +
+                             r5c1 + "\/"+ r5c2 + "\/"+ r5c3 + "\/"+ r5c4 + "\/"+ r5c5 ;
+
+                             var thisCommand = {
+                               robot: devId,
+                               cmd: "symbol",
+                               symbolString: symbolString
+                             }
+
+                            window.birdbrain.sendCommand(thisCommand);
+                        </l>
+                    </block>
+                    <list>
+                        <block var="devId"/>
+                        <block var="11"/>
+                        <block var="12"/>
+                        <block var="13"/>
+                        <block var="14"/>
+                        <block var="15"/>
+                        <block var="21"/>
+                        <block var="22"/>
+                        <block var="23"/>
+                        <block var="24"/>
+                        <block var="25"/>
+                        <block var="31"/>
+                        <block var="32"/>
+                        <block var="33"/>
+                        <block var="34"/>
+                        <block var="35"/>
+                        <block var="41"/>
+                        <block var="42"/>
+                        <block var="43"/>
+                        <block var="44"/>
+                        <block var="45"/>
+                        <block var="51"/>
+                        <block var="52"/>
+                        <block var="53"/>
+                        <block var="54"/>
+                        <block var="55"/>
+                    </list>
+                </block>
+                <block s="doReport">
+                    <block s="reportURL">
+                        <block s="reportJoinWords">
+                            <list>
+                                <l>http://127.0.0.1:30061/hummingbird/out/symbol/</l>
+                                <block var="devId"/>
+                                <l>/</l>
+                                <block var="11"/>
+                                <l>/</l>
+                                <block var="12"/>
+                                <l>/</l>
+                                <block var="13"/>
+                                <l>/</l>
+                                <block var="14"/>
+                                <l>/</l>
+                                <block var="15"/>
+                                <l>/</l>
+                                <block var="21"/>
+                                <l>/</l>
+                                <block var="22"/>
+                                <l>/</l>
+                                <block var="23"/>
+                                <l>/</l>
+                                <block var="24"/>
+                                <l>/</l>
+                                <block var="25"/>
+                                <l>/</l>
+                                <block var="31"/>
+                                <l>/</l>
+                                <block var="32"/>
+                                <l>/</l>
+                                <block var="33"/>
+                                <l>/</l>
+                                <block var="34"/>
+                                <l>/</l>
+                                <block var="35"/>
+                                <l>/</l>
+                                <block var="41"/>
+                                <l>/</l>
+                                <block var="42"/>
+                                <l>/</l>
+                                <block var="43"/>
+                                <l>/</l>
+                                <block var="44"/>
+                                <l>/</l>
+                                <block var="45"/>
+                                <l>/</l>
+                                <block var="51"/>
+                                <l>/</l>
+                                <block var="52"/>
+                                <l>/</l>
+                                <block var="53"/>
+                                <l>/</l>
+                                <block var="54"/>
+                                <l>/</l>
+                                <block var="55"/>
+                                <l>/</l>
+                            </list>
+                        </block>
+                    </block>
+                </block>
+                <block s="doWait"><l>0.03</l></block>
+            </script>
+        </block-definition>
+        <block-definition s="stop all %&apos;devId&apos;" type="command" category="control">
+            <header></header>
+            <code></code>
+            <translations>ko:모두 멈추기 _&#xD;de:stoppe alles _&#xD;pt:pare todos _&#xD;fr:stop tout _&#xD;nl:stop alle _&#xD;zh_CN:停止 全部 _&#xD;zh_TW:停止 全部 _&#xD;ar:توقف الكل _&#xD;dk:stop alle _&#xD;he:להפסיק הכל _&#xD;es:detener todo _&#xD;ca:atura tot _&#xD;fi:pysäytä kaikki _&#xD;sv:stop allt _&#xD;</translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doRun">
+                  <block s="reportJSFunction">
+                      <list></list>
+                      <l>
+                        var thisCommand = {
+                          robot: 'A',
+                          cmd: "stopAll"
+                        }
+                        window.birdbrain.sendCommand(thisCommand)
+                      </l>
+                  </block>
+                  <list></list>
+                </block>
+            </script>
+        </block-definition>
+    </blocks>
+    <variables></variables>
+</project>

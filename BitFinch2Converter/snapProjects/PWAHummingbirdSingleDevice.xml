@@ -1,0 +1,936 @@
+<project name="PWAHummingbirdSingleDevice" app="Snap! 4.2, http://snap.berkeley.edu" version="1">
+  <notes></notes>
+  <thumbnail>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAB4CAYAAAB1ovlvAAADYElEQVR4Xu3XMUqkaxCF4a9BEUNNNFLUVA1EA12ZkWtxTS7CVFMjh9vZDWamGDgeaB4Tk6KKfv63u+nN9/f39/JHoCSwEWBJ3tmtgACFUBUQYJXfcQFqoCogwCq/4wLUQFVAgFV+xwWogaqAAKv8jgtQA1UBAVb5HRegBqoCAqzyOy5ADVQFBFjld1yAGqgKCLDK77gANVAVEGCV33EBaqAqIMAqv+MC1EBVQIBVfscFqIGqgACr/I4LUANVAQFW+R0XoAaqAgKs8jsuQA1UBQRY5XdcgBqoCgiwyu+4ADVQFRBgld9xAWqgKiDAKr/jAtRAVUCAVX7HBaiBqoAAq/yOC1ADVQEBVvkdF6AGqgICrPI7LkANVAUEWOV3XIAaqAoIsMrvuAA1UBUQYJXfcQFqoCogwCq/4wLUQFVAgFV+xwWogaqAAH/D//r6uvb29tbt7e26ublZm82m+qB29bgAf/Nk39/f1/Pz8/r8/FwHBwfr4eFhXV5ebv+fn5/vag8//roE+Afyt7e39fLy8r9Pv6+vr3VycrLu7u7WxcXFenp6WsfHxz/+4HbloAD/IcDT09NtgP99Ij4+Pq6jo6Nd6eHHX4cA//IV/PHxsQ4PD9f9/f26urrafgWfnZ39+IPa1YMC/MOPkP39/e2PkOvraz9CQu8AAYZgrZ0JCHDmZCokIMAQrLUzAQHOnEyFBAQYgrV2JiDAmZOpkIAAQ7DWzgQEOHMyFRIQYAjW2pmAAGdOpkICAgzBWjsTEODMyVRIQIAhWGtnAgKcOZkKCQgwBGvtTECAMydTIQEBhmCtnQkIcOZkKiQgwBCstTMBAc6cTIUEBBiCtXYmIMCZk6mQgABDsNbOBAQ4czIVEhBgCNbamYAAZ06mQgICDMFaOxMQ4MzJVEhAgCFYa2cCApw5mQoJCDAEa+1MQIAzJ1MhAQGGYK2dCQhw5mQqJCDAEKy1MwEBzpxMhQQEGIK1diYgwJmTqZCAAEOw1s4EBDhzMhUSEGAI1tqZgABnTqZCAgIMwVo7ExDgzMlUSECAIVhrZwICnDmZCgkIMARr7UxAgDMnUyEBAYZgrZ0JCHDmZCokIMAQrLUzAQHOnEyFBAQYgrV2JiDAmZOpkIAAQ7DWzgQEOHMyFRIQYAjW2pnALycjCLelAiIPAAAAAElFTkSuQmCC</thumbnail>
+  <stage name="Stage" width="480" height="360" costume="0" tempo="60" threadsafe="false" lines="round" ternary="false" codify="false" inheritance="true" sublistIDs="false" scheduled="false" id="1">
+    <pentrails>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAAFoCAYAAACPNyggAAAOhUlEQVR4Xu3VwQkAAAjEMN1/abewn7jAQRC64wgQIECAAIF3gX1fNEiAAAECBAiMAHsCAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQICLAfIECAAAECgYAAB+gmCRAgQICAAPsBAgQIECAQCAhwgG6SAAECBAgIsB8gQIAAAQKBgAAH6CYJECBAgIAA+wECBAgQIBAICHCAbpIAAQIECAiwHyBAgAABAoGAAAfoJgkQIECAgAD7AQIECBAgEAgIcIBukgABAgQIHLFxAWmhEwHPAAAAAElFTkSuQmCC</pentrails>
+    <costumes>
+      <list id="2"></list>
+    </costumes>
+    <sounds>
+      <list id="3"></list>
+    </sounds>
+    <variables></variables>
+    <blocks></blocks>
+    <scripts>
+      <script x="10" y="13">
+        <block s="receiveInteraction">
+          <l>
+            <option>stopped</option>
+          </l>
+        </block>
+        <custom-block s="stop all"></custom-block>
+      </script>
+      <script x="152" y="13">
+        <block s="receiveGo"></block>
+        <custom-block s="BirdBrain Setup"></custom-block>
+      </script>
+    </scripts>
+    <sprites>
+      <sprite name="Sprite" idx="1" x="0" y="0" heading="90" scale="1" rotation="1" draggable="true" costume="0" color="80,80,80" pen="tip" id="11">
+        <costumes>
+          <list id="12"></list>
+        </costumes>
+        <sounds>
+          <list id="13"></list>
+        </sounds>
+        <blocks></blocks>
+        <variables></variables>
+        <scripts></scripts>
+      </sprite>
+    </sprites>
+  </stage>
+  <hidden>
+    receiveCondition</hidden>
+  <headers></headers>
+  <code></code>
+  <blocks>
+    <block-definition s="BirdBrain Setup" type="command">
+      <header></header>
+      <code></code>
+      <translations></translations>
+      <script>
+        <block s="doRun">
+            <block s="reportJSFunction">
+              <list></list>
+                <l>
+                  if (window.birdbrain === undefined) {
+                    window.birdbrain = {};
+                    window.birdbrain.sensorData = {};
+                    window.birdbrain.sensorData.A = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+                    window.birdbrain.sensorData.B = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+                    window.birdbrain.sensorData.C = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+                    window.birdbrain.robotType = {
+                      FINCH: 1,
+                      HUMMINGBIRDBIT: 2,
+                      MICROBIT: 3,
+                      //connected robots default to type MICROBIT
+                      A: 3,
+                      B: 3,
+                      C: 3
+                    };
+
+                    console.log("setting up message channel")
+                    window.birdbrain.messageChannel = new MessageChannel();
+                    window.birdbrain.messageChannel.port1.onmessage = function (e) {
+                        //console.log("Got a message: ");
+                        //console.log(e.data);
+                        if (e.data.sensorData != null && e.data.robot != null) {
+                          let robot = e.data.robot;
+                          window.birdbrain.sensorData[robot] = e.data.sensorData;
+                          window.birdbrain.robotType[robot] = e.data.robotType;
+                        }
+                    }
+                    window.parent.postMessage("hello from snap", "*", [window.birdbrain.messageChannel.port2]);
+
+                    window.birdbrain.sendCommand = function(command) {
+                      window.parent.postMessage(command, "*");
+                    }
+
+                    window.birdbrain.finchIsMoving = function(finch) {
+                      return (window.birdbrain.sensorData[finch][4] > 127);
+                    }
+
+                    //  Converts byte range 0 - 255 to -127 - 127 represented as a 32 bit signe int
+                    function byteToSignedInt8 (byte) {
+                      var sign = (byte & (1 &lt;&lt; 7));
+                      var value = byte & 0x7F;
+                      if (sign) { value  = byte | 0xFFFFFF00; }
+                      return value;
+                    }
+
+                    //  Converts byte range 0 - 255 to -127 - 127 represented as a 32 bit signe int
+                    function byteToSignedInt16 (msb, lsb) {
+                      var sign = msb & (1 &lt;&lt; 7);
+                      var value = (((msb & 0xFF) &lt;&lt; 8) | (lsb & 0xFF));
+                      if (sign) {
+                        value = 0xFFFF0000 | value;  // fill in most significant bits with 1's
+                      }
+                      return value;
+                    }
+
+                    window.birdbrain.getMicrobitAcceleration = function(axis, robot) {
+                      const rawToMperS = 196/1280; //convert to meters per second squared
+                      let sensorData = window.birdbrain.sensorData[robot];
+                      let accVal = 0;
+                      switch (axis) {
+                        case 'X':
+                          accVal = byteToSignedInt8(sensorData[4]);
+                          break;
+                        case 'Y':
+                          accVal = byteToSignedInt8(sensorData[5]);
+                          break;
+                        case 'Z':
+                          accVal = byteToSignedInt8(sensorData[6]);
+                          break;
+                      }
+                      return (accVal * rawToMperS);
+                    }
+
+                    window.birdbrain.getMicrobitMagnetometer = function(axis, finch) {
+                      const rawToUT = 1/10; //convert to uT
+                      let sensorData = window.birdbrain.sensorData[finch];
+                      let msb = 0;
+                      let lsb = 0;
+                      switch (axis) {
+                        case 'X':
+                          msb = sensorData[8];
+                          lsb = sensorData[9];
+                          break;
+                        case 'Y':
+                          msb = sensorData[10];
+                          lsb = sensorData[11];
+                          break;
+                        case 'Z':
+                          msb = sensorData[12];
+                          lsb = sensorData[13];
+                          break;
+                      }
+                      let magVal = byteToSignedInt16(msb, lsb);
+                      return Math.round(magVal * rawToUT);
+                    }
+
+                    window.birdbrain.getFinchAcceleration = function(axis, finch) {
+                      let sensorData = window.birdbrain.sensorData[finch];
+                      let accVal = 0;
+                      switch (axis) {
+                        case 'X':
+                          accVal = byteToSignedInt8(sensorData[13]);
+                          break;
+                        case 'Y':
+                        case 'Z':
+                          const rawY = byteToSignedInt8(sensorData[14]);
+                          const rawZ = byteToSignedInt8(sensorData[15]);
+                          const rad = 40 * Math.PI / 180; //40° in radians
+
+                          switch(axis) {
+                            case 'Y':
+                              accVal = (rawY*Math.cos(rad) - rawZ*Math.sin(rad));
+                              break;
+                            case 'Z':
+                              accVal = (rawY*Math.sin(rad) + rawZ*Math.cos(rad));
+                              break;
+                          }
+                        }
+                        return (accVal * 196/1280);
+                    }
+
+                    window.birdbrain.getFinchMagnetometer = function(axis, finch) {
+                      let sensorData = window.birdbrain.sensorData[finch];
+                      switch (axis) {
+                        case 'X':
+                          return byteToSignedInt8(sensorData[17]);
+                        case 'Y':
+                        case 'Z':
+                          const rawY = byteToSignedInt8(sensorData[18]);
+                          const rawZ = byteToSignedInt8(sensorData[19]);
+                          const rad = 40 * Math.PI / 180 //40° in radians
+
+                          let magVal = 0;
+                          switch(axis) {
+                            case 'Y':
+                              magVal = (rawY*Math.cos(rad) + rawZ*Math.sin(rad));
+                              break;
+                            case 'Z':
+                              magVal = (rawZ*Math.cos(rad) - rawY*Math.sin(rad));
+                              break;
+                          }
+                          return Math.round(magVal);
+                      }
+                    }
+
+                  } else {
+                    //console.log("BirdBrain already set up");
+                  }
+                </l>
+            </block>
+        </block>
+      </script>
+    </block-definition>
+    <block-definition s="Hummingbird %&apos;sensor&apos; %&apos;port&apos;" type="reporter" category="sensing">
+      <header></header>
+      <code></code>
+      <translations></translations>
+      <inputs>
+        <input type="%txt" readonly="true">Light<options>Distance (cm)&#xD;Dial&#xD;Light&#xD;Sound&#xD;Other (V)</options></input>
+        <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3</options></input>
+      </inputs>
+      <script>
+        <custom-block s="BirdBrain Setup"></custom-block>
+        <block s="doReport">
+          <block s="evaluate">
+            <block s="reportJSFunction">
+                <list>
+                  <l>sensor</l>
+                  <l>port</l>
+                </list>
+                <l>
+                  if (window.birdbrain.getHBSensor === undefined) {
+                    window.birdbrain.getHBSensor = function (sensor, port, robot) {
+                      const distanceScaling = 117/100;
+                      const dialScaling = 100/230;
+                      const lightScaling = 100/255;
+                      const soundScaling = 200/255;
+                      const voltageScaling = 3.3/255;
+
+                      let value = window.birdbrain.sensorData[robot][port - 1];
+
+                      switch(sensor) {
+                        case "Distance (cm)":
+                          return Math.round(value * distanceScaling);
+                        case "Dial":
+                          if (value > 230) { value = 230; }
+                          return Math.round(value * dialScaling);
+                        case "Light":
+                          return Math.round(value * lightScaling);
+                        case "Sound":
+                          return Math.round(value * soundScaling);
+                        case "Other (V)":
+                          return Math.round(value * voltageScaling * 100) / 100;
+                      }
+                    }
+                  }
+
+                  return window.birdbrain.getHBSensor(sensor, port, 'A');
+                </l>
+            </block>
+            <list>
+              <block var="sensor"/>
+              <block var="port"/>
+            </list>
+          </block>
+        </block>
+      </script>
+    </block-definition>
+    <block-definition s="Hummingbird Play Note %&apos;note&apos; for %&apos;beats&apos; beats" type="command" category="sound">
+      <header></header>
+      <code></code>
+      <translations>ko:Hummingbird _ 번 음을 _ 박자로 연주하기&#xD;de:Hummingbird Spiele Note _ für _ Schläge&#xD;pt:Hummingbird Toque Notas _ por _ Batidas&#xD;fr:Hummingbird Jouer la note _ pour _ battement(s)&#xD;nl:Hummingbird Speel Noot _ voor _ Beats&#xD;zh_CN:Hummingbird 演奏 音阶 _ 于 _ 拍&#xD;zh_TW:Hummingbird 演奏 音階 _ 於 _ 拍&#xD;ar:Hummingbird تشغيل الموسيقى _ _&#xD;dk:Hummingbird Spil tone _ i _ slag&#xD;he:Hummingbird נגן תו _ במשך _ פעימות&#xD;es:Hummingbird Emitir un sonido _ por _ pulsos&#xD;ca:Hummingbird Toca nota _ durant _ temps&#xD;fi:Hummingbird Soita sävel _ _ iskun ajan&#xD;sv:Hummingbird Spela not _ _&#xD;</translations>
+      <inputs>
+        <input type="%n">60<options>§_pianoKeyboardMenu</options></input>
+        <input type="%n">0.5</input>
+      </inputs>
+      <script>
+        <custom-block s="BirdBrain Setup"></custom-block>
+        <block s="doIf">
+          <block s="reportGreaterThan"><block var="note"/>
+            <l>135</l>
+          </block>
+          <script>
+            <block s="doSetVar">
+              <l>note</l>
+              <l>135</l>
+            </block>
+          </script>
+        </block>
+        <block s="doIf">
+          <block s="reportGreaterThan">
+            <l>32</l><block var="note"/></block>
+          <script>
+            <block s="doSetVar">
+              <l>note</l>
+              <l>32</l>
+            </block>
+          </script>
+        </block>
+        <block s="doIf">
+          <block s="reportGreaterThan"><block var="beats"/>
+            <l>16</l>
+          </block>
+          <script>
+            <block s="doSetVar">
+              <l>beats</l>
+              <l>16</l>
+            </block>
+          </script>
+        </block>
+        <block s="doIf">
+          <block s="reportGreaterThan">
+            <l>0</l><block var="beats"/></block>
+          <script>
+            <block s="doSetVar">
+              <l>beats</l>
+              <l>0</l>
+            </block>
+          </script>
+        </block>
+        <block s="doSetVar">
+          <l>beats</l>
+          <block s="reportRound">
+            <block s="reportProduct">
+              <block s="reportQuotient">
+                <l>60000</l>
+                <block s="getTempo"></block>
+              </block><block var="beats"/></block>
+            <comment w="242" collapsed="false">BPM = tempo&#xD;60 * 1000/BPM = BPMS beats per millisecond&#xD;beats = Duration in ms = BPMS * number of beats</comment>
+          </block>
+        </block>
+        <block s="doSetVar">
+          <l>note</l>
+          <block s="reportRound">
+            <block var="note"/>
+          </block>
+        </block>
+        <block s="doRun">
+          <block s="reportJSFunction">
+              <list>
+                  <l>note</l>
+                  <l>duration</l>
+              </list>
+              <l>
+                var thisCommand = {
+                  robot: 'A',
+                  cmd: "playNote",
+                  note: note,
+                  duration: duration
+                }
+                window.birdbrain.sendCommand(thisCommand)
+              </l>
+          </block>
+          <list>
+              <block var="note"/>
+              <block var="beats"/>
+          </list>
+        </block>
+        <block s="doWait">
+          <block s="reportQuotient"><block var="beats"/>
+            <l>1000</l>
+          </block>
+          <comment w="205" collapsed="false">block for number of seconds</comment>
+        </block>
+      </script>
+    </block-definition>
+    <block-definition s="micro:bit %&apos;device&apos; %&apos;dim&apos;" type="reporter" category="sensing">
+      <header></header>
+      <code></code>
+      <translations></translations>
+      <inputs>
+        <input type="%s" readonly="true">Accelerometer (m/s²)<options>Accelerometer (m/s²)&#xD;Magnetometer (µT)</options></input>
+        <input type="%txt" readonly="true">X<options>X&#xD;Y&#xD;Z</options></input>
+      </inputs>
+      <script>
+        <custom-block s="BirdBrain Setup"></custom-block>
+        <block s="doReport">
+          <block s="evaluate">
+            <block s="reportJSFunction">
+                <list>
+                    <l>device</l>
+                    <l>dim</l>
+                </list>
+                <l>
+                  if (window.birdbrain.getMicrobitAorM === undefined) {
+                    window.birdbrain.getMicrobitAorM = function (device, dim, robot) {
+                      switch(device) {
+                        case "Accelerometer (m/s²)":
+                          let acc = window.birdbrain.getMicrobitAcceleration(dim, robot);
+                          return Math.round(acc * 10) / 10;
+                        case "Magnetometer (µT)":
+                          return window.birdbrain.getMicrobitMagnetometer(dim, robot);
+                      }
+                    }
+                  }
+
+                  return window.birdbrain.getMicrobitAorM(device, dim, 'A');
+                </l>
+            </block>
+            <list>
+                <block var="device"/>
+                <block var="dim"/>
+            </list>
+          </block>
+        </block>
+      </script>
+    </block-definition>
+    <block-definition s="micro:bit Button %&apos;button&apos;" type="predicate" category="sensing">
+      <header></header>
+      <code></code>
+      <translations>ko:micro:bit 버튼 _&#xD;de:micro:bit Knopf _&#xD;pt:micro:bit Tecla _&#xD;fr:micro:bit Bouton _&#xD;nl:micro:bit Knop _&#xD;zh_CN:micro:bit 按钮 _&#xD;zh_TW:micro:bit 按鈕 _&#xD;ar:micro:bit زر _&#xD;dk:micro:bit Knap _&#xD;he:micro:bit לחצן _&#xD;es:micro:bit Pulsador _&#xD;ca:micro:bit Botó _&#xD;fi:micro:bit Painike _&#xD;sv:micro:bit Knapp _&#xD;</translations>
+      <inputs>
+        <input type="%txt" readonly="true">A<options>A&#xD;B</options></input>
+      </inputs>
+      <script>
+        <custom-block s="BirdBrain Setup"></custom-block>
+        <block s="doReport">
+          <block s="evaluate">
+            <block s="reportJSFunction">
+                <list>
+                    <l>button</l>
+                </list>
+                <l>
+                  if (window.birdbrain.getButton === undefined) {
+                    window.birdbrain.getButton = function (button, robot) {
+                      const type = window.birdbrain.robotType[robot];
+                      const index = (type == window.birdbrain.robotType.FINCH) ? 16 : 7;
+                      var buttonState = window.birdbrain.sensorData[robot][index] & 0xF0; //Button Byte position = 7, clear LS Bits as it is for shake and calibrate
+
+                      switch (button) {
+                        case 'A':
+                          return (buttonState == 0x00 || buttonState == 0x20)
+                        case 'B':
+                          return (buttonState == 0x00 || buttonState == 0x10)
+                        default:
+                          console.log("unknown button " + button);
+                          return false;
+                      }
+                    }
+                  }
+
+                  return window.birdbrain.getButton(button, 'A');
+                </l>
+            </block>
+            <list>
+                <block var="button"/>
+            </list>
+          </block>
+        </block>
+      </script>
+    </block-definition>
+    <block-definition s="micro:bit Compass" type="reporter" category="sensing">
+      <header></header>
+      <code></code>
+      <translations>ko:micro:bit 나침반 센서&#xD;de:micro:bit Kompass&#xD;pt:micro:bit Bússola&#xD;fr:micro:bit Compas&#xD;nl:micro:bit Kompas&#xD;zh_CN:micro:bit 指南针&#xD;zh_TW:micro:bit 指南針&#xD;ar:micro:bit بوصلة&#xD;dk:micro:bit Kompas&#xD;he:micro:bit מצפן&#xD;es:micro:bit Brujula&#xD;ca:micro:bit Brúixola&#xD;fi:micro:bit Kompassi&#xD;sv:micro:bit Kompass&#xD;</translations>
+      <inputs></inputs>
+      <script>
+        <custom-block s="BirdBrain Setup"></custom-block>
+        <block s="doReport">
+          <block s="evaluate">
+            <block s="reportJSFunction">
+                <list></list>
+                <l>
+                  if (window.birdbrain.getMicrobitCompass === undefined) {
+                    window.birdbrain.getMicrobitCompass = function (robot) {
+                      const ax = window.birdbrain.getMicrobitAcceleration('X', robot);
+                      const ay = window.birdbrain.getMicrobitAcceleration('Y', robot);
+                      const az = window.birdbrain.getMicrobitAcceleration('Z', robot);
+                      const mx = window.birdbrain.getMicrobitMagnetometer('X', robot);
+                      const my = window.birdbrain.getMicrobitMagnetometer('Y', robot);
+                      const mz = window.birdbrain.getMicrobitMagnetometer('Z', robot);
+
+                      const phi = Math.atan(-ay / az)
+                      const theta = Math.atan(ax / (ay * Math.sin(phi) + az * Math.cos(phi)))
+
+                      const xp = mx
+                      const yp = my * Math.cos(phi) - mz * Math.sin(phi)
+                      const zp = my * Math.sin(phi) + mz * Math.cos(phi)
+
+                      const xpp = xp * Math.cos(theta) + zp * Math.sin(theta)
+                      const ypp = yp
+
+                      const angle = 180.0 + ((Math.atan2(xpp, ypp)) * (180 / Math.PI)) //convert result to degrees
+
+                      return ((Math.round(angle) + 180) % 360) //turn so that beak points north
+                    }
+                  }
+
+                  return window.birdbrain.getMicrobitCompass('A');
+                </l>
+            </block>
+            <list></list>
+          </block>
+        </block>
+      </script>
+    </block-definition>
+    <block-definition s="micro:bit %&apos;dim&apos;" type="predicate" category="sensing">
+      <header></header>
+      <code></code>
+      <translations></translations>
+      <inputs>
+        <input type="%txt" readonly="true">Screen Up<options>Screen Up&#xD;Screen Down&#xD;Tilt Left&#xD;Tilt Right&#xD;Logo Up&#xD;Logo Down&#xD;Shake</options></input>
+      </inputs>
+      <script>
+        <custom-block s="BirdBrain Setup"></custom-block>
+        <block s="doReport">
+          <block s="evaluate">
+            <block s="reportJSFunction">
+                <list>
+                  <l>dim</l>
+                </list>
+                <l>
+                  if (window.birdbrain.microbitOrientation === undefined) {
+                    window.birdbrain.microbitOrientation = function (dim, robot) {
+                      if (dim == "Shake") {
+                        const index = 7;
+                        let shake = window.birdbrain.sensorData[robot][index];
+                        return ((shake & 0x01) &gt; 0);
+                      }
+                      const threshold = 7.848;
+                      let acceleration = 0;
+                      switch(dim) {
+                        case "Tilt Left":
+                        case "Tilt Right":
+                          acceleration = window.birdbrain.getMicrobitAcceleration('X', robot);
+                          break;
+                        case "Logo Up":
+                        case "Logo Down":
+                          acceleration = window.birdbrain.getMicrobitAcceleration('Y', robot);
+                          break;
+                        case "Screen Up":
+                        case "Screen Down":
+                          acceleration = window.birdbrain.getMicrobitAcceleration('Z', robot);
+                          break;
+                      }
+                      switch(dim) {
+                        case "Tilt Left":
+                        case "Logo Down":
+                        case "Screen Down":
+                          return (acceleration &gt; threshold);
+                        case "Tilt Right":
+                        case "Logo Up":
+                        case "Screen Up":
+                          return (acceleration &lt; -threshold);
+                      }
+                    }
+                  }
+
+                  return window.birdbrain.microbitOrientation(dim, 'A');
+                </l>
+            </block>
+            <list>
+              <block var="dim"/>
+            </list>
+          </block>
+        </block>
+      </script>
+    </block-definition>
+    <block-definition s="stop all" type="command" category="control">
+      <header></header>
+      <code></code>
+      <translations>ko:모두 멈추기&#xD;de:stoppe alles&#xD;pt:pare todos&#xD;fr:stop tout&#xD;nl:stop alle&#xD;zh_CN:停止 全部&#xD;zh_TW:停止 全部&#xD;ar:توقف الكل&#xD;dk:stop alle&#xD;he:להפסיק הכל&#xD;es:detener todo&#xD;ca:atura tot&#xD;fi:pysäytä kaikki&#xD;sv:stop allt&#xD;</translations>
+      <inputs></inputs>
+      <script>
+        <custom-block s="BirdBrain Setup"></custom-block>
+        <block s="doRun">
+          <block s="reportJSFunction">
+              <list></list>
+              <l>
+                var thisCommand = {
+                  robot: 'A',
+                  cmd: "stopAll"
+                }
+                window.birdbrain.sendCommand(thisCommand)
+              </l>
+          </block>
+          <list></list>
+        </block>
+      </script>
+    </block-definition>
+    <block-definition s="Hummingbird Position Servo %&apos;port&apos; %&apos;position&apos; °" type="command" category="motion">
+      <header></header>
+      <code></code>
+      <translations>ko:Hummingbird 위치 제어 서보 _ _ °&#xD;de:Hummingbird Position Servo _ _ °&#xD;pt:Hummingbird Posição do Servo _ _ °&#xD;fr:Hummingbird Position Servo _ _ °&#xD;nl:Hummingbird Positie-Servo _ _ °&#xD;zh_CN:Hummingbird 位置伺服 _ _ °&#xD;zh_TW:Hummingbird 位置伺服 _ _ °&#xD;ar:Hummingbird موقف محرك سيرفو المؤازر _ _&#xD;dk:Hummingbird Positionsservo _ _ °&#xD;he:Hummingbird סרוו כיוון _ _&#xD;es:Hummingbird Servo de posicion _ _ °&#xD;ca:Hummingbird Servo posicional _ _ °&#xD;fi:Hummingbird Asentoservo _ _ °&#xD;sv:Hummingbird Positionsservo _ _ °&#xD;</translations>
+      <inputs>
+        <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3&#xD;4</options></input>
+        <input type="%n">90</input>
+      </inputs>
+      <script>
+        <custom-block s="BirdBrain Setup"></custom-block>
+        <block s="doIf">
+          <block s="reportLessThan"><block var="position"/>
+            <l>0</l>
+          </block>
+          <script>
+            <block s="doSetVar">
+              <l>position</l>
+              <l>0</l>
+            </block>
+          </script>
+        </block>
+        <block s="doIf">
+          <block s="reportGreaterThan"><block var="position"/>
+            <l>180</l>
+          </block>
+          <script>
+            <block s="doSetVar">
+              <l>position</l>
+              <l>180</l>
+            </block>
+          </script>
+        </block>
+        <block s="doSetVar">
+          <l>position</l>
+          <block s="reportRound">
+            <block s="reportProduct"><block var="position"/>
+              <l>1.41</l>
+            </block>
+          </block>
+          <comment w="228" collapsed="false">254/180 Scaling Factor</comment>
+        </block>
+        <block s="doRun">
+          <block s="reportJSFunction">
+            <list>
+              <l>port</l>
+              <l>position</l>
+            </list>
+            <l>
+              var thisCommand = {
+                robot: 'A',
+                cmd: "servo",
+                port: port,
+                value: position
+              }
+
+              window.birdbrain.sendCommand(thisCommand);
+            </l>
+          </block>
+          <list>
+            <block var="port"/>
+            <block var="position"/>
+          </list>
+        </block>
+        <block s="doWait"><l>0.03</l></block>
+      </script>
+    </block-definition>
+    <block-definition s="Hummingbird Rotation Servo %&apos;port&apos; %&apos;speed&apos; %" type="command" category="motion">
+      <header></header>
+      <code></code>
+      <translations>ko:Hummingbird 회전속도 제어 서보 _ _ %&#xD;de:Hummingbird Drehung Servo _ _ %&#xD;pt:Hummingbird Rotação do Servo _ _ %&#xD;fr:Hummingbird Rotation Servo _ _ %&#xD;nl:Hummingbird Draai-Servo _ _ %&#xD;zh_CN:Hummingbird 旋转伺服 _ _ %&#xD;zh_TW:Hummingbird 旋轉伺服 _ _ %&#xD;ar:Hummingbird فتحة دوران المحرك المؤازر _ _&#xD;dk:Hummingbird Rotationsservo _ _ %&#xD;he:Hummingbird סרוו סיבובים _ _ %&#xD;es:Hummingbird Servo de rotacion _ _ %&#xD;ca:Hummingbird Servo rotacional _ _ %&#xD;fi:Hummingbird Kiertoservo _ _ %&#xD;sv:Hummingbird Rotationsservo _ _ %&#xD;</translations>
+      <inputs>
+        <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3&#xD;4</options></input>
+        <input type="%n">0</input>
+      </inputs>
+      <script>
+        <custom-block s="BirdBrain Setup"></custom-block>
+        <block s="doIf">
+          <block s="reportLessThan"><block var="speed"/>
+            <l>-100</l>
+          </block>
+          <script>
+            <block s="doSetVar">
+              <l>speed</l>
+              <l>-100</l>
+            </block>
+          </script>
+        </block>
+        <block s="doIf">
+          <block s="reportGreaterThan"><block var="speed"/>
+            <l>100</l>
+          </block>
+          <script>
+            <block s="doSetVar">
+              <l>speed</l>
+              <l>100</l>
+            </block>
+          </script>
+        </block>
+        <block s="doIfElse">
+          <block s="reportAnd">
+            <block s="reportGreaterThan"><block var="speed"/>
+              <l>-10</l>
+            </block>
+            <block s="reportLessThan"><block var="speed"/>
+              <l>10</l>
+            </block>
+          </block>
+          <script>
+            <block s="doSetVar">
+              <l>speed</l>
+              <l>255</l>
+            </block>
+          </script>
+          <script>
+            <block s="doSetVar">
+              <l>speed</l>
+              <block s="reportRound">
+                <block s="reportSum">
+                  <block s="reportQuotient">
+                    <block s="reportProduct"><block var="speed"/>
+                      <l>23</l>
+                    </block>
+                    <l>100</l>
+                  </block>
+                  <l>122</l>
+                </block>
+              </block>
+            </block>
+          </script>
+        </block>
+        <block s="doRun">
+          <block s="reportJSFunction">
+            <list>
+              <l>port</l>
+              <l>speed</l>
+            </list>
+            <l>
+              var thisCommand = {
+                robot: 'A',
+                cmd: "servo",
+                port: port,
+                value: speed
+              }
+
+              window.birdbrain.sendCommand(thisCommand);
+            </l>
+          </block>
+          <list>
+            <block var="port"/>
+            <block var="speed"/>
+          </list>
+        </block>
+        <block s="doWait"><l>0.03</l></block>
+      </script>
+    </block-definition>
+    <block-definition s="Hummingbird LED %&apos;port&apos; %&apos;intensity&apos; %" type="command" category="looks">
+      <header></header>
+      <code></code>
+      <translations>ko:Hummingbird LED _ _ %&#xD;de:Hummingbird LED _ _ %&#xD;pt:Hummingbird LED _ _ %&#xD;fr:Hummingbird LED _ _ %&#xD;nl:Hummingbird LED _ _ %&#xD;zh_CN:Hummingbird LED _ _ %&#xD;zh_TW:Hummingbird LED _ _ %&#xD;ar:Hummingbird ضوء _ _&#xD;dk:Hummingbird LED _ _ %&#xD;he:Hummingbird לד % _ _&#xD;es:Hummingbird LED _ _ %&#xD;ca:Hummingbird LED _ _ %&#xD;fi:Hummingbird LED _ _ %&#xD;sv:Hummingbird LED _ _ %&#xD;</translations>
+      <inputs>
+        <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3</options></input>
+        <input type="%n">0</input>
+      </inputs>
+      <script>
+        <custom-block s="BirdBrain Setup"></custom-block>
+        <block s="doRun">
+          <block s="reportJSFunction">
+            <list>
+              <l>port,intensity</l>
+            </list>
+            <l>
+              var thisCommand = {
+                robot: 'A',
+                cmd: "led",
+                port: port,
+                intensity: Math.floor(Math.max(Math.min(intensity*2.55, 255), 0))
+              }
+
+              window.birdbrain.sendCommand(thisCommand);
+            </l>
+          </block>
+          <list>
+            <block var="port"/>
+            <block var="intensity"/>
+          </list>
+        </block>
+        <block s="doWait"><l>0.03</l></block>
+      </script>
+    </block-definition>
+    <block-definition s="Hummingbird Tri-LED %&apos;port&apos; R %&apos;redLED&apos; % G %&apos;greenLED&apos; % B %&apos;blueLED&apos; %" type="command" category="looks">
+      <header></header>
+      <code></code>
+      <translations>ko:Hummingbird 삼색 LED _ 빨강 _ % 초록 _ % 파랑 _ %&#xD;de:Hummingbird Dreifarben-LED _ R _ % G _ % B _ %&#xD;pt:Hummingbird LED Tricolor _ R _ % G _ % B _ %&#xD;fr:Hummingbird Tri-LED _ R _ % G _ % B _ %&#xD;nl:Hummingbird Tri-LED _ R _ % G _ % B _ %&#xD;zh_CN:Hummingbird 三色LED _ 红 _ % 绿 _ % 蓝 _ %&#xD;zh_TW:Hummingbird 三色LED _ 紅 _ % 綠 _ % 藍 _ %&#xD;ar:Hummingbird ضوء الصمام الثلاثي _ _ _ _&#xD;dk:Hummingbird Tri-LED _ R _ % G _ % B _ %&#xD;he:Hummingbird לד שלושה צבעים % _ R _ % G _ % B _&#xD;es:Hummingbird Led tricolor _ R _ % G _ % B _ %&#xD;ca:Hummingbird Tri-LED _ vermell _ % verd _ % blau _ %&#xD;fi:Hummingbird Tri-LED _ R _ % G _ % B _ %&#xD;sv:Hummingbird Tri-LED _ R _ % G _ % B _ %&#xD;</translations>
+      <inputs>
+        <input type="%n" readonly="true">1<options>1&#xD;2</options></input>
+        <input type="%n">0</input>
+        <input type="%n">0</input>
+        <input type="%n">0</input>
+      </inputs>
+      <script>
+        <custom-block s="BirdBrain Setup"></custom-block>
+        <block s="doRun">
+          <block s="reportJSFunction">
+            <list>
+              <l>port</l>
+              <l>rednum</l>
+              <l>greennum</l>
+              <l>bluenum</l>
+            </list>
+            <l>
+              var thisCommand = {
+                robot: 'A',
+                cmd: "triled",
+                port: port,
+                red: Math.floor(Math.max(Math.min(rednum*2.55, 255), 0)),
+                green: Math.floor(Math.max(Math.min(greennum*2.55, 255), 0)),
+                blue: Math.floor(Math.max(Math.min(bluenum*2.55, 255), 0))
+              }
+
+              window.birdbrain.sendCommand(thisCommand);
+            </l>
+          </block>
+          <list>
+            <block var="port"/>
+            <block var="redLED"/>
+            <block var="greenLED"/>
+            <block var="blueLED"/>
+          </list>
+        </block>
+        <block s="doWait"><l>0.03</l></block>
+      </script>
+    </block-definition>
+    <block-definition s="micro:bit Print %&apos;string&apos;" type="command" category="looks">
+      <header></header>
+      <code></code>
+      <translations>ko:micro:bit 출력 _&#xD;de:micro:bit Drucke _&#xD;pt:micro:bit Imprimir _&#xD;fr:micro:bit Imprimer _&#xD;nl:micro:bit Schrijf _&#xD;zh_CN:micro:bit 打印 _&#xD;zh_TW:micro:bit 打印 _&#xD;ar:micro:bit طباعة _&#xD;dk:micro:bit Vis _&#xD;he:micro:bit הדפס _&#xD;es:micro:bit Imprimir _&#xD;ca:micro:bit Escriu _&#xD;fi:micro:bit Näytä teksti _&#xD;sv:micro:bit Visa text _&#xD;</translations>
+      <inputs>
+        <input type="%txt">Hello</input>
+      </inputs>
+      <script>
+        <custom-block s="BirdBrain Setup"></custom-block>
+        <block s="doRun">
+          <block s="reportJSFunction">
+            <list>
+              <l>string</l>
+            </list>
+            <l>
+              var thisCommand = {
+                robot: 'A',
+                cmd: "print",
+                printString: string
+              }
+
+              window.birdbrain.sendCommand(thisCommand);
+            </l>
+          </block>
+          <list>
+            <block var="string"/>
+          </list>
+        </block>
+        <block s="doWait">
+          <block s="reportProduct">
+            <l>.6</l>
+            <block s="reportStringSize"><block var="string"/></block>
+          </block>
+        </block>
+      </script>
+    </block-definition>
+    <block-definition
+      s="micro:bit Display $nl %&apos;r1c1&apos; %&apos;r1c2&apos; %&apos;r1c3&apos; %&apos;r1c4&apos; %&apos;r1c5&apos; $nl %&apos;r2c1&apos; %&apos;r2c2&apos; %&apos;r2c3&apos; %&apos;r2c4&apos; %&apos;r2c5&apos; $nl %&apos;r3c1&apos; %&apos;r3c2&apos; %&apos;r3c3&apos; %&apos;r3c4&apos; %&apos;r3c5&apos; $nl %&apos;r4c1&apos; %&apos;r4c2&apos; %&apos;r4c3&apos; %&apos;r4c4&apos; %&apos;r4c5&apos; $nl %&apos;r5c1&apos; %&apos;r5c2&apos; %&apos;r5c3&apos; %&apos;r5c4&apos; %&apos;r5c5&apos;"
+      type="command"
+      category="looks">
+      <header></header>
+      <code></code>
+      <translations>ko:micro:bit 보이기 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;de:micro:bit LED Anzeige _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;pt:micro:bit Visor _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;fr:micro:bit Display _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;nl:micro:bit Scherm _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;zh_CN:micro:bit 显示 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;zh_TW:micro:bit 顯示 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;ar:micro:bit عرض _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;dk:micro:bit Display _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;he:micro:bit מסך _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;es:micro:bit Monitor _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;ca:micro:bit Pantalla _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;fi:micro:bit Näytä _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;sv:micro:bit Skärm _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;</translations>
+      <inputs>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+        <input type="%b">false</input>
+      </inputs>
+      <script>
+        <custom-block s="BirdBrain Setup"></custom-block>
+        <block s="doRun">
+          <block s="reportJSFunction">
+            <list>
+              <l>r1c1, r1c2, r1c3, r1c4, r1c5, r2c1, r2c2, r2c3, r2c4, r2c5, r3c1, r3c2, r3c3, r3c4, r3c5, r4c1, r4c2, r4c3, r4c4, r4c5, r5c1, r5c2, r5c3, r5c4, r5c5
+              </l>
+            </list>
+            <l>
+              // Create url representation from inputs
+              var symbolString = r1c1 + "\/"+ r1c2 + "\/"+ r1c3 + "\/"+ r1c4 + "\/"+ r1c5 + "\/" +
+               r2c1 + "\/"+ r2c2 + "\/"+ r2c3 + "\/"+ r2c4 + "\/"+ r2c5 + "\/" +
+               r3c1 + "\/"+ r3c2 + "\/"+ r3c3 + "\/"+ r3c4 + "\/"+ r3c5 + "\/" +
+               r4c1 + "\/"+ r4c2 + "\/"+ r4c3 + "\/"+ r4c4 + "\/"+ r4c5 + "\/" +
+               r5c1 + "\/"+ r5c2 + "\/"+ r5c3 + "\/"+ r5c4 + "\/"+ r5c5 ;
+
+               var thisCommand = {
+                 robot: 'A',
+                 cmd: "symbol",
+                 symbolString: symbolString
+               }
+
+              window.birdbrain.sendCommand(thisCommand);
+            </l>
+          </block>
+          <list>
+            <block var="r1c1"/>
+            <block var="r1c2"/>
+            <block var="r1c3"/>
+            <block var="r1c4"/>
+            <block var="r1c5"/>
+            <block var="r2c1"/>
+            <block var="r2c2"/>
+            <block var="r2c3"/>
+            <block var="r2c4"/>
+            <block var="r2c5"/>
+            <block var="r3c1"/>
+            <block var="r3c2"/>
+            <block var="r3c3"/>
+            <block var="r3c4"/>
+            <block var="r3c5"/>
+            <block var="r4c1"/>
+            <block var="r4c2"/>
+            <block var="r4c3"/>
+            <block var="r4c4"/>
+            <block var="r4c5"/>
+            <block var="r5c1"/>
+            <block var="r5c2"/>
+            <block var="r5c3"/>
+            <block var="r5c4"/>
+            <block var="r5c5"/>
+          </list>
+        </block>
+        <block s="doWait"><l>0.03</l></block>
+      </script>
+    </block-definition>
+  </blocks>
+  <variables></variables>
+</project>
