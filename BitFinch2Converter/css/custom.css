@@ -1,8 +1,9 @@
 :root {
 	--easternBlue: #089BAB;
-	--neonCarrot: #ff9922;
+	--neonCarrot: #FF9922;
 	--seance: #881199;
 	--fountainBlue: #62BCC7;
+	--iron: #CACACA;
 }
 
 body {
@@ -45,7 +46,7 @@ header {
 }
 
 .btn-submit {
-	background-color: var(--neonCarrot);
+	background-color: var(--iron);
 	border-radius: 16px;
 	color: white;
 	font-family:'Avenir LT W01_85 Heavy1475544'; font-size: 2em;
@@ -89,7 +90,7 @@ h1 {
 	text-align: right;
 }
 
-main h2 {
+h2 {
 	color: var(--easternBlue);
 	font-family:'Avenir LT W01_85 Heavy1475544'; font-size: 1.4em;
 	margin-bottom: 0.75em;

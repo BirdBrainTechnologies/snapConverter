@@ -1,19 +1,133 @@
 'use strict';
 
-//button clicked to upload file
-var finchBitUploadButton = document.getElementById("finchBitUpload");
-finchBitUploadButton.addEventListener('click', finchBitUpload);
 
 //the base project file for output
 var starterProject;
-
-var info = document.getElementById('convertionInfo')
-var spinner = document.getElementById('spinner')
-var downloadComplete = document.getElementById('fbDownloadComplete');
-var finchBitInput = document.getElementById("fbFiles")
-
+//the suffix to add at the end of the filename
+var output;
 //The name of the resulting file download. Will be reset later.
-var filename = "newSnapProject.xml";
+var outputFileName = "newSnapProject.xml";
+
+
+function singleToMulti(e) {
+  console.log("singleToMulti")
+  e.target.blur();
+  output = "MULTI.xml"
+  let input = document.getElementById("singleRobotProject")
+  uploadFile(input)
+}
+
+function softwareConversion(e) {
+  console.log("softwareConversion")
+  e.target.blur();
+  output = "For"
+  let input = document.getElementById("originalProject")
+  uploadFile(input)
+}
+
+function uploadFile(input) {
+  // Create a reader object
+  let reader = new FileReader();
+  if (input.files.length) {
+    let textFile = input.files[0];
+
+    console.log(textFile.name)
+    outputFileName = textFile.name.slice(0, -4) + output
+    console.log(outputFileName)
+
+    reader.readAsText(textFile);
+    reader.addEventListener("load", processFile);
+  } else {
+    console.error("No file selected")
+  }
+}
+
+//takes a file, gets its contents, it to its new format
+function processFile(e) {
+  let fileText = e.target.result;
+  if (fileText && fileText.length) {
+    getStarterProjectAndConvert(fileText)
+  } else {
+    console.error("file has no contents to process")
+  }
+}
+
+
+function getStarterProjectAndConvert(inputContents) {
+
+  //console.log(inputContents)
+  // Determine the state of the input
+  let usesFinch = inputContents.match(/Finch/)
+  let usesHummingbird = inputContents.match(/Hummingbird/)
+  let currentSoftware = (inputContents.match(/BirdBrain Setup/) != null) ? "WebApp" : "BlueBird"
+
+  // Determine what the output should be
+  let robotAmount = "Multi"
+  let softwareSelected = currentSoftware
+  if (output != "MULTI.xml") { //If it is the software converter and not the single to multi converter
+    softwareSelected = (currentSoftware == "WebApp") ? "BlueBird" : "WebApp"
+    if (inputContents.match(/%&apos;devId&apos;/) == null) {
+      robotAmount = "Single"
+    }
+    outputFileName = outputFileName + softwareSelected + ".xml"
+    console.log(outputFileName)
+  }
+
+  switch(softwareSelected + usesFinch + usesHummingbird + robotAmount) {
+    case "WebAppFinchnullSingle":
+      starterProject = "PWAFinchSingleDevice.xml";
+    break;
+    case "WebAppnullHummingbirdSingle":
+      starterProject = "PWAHummingbirdSingleDevice.xml";
+    break;
+    case "WebAppFinchnullMulti":
+      starterProject = "PWAFinchMultiDevice.xml";
+    break;
+    case "WebAppnullHummingbirdMulti":
+      starterProject = "PWAHummingbirdMultiDevice.xml";
+    break;
+    case "WebAppFinchHummingbirdMulti":
+      starterProject = "PWAMixedMultiDevice.xml";
+    break;
+    case "BlueBirdFinchnullSingle":
+      starterProject = "FinchSingleDeviceStarterProject.xml";
+    break;
+    case "BlueBirdnullHummingbirdSingle":
+      starterProject = "HummingbirdSingleDeviceStarterProject.xml";
+    break;
+    case "BlueBirdFinchnullMulti":
+      starterProject = "FinchMultiDeviceStarterProject.xml";
+    break;
+    case "BlueBirdnullHummingbirdMulti":
+      starterProject = "HummingbirdMultiDeviceStarterProject.xml";
+    break;
+    case "BlueBirdFinchHummingbirdMulti":
+      starterProject = "MixedMultiDeviceStarterProject.xml";
+    break;
+    default:
+      console.error("Invalid options: " + softwareSelected + " " + usesFinch + " " + usesHummingbird + " " + robotAmount)
+  }
+
+  console.log(starterProject)
+
+  fetch('snapProjects/' + starterProject)
+    .then(response => response.text())
+    .then(starterContents => {
+      //console.log("about to convert")
+      let results = convert(inputContents, starterContents)
+      //console.log("converted")
+
+      returnXMLFile(results)
+
+    }).catch(error => {
+      console.error("Starter file load failed: " + error.message);
+    })
+
+}
+
+
+
+
 
 
 /**
@@ -229,22 +343,27 @@ function convert(userFile, selectedStarter) {
 //takes the parsed xml file and returns it as a new file
 function returnXMLFile(xml) {
 
-  spinner.style.display = 'none'
+  //spinner.style.display = 'none'
 
   var outputXML = new XMLSerializer().serializeToString(xml);
-  var a = document.getElementById('fbDownloadLink');
+  //var a = document.getElementById('fbDownloadLink');
+  var a = document.createElement('a');
 
   // https://stackoverflow.com/questions/5143504/how-to-create-and-download-an-xml-file-on-the-fly-using-javascript
   var bb = new Blob([outputXML], {type: 'text/plain'});
   a.setAttribute('href', window.URL.createObjectURL(bb));
-  console.log("Setting the download filename to " + filename);
-  a.setAttribute('download', filename);
+  console.log("Setting the download filename to " + outputFileName);
+  a.setAttribute('download', outputFileName);
   a.dataset.downloadurl = ['text/plain', a.download, a.href].join(':');
-  a.draggable = true;
-  a.classList.add('dragout');
+  //a.draggable = true;
+  //a.classList.add('dragout');
 
-  finchBitUploadButton.blur()
-  downloadComplete.style.display = 'block'
+  a.click();
+  a.remove();
+  console.log(outputFileName + " should have downloaded.")
+
+  //finchBitUploadButton.blur()
+  //downloadComplete.style.display = 'block'
 }
 
 function parseXML(text) {
@@ -350,12 +469,27 @@ function getBlockDictionary(blockDefs) {
  * @param  {element} formInput Input element specifying file choice
  */
 function onFileChoice(formInput) {
-
-  let convertButton = document.getElementById("finchBitUpload");
+  console.log("onFileChoice " + formInput.id)
+  let convertButton
+  let convertFunction
+  switch(formInput.id) {
+    case "singleRobotProject":
+      convertButton = document.getElementById("smConvert");
+      convertFunction = singleToMulti;
+      break;
+    case "originalProject":
+      convertButton = document.getElementById("softwareConvert");
+      convertFunction = softwareConversion;
+      break;
+  }
 
   if (formInput.files[0] == null) {
-    convertButton.style.display = 'none'
+    convertButton.removeEventListener('click', convertFunction);
+    convertButton.style.backgroundColor = "#CACACA";
+    convertButton.disabled = true;
   } else {
-    convertButton.style.display = 'block'
+    convertButton.addEventListener('click', convertFunction);
+    convertButton.disabled = false;
+    convertButton.style.backgroundColor = "#FF9922";
   }
 }
