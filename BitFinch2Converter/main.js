@@ -10,6 +10,10 @@ var outputFileName = "newSnapProject.xml";
 //Will the output be multi-device?
 var multiDeviceOutput = false;
 
+//These new line characters are thrown away by the DOMParser
+const NEWLINE = "&#xD;"
+const PLACEHOLDER = "NEWLINEPLACEHOLDER"
+
 
 /**
  * onFileChoice - Enable/disable the convert button based on whether or not a
@@ -179,8 +183,9 @@ function processFile(e) {
  */
 function convert(userFile, selectedStarter) {
 
-  console.log("Converting...")
+  console.log("Converting... ")
   var userXML = parseXML(userFile);
+  console.log(userXML)
   var selectedXML = parseXML(selectedStarter);
   var userBlocksNode = getBlocksNode(userXML);
   var userBlockDefs = getBlockDefArray(userBlocksNode);
@@ -316,6 +321,7 @@ function convert(userFile, selectedStarter) {
 function returnXMLFile(xml) {
 
   var outputXML = new XMLSerializer().serializeToString(xml);
+  outputXML = outputXML.replace(new RegExp(PLACEHOLDER, "g"), NEWLINE)
   var a = document.createElement('a');
 
   // https://stackoverflow.com/questions/5143504/how-to-create-and-download-an-xml-file-on-the-fly-using-javascript
@@ -339,6 +345,8 @@ function returnXMLFile(xml) {
 function parseXML(text) {
   text = text.replace(/ & /g, " &amp; ")
   text = text.replace(/ && /g, " &amp;&amp; ")
+  text = text.replace(new RegExp(NEWLINE, "g"), PLACEHOLDER)
+  //console.log(text)
 
   var xml;
   //initial parse of xml
@@ -443,8 +451,16 @@ function getBlockDictionary(blockDefs) {
       blockName = blockName.replace(/%\'[a-zA-Z_0-9]*\'/, type)
       blockName = blockName.replace(/\$nl/, "%br")
     }
-    let multiDeviceCall = blockName
-    let singleDeviceCall = blockName.replace(/ %txt/, '')
+
+    let multiDeviceCall
+    let singleDeviceCall
+    if (multiDeviceOutput) {
+      multiDeviceCall = blockName
+      singleDeviceCall = blockName.replace(/ %txt/, '')
+    } else {
+      singleDeviceCall = blockName
+    }
+
     //console.log("blockDef " + blockDef.getAttribute('s').trim() + " -> " + multiDeviceCall + " -> " + singleDeviceCall)
     let entry = {
       definition: blockDefs[item],
