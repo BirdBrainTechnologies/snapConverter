@@ -7,8 +7,47 @@ var starterProject;
 var output;
 //The name of the resulting file download. Will be reset later.
 var outputFileName = "newSnapProject.xml";
+//Will the output be multi-device?
+var multiDeviceOutput = false;
 
 
+/**
+ * onFileChoice - Enable/disable the convert button based on whether or not a
+ * file is specified.
+ *
+ * @param  {element} formInput Input element specifying file choice
+ */
+function onFileChoice(formInput) {
+  console.log("onFileChoice " + formInput.id)
+  let convertButton
+  let convertFunction
+  switch(formInput.id) {
+    case "singleRobotProject":
+      convertButton = document.getElementById("smConvert");
+      convertFunction = singleToMulti;
+      break;
+    case "originalProject":
+      convertButton = document.getElementById("softwareConvert");
+      convertFunction = softwareConversion;
+      break;
+  }
+
+  if (formInput.files[0] == null) {
+    convertButton.removeEventListener('click', convertFunction);
+    convertButton.style.backgroundColor = "#CACACA";
+    convertButton.disabled = true;
+  } else {
+    convertButton.addEventListener('click', convertFunction);
+    convertButton.disabled = false;
+    convertButton.style.backgroundColor = "#FF9922";
+  }
+}
+
+/**
+ * singleToMulti - Start a single device to multi device conversion.
+ *
+ * @param  {event} e Button click event
+ */
 function singleToMulti(e) {
   console.log("singleToMulti")
   e.target.blur();
@@ -17,6 +56,11 @@ function singleToMulti(e) {
   uploadFile(input)
 }
 
+/**
+ * softwareConversion - Start a software conversion.
+ *
+ * @param  {event} e Button click event
+ */
 function softwareConversion(e) {
   console.log("softwareConversion")
   e.target.blur();
@@ -25,15 +69,18 @@ function softwareConversion(e) {
   uploadFile(input)
 }
 
+/**
+ * uploadFile - Upload the user-specified file. When the file is loaded,
+ * processFile will be called.
+ *
+ * @param  {element} input Input element to get the file from
+ */
 function uploadFile(input) {
   // Create a reader object
   let reader = new FileReader();
   if (input.files.length) {
     let textFile = input.files[0];
-
-    console.log(textFile.name)
     outputFileName = textFile.name.slice(0, -4) + output
-    console.log(outputFileName)
 
     reader.readAsText(textFile);
     reader.addEventListener("load", processFile);
@@ -42,20 +89,18 @@ function uploadFile(input) {
   }
 }
 
-//takes a file, gets its contents, it to its new format
+/**
+ * processFile - Handles the user's file once loaded.
+ *
+ * @param  {event} e Load event triggered by loading the user's file
+ */
 function processFile(e) {
-  let fileText = e.target.result;
-  if (fileText && fileText.length) {
-    getStarterProjectAndConvert(fileText)
-  } else {
-    console.error("file has no contents to process")
+  let inputContents = e.target.result;
+  if ( !(inputContents && inputContents.length) ) {
+    console.error("file has no contents to process");
+    return;
   }
-}
 
-
-function getStarterProjectAndConvert(inputContents) {
-
-  //console.log(inputContents)
   // Determine the state of the input
   let usesFinch = inputContents.match(/Finch/)
   let usesHummingbird = inputContents.match(/Hummingbird/)
@@ -72,6 +117,7 @@ function getStarterProjectAndConvert(inputContents) {
     outputFileName = outputFileName + softwareSelected + ".xml"
     console.log(outputFileName)
   }
+  multiDeviceOutput = (robotAmount == "Multi")
 
   switch(softwareSelected + usesFinch + usesHummingbird + robotAmount) {
     case "WebAppFinchnullSingle":
@@ -113,10 +159,8 @@ function getStarterProjectAndConvert(inputContents) {
   fetch('snapProjects/' + starterProject)
     .then(response => response.text())
     .then(starterContents => {
-      //console.log("about to convert")
-      let results = convert(inputContents, starterContents)
-      //console.log("converted")
 
+      let results = convert(inputContents, starterContents)
       returnXMLFile(results)
 
     }).catch(error => {
@@ -124,86 +168,6 @@ function getStarterProjectAndConvert(inputContents) {
     })
 
 }
-
-
-
-
-
-
-/**
- * upload - when the button is clicked, read, load, and process the file.
- * This function is used for converting finch/bit files.
- */
-function finchBitUpload() {
-
-    downloadComplete.style.display = 'none'
-    spinner.style.display = 'block'
-
-    var softwareSelected = document.querySelector('input[name="software"]:checked').id;
-
-    finchBitInput.files[0].text().then(inputContents => {
-      //console.log(contents)
-      let usesFinch = inputContents.match(/Finch/)
-      let usesHummingbird = inputContents.match(/Hummingbird/)
-
-      switch(softwareSelected + usesFinch + usesHummingbird) {
-        case "WebAppFinchnull":
-          starterProject = "PWAFinchMultiDevice.xml";
-        break;
-        case "WebAppnullHummingbird":
-          starterProject = "PWAHummingbirdMultiDevice.xml";
-        break;
-        case "WebAppFinchHummingbird":
-          starterProject = "PWAMixedMultiDevice.xml";
-        break;
-        case "BlueBirdFinchnull":
-          starterProject = "FinchMultiDeviceStarterProject.xml";
-        break;
-        case "BlueBirdnullHummingbird":
-          starterProject = "HummingbirdMultiDeviceStarterProject.xml";
-        break;
-        case "BlueBirdFinchHummingbird":
-          starterProject = "MixedMultiDeviceStarterProject.xml";
-        break;
-        default:
-          console.error("Invalid options: " + softwareSelected + " " + usesFinch + " " + usesHummingbird)
-      }
-
-      //console.log("starterProject " + starterProject)
-
-      fetch('snapProjects/' + starterProject)
-        .then(response => response.text())
-        .then(starterContents => {
-          //console.log("about to convert")
-          let results = convert(inputContents, starterContents)
-          //console.log("converted")
-          let projectType;
-          if (usesFinch && usesHummingbird) {
-            projectType = "Finch and Hummingbird"
-            filename = "MixedMultiDevice"
-          } else if (usesFinch) {
-            projectType = "Finch"
-            filename = "FinchMultiDevice"
-          } else if (usesHummingbird) {
-            projectType = "Hummingbird"
-            filename = "HummingbirdMultiDevice"
-          }
-          let softwareName = (softwareSelected == "BlueBird") ? "BlueBird Connector" : "Web App"
-          info.innerHTML = "'" + finchBitInput.files[0].name + "' has been converted from a " + projectType + " project to a multi device project for the " + softwareName + "."
-          filename += "For" + softwareSelected + ".xml"
-
-          returnXMLFile(results)
-
-        }).catch(error => {
-          console.error("Starter file load failed: " + error.message);
-        })
-
-    }).catch(error => {
-      console.error("user file read failed: " + error.message);
-    })
-}
-
-
 
 /**
  * convert - Convert the text of the user selected file into the block version
@@ -214,11 +178,10 @@ function finchBitUpload() {
  * @return {type}           description
  */
 function convert(userFile, selectedStarter) {
-  //console.log(selectedStarter);
+
   console.log("Converting...")
   var userXML = parseXML(userFile);
   var selectedXML = parseXML(selectedStarter);
-  //console.log("stuff parsed")
   var userBlocksNode = getBlocksNode(userXML);
   var userBlockDefs = getBlockDefArray(userBlocksNode);
   var starterBlocksNode = getBlocksNode(selectedXML);
@@ -283,16 +246,20 @@ function convert(userFile, selectedStarter) {
 
     } else {
       if (blockName == dictionaryEntry.mdCall) {
-        //Since we are currently converting everything to multi-device blocks, do nothing here.
         //console.log("found multiDeviceCall " + blockName)
+        if (!multiDeviceOutput) {
+          console.error("Switching from multi-device to single-device is not allowd.")
+        }
 
       } else if (blockName == dictionaryEntry.sdCall) {
         //console.log("found singleDeviceCall " + blockName)
-        switchingFromSingleDevice = true
-        customBlockCalls[i].setAttribute('s', dictionaryEntry.mdCall)
-        let newNode = userXML.createElement("l")
-        newNode.appendChild(userXML.createTextNode("A"))
-        customBlockCalls[i].insertBefore(newNode, customBlockCalls[i].childNodes[0])
+        if (multiDeviceOutput) {
+          switchingFromSingleDevice = true
+          customBlockCalls[i].setAttribute('s', dictionaryEntry.mdCall)
+          let newNode = userXML.createElement("l")
+          newNode.appendChild(userXML.createTextNode("A"))
+          customBlockCalls[i].insertBefore(newNode, customBlockCalls[i].childNodes[0])
+        }
 
       } else {
         console.error("found a dictionary entry, but no matching call name for " + blockName)
@@ -340,13 +307,15 @@ function convert(userFile, selectedStarter) {
   return userXML
 }
 
-//takes the parsed xml file and returns it as a new file
+/**
+ * returnXMLFile - Takes the parsed xml file and returns it as a new file which
+ * will automatically download.
+ *
+ * @param  {XML} xml xml to return
+ */
 function returnXMLFile(xml) {
 
-  //spinner.style.display = 'none'
-
   var outputXML = new XMLSerializer().serializeToString(xml);
-  //var a = document.getElementById('fbDownloadLink');
   var a = document.createElement('a');
 
   // https://stackoverflow.com/questions/5143504/how-to-create-and-download-an-xml-file-on-the-fly-using-javascript
@@ -355,17 +324,18 @@ function returnXMLFile(xml) {
   console.log("Setting the download filename to " + outputFileName);
   a.setAttribute('download', outputFileName);
   a.dataset.downloadurl = ['text/plain', a.download, a.href].join(':');
-  //a.draggable = true;
-  //a.classList.add('dragout');
 
   a.click();
   a.remove();
   console.log(outputFileName + " should have downloaded.")
-
-  //finchBitUploadButton.blur()
-  //downloadComplete.style.display = 'block'
 }
 
+/**
+ * parseXML - Parses a string as xml and returns the xml object.
+ *
+ * @param  {string} text String of text to parse as xml
+ * @return {XML}      xml object created from the text string
+ */
 function parseXML(text) {
   text = text.replace(/ & /g, " &amp; ")
   text = text.replace(/ && /g, " &amp;&amp; ")
@@ -383,6 +353,13 @@ function parseXML(text) {
   return xml;
 }
 
+/**
+ * getStageScriptsNode - Find and return the scripts node within the stage of
+ * a given snap! project.
+ *
+ * @param  {XML} project The snap project to search
+ * @return {node}         The stage scripts node found
+ */
 function getStageScriptsNode(project){
   //this is the highest level node in the snap xml, the project node
   var projectNode = project.documentElement;
@@ -400,6 +377,12 @@ function getStageScriptsNode(project){
   return scriptsNode;
 }
 
+/**
+ * getBlocksNode - Find and return the main blocks node of a snap! project.
+ *
+ * @param  {XML} project The snap! project to search
+ * @return {node}         The blocks node found
+ */
 function getBlocksNode(project){
   //this is the highest level node in the snap xml, the project node
   var projectNode = project.documentElement;
@@ -413,6 +396,13 @@ function getBlocksNode(project){
   return blocksNode;
 }
 
+/**
+ * getBlockDefArray - Make and return an array of custom snap! block
+ * definitions from a given blocks node.
+ *
+ * @param  {node} blocksNode The blocks node from a snap! project
+ * @return {array}            Array of custom block definitions
+ */
 function getBlockDefArray(blocksNode) {
   var blockDefs = {};
   var children = blocksNode.childNodes; //each of these is a block-definition or #text
@@ -423,18 +413,24 @@ function getBlockDefArray(blocksNode) {
       let blockName = children[i].getAttribute('s').trim()
       blockName = blockName.replace(/%\'devId\'/, '')
       blockName = blockName.replace(/\s/g, '')
+      if (blockName == "micro:bitDisplay$nl%'r1c1'%'r1c2'%'r1c3'%'r1c4'%'r1c5'$nl%'r2c1'%'r2c2'%'r2c3'%'r2c4'%'r2c5'$nl%'r3c1'%'r3c2'%'r3c3'%'r3c4'%'r3c5'$nl%'r4c1'%'r4c2'%'r4c3'%'r4c4'%'r4c5'$nl%'r5c1'%'r5c2'%'r5c3'%'r5c4'%'r5c5'") {
+        blockName = "micro:bitDisplay$nl%'11'%'12'%'13'%'14'%'15'$nl%'21'%'22'%'23'%'24'%'25'$nl%'31'%'32'%'33'%'34'%'35'$nl%'41'%'42'%'43'%'44'%'45'$nl%'51'%'52'%'53'%'54'%'55'"
+      }
+
       blockDefs[blockName] = children[i];
     }
   }
-  //console.log(blockDefs.length);
-  /*Object.keys(blockDefs).forEach((item, i) => {
-    console.log(item)
-    console.log(blockDefs[item])
-  });*/
 
   return blockDefs;
 }
 
+/**
+ * getBlockDictionary - Make and return a more searchable dictionary of custom
+ * block definitions from a block definition array.
+ *
+ * @param  {array} blockDefs Array of block definitions
+ * @return {dictionary}           Block definition dictionary
+ */
 function getBlockDictionary(blockDefs) {
   let dictionary = {}
   Object.keys(blockDefs).forEach((item, i) => {
@@ -459,37 +455,4 @@ function getBlockDictionary(blockDefs) {
     dictionary[singleDeviceCall] = entry
   });
   return dictionary
-}
-
-
-/**
- * onFileChoice - Show/hide the convert button based on whether or not a file
- * is specified.
- *
- * @param  {element} formInput Input element specifying file choice
- */
-function onFileChoice(formInput) {
-  console.log("onFileChoice " + formInput.id)
-  let convertButton
-  let convertFunction
-  switch(formInput.id) {
-    case "singleRobotProject":
-      convertButton = document.getElementById("smConvert");
-      convertFunction = singleToMulti;
-      break;
-    case "originalProject":
-      convertButton = document.getElementById("softwareConvert");
-      convertFunction = softwareConversion;
-      break;
-  }
-
-  if (formInput.files[0] == null) {
-    convertButton.removeEventListener('click', convertFunction);
-    convertButton.style.backgroundColor = "#CACACA";
-    convertButton.disabled = true;
-  } else {
-    convertButton.addEventListener('click', convertFunction);
-    convertButton.disabled = false;
-    convertButton.style.backgroundColor = "#FF9922";
-  }
 }
