@@ -80,6 +80,9 @@ function softwareConversion(e) {
  * @param  {element} input Input element to get the file from
  */
 function uploadFile(input) {
+  //Make sure the starter project from the last conversion will not be used.
+  starterProject = null;
+  
   // Create a reader object
   let reader = new FileReader();
   if (input.files.length) {
@@ -106,8 +109,8 @@ function processFile(e) {
   }
 
   // Determine the state of the input
-  let usesFinch = inputContents.match(/Finch/)
-  let usesHummingbird = inputContents.match(/Hummingbird/)
+  let usesFinch = (inputContents.match(/block-definition s="Finch/) != null) ? "Finch" : null
+  let usesHummingbird = (inputContents.match(/block-definition s="Hummingbird/) != null) ? "Hummingbird" : null
   let currentSoftware = (inputContents.match(/BirdBrain Setup/) != null) ? "WebApp" : "BlueBird"
 
   // Determine what the output should be
@@ -419,6 +422,7 @@ function getBlockDefArray(blocksNode) {
     if (children[i].nodeName === 'block-definition') {
       //isolate block-definitions as this is all we care about
       let blockName = children[i].getAttribute('s').trim()
+      blockName = blockName.replace(/%\'DevId\'/, '')
       blockName = blockName.replace(/%\'devId\'/, '')
       blockName = blockName.replace(/\s/g, '')
       if (blockName == "micro:bitDisplay$nl%'r1c1'%'r1c2'%'r1c3'%'r1c4'%'r1c5'$nl%'r2c1'%'r2c2'%'r2c3'%'r2c4'%'r2c5'$nl%'r3c1'%'r3c2'%'r3c3'%'r3c4'%'r3c5'$nl%'r4c1'%'r4c2'%'r4c3'%'r4c4'%'r4c5'$nl%'r5c1'%'r5c2'%'r5c3'%'r5c4'%'r5c5'") {
