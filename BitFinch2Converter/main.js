@@ -115,7 +115,7 @@ function processFile(e) {
   let softwareSelected = currentSoftware
   if (output != "MULTI.xml") { //If it is the software converter and not the single to multi converter
     softwareSelected = (currentSoftware == "WebApp") ? "BlueBird" : "WebApp"
-    if (inputContents.match(/%&apos;devId&apos;/) == null) {
+    if (inputContents.match(/%&apos;devId&apos;/) == null && inputContents.match(/%'devId'/) == null) {
       robotAmount = "Single"
     }
     outputFileName = outputFileName + softwareSelected + ".xml"

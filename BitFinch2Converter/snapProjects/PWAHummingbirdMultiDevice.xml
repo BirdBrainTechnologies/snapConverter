@@ -390,7 +390,7 @@
         <block s="doWait"><l>0.03</l></block>
       </script>
     </block-definition>
-    <block-definition s="Hummingbird %&apos;DevId&apos; LED %&apos;port&apos; %&apos;intensity&apos; %" type="command" category="looks">
+    <block-definition s="Hummingbird %&apos;devId&apos; LED %&apos;port&apos; %&apos;intensity&apos; %" type="command" category="looks">
       <header></header>
       <code></code>
       <translations>ko:Hummingbird _ LED _ _ %&#xD;de:Hummingbird _ LED _ _ %&#xD;pt:Hummingbird _ LED _ _ %&#xD;fr:Hummingbird _ LED _ _ %&#xD;nl:Hummingbird _ LED _ _ %&#xD;zh_CN:Hummingbird _ LED _ _ %&#xD;zh_TW:Hummingbird _ LED _ _ %&#xD;ar:Hummingbird _ ضوء _ _&#xD;dk:Hummingbird _ LED _ _ %&#xD;he:Hummingbird _ לד % _ _&#xD;es:Hummingbird _ LED _ _ %&#xD;ca:Hummingbird _ LED _ _ %&#xD;fi:Hummingbird _ LED _ _ %&#xD;sv:Hummingbird _ LED _ _ %&#xD;</translations>

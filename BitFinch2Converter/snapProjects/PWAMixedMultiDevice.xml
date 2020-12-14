@@ -398,7 +398,7 @@
               <block s="doWait"><l>0.03</l></block>
             </script>
         </block-definition>
-        <block-definition s="Hummingbird %&apos;DevId&apos; LED %&apos;port&apos; %&apos;intensity&apos; %"
+        <block-definition s="Hummingbird %&apos;devId&apos; LED %&apos;port&apos; %&apos;intensity&apos; %"
                           type="command" category="looks">
             <header></header>
             <code></code>
