@@ -364,7 +364,7 @@
       <code></code>
       <translations></translations>
       <inputs>
-        <input type="%s" readonly="true">Accelerometer (m/s²)<options>Accelerometer (m/s²)&#xD;Magnetometer (µT)</options></input>
+        <input type="%txt" readonly="true">Accelerometer (m/s²)<options>Accelerometer (m/s²)&#xD;Magnetometer (µT)</options></input>
         <input type="%txt" readonly="true">X<options>X&#xD;Y&#xD;Z</options></input>
       </inputs>
       <script>

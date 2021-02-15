@@ -82,7 +82,7 @@ function softwareConversion(e) {
 function uploadFile(input) {
   //Make sure the starter project from the last conversion will not be used.
   starterProject = null;
-  
+
   // Create a reader object
   let reader = new FileReader();
   if (input.files.length) {
@@ -241,15 +241,18 @@ function convert(userFile, selectedStarter) {
   for (let i = 0; i < customBlockCalls.length; i++) {
     //console.log(customBlockCalls[i])
     let blockName = customBlockCalls[i].getAttribute('s').trim()
+    blockName = blockName.replace(/%s/g, '%txt')
     let dictionaryEntry = blockDictionary[blockName]
     if (dictionaryEntry == null) {
       if (blockName == "BirdBrain Setup") {
         customBlockCalls[i].parentNode.removeChild(customBlockCalls[i])
       } else {
         console.error("could not find entry for " + blockName)
+        let list = "Current list of block entries:\n"
         Object.keys(blockDictionary).forEach((item, i) => {
-          console.error(item)
+          list = list + "\t" + item + "\n"
         });
+        console.log(list)
       }
 
     } else {

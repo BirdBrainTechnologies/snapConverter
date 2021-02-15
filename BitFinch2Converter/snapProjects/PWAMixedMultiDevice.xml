@@ -311,7 +311,7 @@
             <code></code>
             <translations>ko:Hummingbird _ 회전속도 제어 서보 _ _ %&#xD;de:Hummingbird _ Drehung Servo _ _ %&#xD;pt:Hummingbird _ Rotação do Servo _ _ %&#xD;fr:Hummingbird _ Rotation Servo _ _ %&#xD;nl:Hummingbird _ Draai-Servo _ _ %&#xD;zh_CN:Hummingbird _ 旋转伺服 _ _ %&#xD;zh_TW:Hummingbird _ 旋轉伺服 _ _ %&#xD;ar:Hummingbird _ فتحة دوران المحرك المؤازر _ _&#xD;dk:Hummingbird _ Rotationsservo _ _ %&#xD;he:Hummingbird _ סרוו סיבובים _ _ %&#xD;es:Hummingbird _ Servo de rotacion _ _ %&#xD;ca:Hummingbird _ Servo rotacional _ _ %&#xD;fi:Hummingbird _ Kiertoservo _ _ %&#xD;sv:Hummingbird _ Rotationsservo _ _ %&#xD;</translations>
             <inputs>
-                <input type="%s" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
                 <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3&#xD;4</options></input>
                 <input type="%n">0</input>
             </inputs>
@@ -490,7 +490,7 @@
             <code></code>
             <translations></translations>
             <inputs>
-                <input type="%s" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
                 <input type="%txt" readonly="true">Light<options>Distance (cm)&#xD;Dial&#xD;Light&#xD;Sound&#xD;Other (V)</options></input>
                 <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3</options></input>
             </inputs>
@@ -651,7 +651,7 @@
             <code></code>
             <translations>ko:micro:bit _ 버튼 _&#xD;de:micro:bit _ Knopf _&#xD;pt:micro:bit _ Tecla _&#xD;fr:micro:bit _ Bouton _&#xD;nl:micro:bit _ Knop _&#xD;zh_CN:micro:bit _ 按钮 _&#xD;zh_TW:micro:bit _ 按鈕 _&#xD;ar:micro:bit _ زر _&#xD;dk:micro:bit _ Knap _&#xD;he:micro:bit _ לחצן _&#xD;es:micro:bit _ Pulsador _&#xD;ca:micro:bit _ Botó _&#xD;fi:micro:bit _ Painike _&#xD;sv:micro:bit _ Knapp _&#xD;</translations>
             <inputs>
-                <input type="%s" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
                 <input type="%txt" readonly="true">A<options>A&#xD;B</options></input>
             </inputs>
             <script>
@@ -829,7 +829,7 @@
             <translations></translations>
             <inputs>
                 <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
-                <input type="%s" readonly="true">Accelerometer (m/s²)<options>Accelerometer (m/s²)&#xD;Magnetometer (µT)</options></input>
+                <input type="%txt" readonly="true">Accelerometer (m/s²)<options>Accelerometer (m/s²)&#xD;Magnetometer (µT)</options></input>
                 <input type="%txt" readonly="true">X<options>X&#xD;Y&#xD;Z</options></input>
             </inputs>
             <script>
@@ -873,7 +873,7 @@
             <translations></translations>
             <inputs>
                 <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
-                <input type="%s" readonly="true">Accelerometer (m/s²)<options>Accelerometer (m/s²)&#xD;Magnetometer (µT)</options></input>
+                <input type="%txt" readonly="true">Accelerometer (m/s²)<options>Accelerometer (m/s²)&#xD;Magnetometer (µT)</options></input>
                 <input type="%txt" readonly="true">X<options>X&#xD;Y&#xD;Z</options></input>
             </inputs>
             <script>
@@ -1019,7 +1019,7 @@
             <translations>ko:micro:bit _ 출력 _&#xD;de:micro:bit _ Drucke _&#xD;pt:micro:bit _ Imprimir _&#xD;fr:micro:bit _ Imprimer _&#xD;nl:micro:bit _ Schrijf _&#xD;zh_CN:micro:bit _ 打印 _&#xD;zh_TW:micro:bit _ 打印 _&#xD;ar:micro:bit _ طباعة _&#xD;dk:micro:bit _ Vis _&#xD;he:micro:bit _ הדפס _&#xD;es:micro:bit _ Imprimir _&#xD;ca:micro:bit _ Escriu _&#xD;fi:micro:bit _ Näytä teksti _&#xD;sv:micro:bit _ Visa text _&#xD;</translations>
             <inputs>
                 <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
-                <input type="%s">Hello</input>
+                <input type="%txt">Hello</input>
             </inputs>
             <script>
               <custom-block s="BirdBrain Setup"></custom-block>
