@@ -81,12 +81,16 @@
               <block s="reportJSFunction">
                 <list></list>
                   <l>
-                    if (window.birdbrain === undefined) {
+                    function setupBirdbrain() {
                       window.birdbrain = {};
                       window.birdbrain.sensorData = {};
                       window.birdbrain.sensorData.A = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
                       window.birdbrain.sensorData.B = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
                       window.birdbrain.sensorData.C = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+                      window.birdbrain.microbitIsV2 = {};
+                      window.birdbrain.microbitIsV2.A = false;
+                      window.birdbrain.microbitIsV2.B = false;
+                      window.birdbrain.microbitIsV2.C = false;
                       window.birdbrain.robotType = {
                         FINCH: 1,
                         HUMMINGBIRDBIT: 2,
@@ -97,7 +101,7 @@
                         C: 3
                       };
 
-                      console.log("setting up message channel")
+                      //console.log("setting up message channel")
                       window.birdbrain.messageChannel = new MessageChannel();
                       window.birdbrain.messageChannel.port1.onmessage = function (e) {
                           //console.log("Got a message: ");
@@ -106,6 +110,7 @@
                             let robot = e.data.robot;
                             window.birdbrain.sensorData[robot] = e.data.sensorData;
                             window.birdbrain.robotType[robot] = e.data.robotType;
+                            window.birdbrain.microbitIsV2[robot] = e.data.hasV2Microbit;
                           }
                       }
                       window.parent.postMessage("hello from snap", "*", [window.birdbrain.messageChannel.port2]);
@@ -226,6 +231,28 @@
                         }
                       }
 
+                      window.birdbrain.getFinchDistance = function (robot) {
+                        if (window.birdbrain.microbitIsV2[robot]) {
+                          return window.birdbrain.sensorData[robot][1];
+                        } else {
+                          const cmPerDistance = 0.0919;
+                          const msb = window.birdbrain.sensorData[robot][0];
+                          const lsb = window.birdbrain.sensorData[robot][1];
+
+                          const distance = msb &lt;&lt; 8 | lsb;
+                          return Math.round(distance * cmPerDistance);
+                        }
+                      }
+
+                    }
+
+                    let currentVersion = 1
+                    if (window.birdbrain === undefined ||
+                      window.birdbrain.version === undefined ||
+                      window.birdbrain.version &lt; currentVersion) {
+
+                      setupBirdbrain()
+                      window.birdbrain.version = currentVersion
                     } else {
                       //console.log("BirdBrain already set up");
                     }
@@ -250,17 +277,6 @@
                           <l>devId</l>
                         </list>
                         <l>
-                          if (window.birdbrain.getFinchDistance === undefined) {
-                            window.birdbrain.getFinchDistance = function (robot) {
-                              const cmPerDistance = 0.0919;
-                              const msb = window.birdbrain.sensorData[robot][0];
-                              const lsb = window.birdbrain.sensorData[robot][1];
-
-                              const distance = msb &lt;&lt; 8 | lsb;
-                              return Math.round(distance * cmPerDistance);
-                            }
-                          }
-
                           return window.birdbrain.getFinchDistance(devId);
                         </l>
                     </block>
@@ -459,7 +475,7 @@
                   </list>
                 </block>
                 <block s="doWait">
-                  <l>0.1</l>
+                  <l>0.5</l>
                   <comment w="205" collapsed="false">block until reset happens</comment>
                 </block>
             </script>
@@ -1098,7 +1114,7 @@
             <translations>ko:micro:bit _ 버튼 _&#xD;de:micro:bit _ Knopf _&#xD;pt:micro:bit _ Tecla _&#xD;fr:micro:bit _ Bouton _&#xD;nl:micro:bit _ Knop _&#xD;zh_CN:micro:bit _ 按钮 _&#xD;zh_TW:micro:bit _ 按鈕 _&#xD;ar:micro:bit _ زر _&#xD;dk:micro:bit _ Knap _&#xD;he:micro:bit _ לחצן _&#xD;es:micro:bit _ Pulsador _&#xD;ca:micro:bit _ Botó _&#xD;fi:micro:bit _ Painike _&#xD;sv:micro:bit _ Knapp _&#xD;</translations>
             <inputs>
                 <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
-                <input type="%txt" readonly="true">A<options>A&#xD;B</options></input>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;Logo (V2)</options></input>
             </inputs>
             <script>
                 <custom-block s="BirdBrain Setup"></custom-block>
@@ -1121,6 +1137,12 @@
                                   return (buttonState == 0x00 || buttonState == 0x20)
                                 case 'B':
                                   return (buttonState == 0x00 || buttonState == 0x10)
+                                case 'Logo (V2)':
+                                  if(window.birdbrain.microbitIsV2[robot]) {
+                                    return (((window.birdbrain.sensorData[robot][index] &gt;&gt; 1) & 0x1) == 0x0)
+                                  } else {
+                                    return "micro:bit V2 required";
+                                  }
                                 default:
                                   console.log("unknown button " + button);
                                   return false;
@@ -1298,6 +1320,59 @@
                 </block>
             </script>
         </block-definition>
+        <block-definition s="micro:bit V2 %&apos;devId&apos; %&apos;sensor&apos;" type="reporter" category="sensing">
+            <header></header>
+            <code></code>
+            <translations></translations>
+            <inputs>
+                <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+                <input type="%txt" readonly="true">Sound<options>Sound&#xD;Temperature (°C)</options></input>
+            </inputs>
+            <script>
+                <custom-block s="BirdBrain Setup"></custom-block>
+                <block s="doReport">
+                  <block s="evaluate">
+                    <block s="reportJSFunction">
+                        <list>
+                            <l>devId</l>
+                            <l>sensor</l>
+                        </list>
+                        <l>
+                          if (window.birdbrain.getSoundOrTemp === undefined) {
+                            window.birdbrain.getSoundOrTemp = function (sensor, robot) {
+                              if (window.birdbrain.microbitIsV2[robot]) {
+                                const type = window.birdbrain.robotType[robot];
+                                switch(sensor) {
+                                  case "Sound":
+                                    if (type == window.birdbrain.robotType.FINCH) {
+                                      return window.birdbrain.sensorData[robot][0];
+                                    } else {
+                                      return window.birdbrain.sensorData[robot][14];
+                                    }
+                                  case "Temperature (°C)":
+                                    if (type == window.birdbrain.robotType.FINCH) {
+                                      return (window.birdbrain.sensorData[robot][6] &gt;&gt; 2);
+                                    } else {
+                                      return window.birdbrain.sensorData[robot][15];
+                                    }
+                                }
+                              } else {
+                                return "micro:bit V2 required"
+                              }
+                            }
+                          }
+
+                          return window.birdbrain.getSoundOrTemp(sensor, devId);
+                        </l>
+                    </block>
+                    <list>
+                        <block var="devId"/>
+                        <block var="sensor"/>
+                    </list>
+                  </block>
+                </block>
+            </script>
+        </block-definition>
         <block-definition s="micro:bit Print %&apos;devId&apos; %&apos;string&apos;" type="command" category="looks">
             <header></header>
             <code></code>
@@ -1425,67 +1500,6 @@
                         <block var="54"/>
                         <block var="55"/>
                     </list>
-                </block>
-                <block s="doReport">
-                    <block s="reportURL">
-                        <block s="reportJoinWords">
-                            <list>
-                                <l>http://127.0.0.1:30061/hummingbird/out/symbol/</l>
-                                <block var="devId"/>
-                                <l>/</l>
-                                <block var="11"/>
-                                <l>/</l>
-                                <block var="12"/>
-                                <l>/</l>
-                                <block var="13"/>
-                                <l>/</l>
-                                <block var="14"/>
-                                <l>/</l>
-                                <block var="15"/>
-                                <l>/</l>
-                                <block var="21"/>
-                                <l>/</l>
-                                <block var="22"/>
-                                <l>/</l>
-                                <block var="23"/>
-                                <l>/</l>
-                                <block var="24"/>
-                                <l>/</l>
-                                <block var="25"/>
-                                <l>/</l>
-                                <block var="31"/>
-                                <l>/</l>
-                                <block var="32"/>
-                                <l>/</l>
-                                <block var="33"/>
-                                <l>/</l>
-                                <block var="34"/>
-                                <l>/</l>
-                                <block var="35"/>
-                                <l>/</l>
-                                <block var="41"/>
-                                <l>/</l>
-                                <block var="42"/>
-                                <l>/</l>
-                                <block var="43"/>
-                                <l>/</l>
-                                <block var="44"/>
-                                <l>/</l>
-                                <block var="45"/>
-                                <l>/</l>
-                                <block var="51"/>
-                                <l>/</l>
-                                <block var="52"/>
-                                <l>/</l>
-                                <block var="53"/>
-                                <l>/</l>
-                                <block var="54"/>
-                                <l>/</l>
-                                <block var="55"/>
-                                <l>/</l>
-                            </list>
-                        </block>
-                    </block>
                 </block>
                 <block s="doWait"><l>0.03</l></block>
             </script>
