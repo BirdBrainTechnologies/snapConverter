@@ -9,6 +9,10 @@ var output;
 var outputFileName = "newSnapProject.xml";
 //Will the output be multi-device?
 var multiDeviceOutput = false;
+//Was the input file made for BlueBird or the Web app?
+var currentSoftware;
+//Should the output be for BlueBird or the Web app?
+var softwareSelected;
 
 //These new line characters are thrown away by the DOMParser
 const NEWLINE = "&#xD;"
@@ -111,11 +115,11 @@ function processFile(e) {
   // Determine the state of the input
   let usesFinch = (inputContents.match(/block-definition s="Finch/) != null) ? "Finch" : null
   let usesHummingbird = (inputContents.match(/block-definition s="Hummingbird/) != null) ? "Hummingbird" : null
-  let currentSoftware = (inputContents.match(/BirdBrain Setup/) != null) ? "WebApp" : "BlueBird"
+  currentSoftware = (inputContents.match(/doApplyExtension/) != null) ? "WebApp" : "BlueBird"
 
   // Determine what the output should be
   let robotAmount = "Multi"
-  let softwareSelected = currentSoftware
+  softwareSelected = currentSoftware
   if (output != "MULTI.xml") { //If it is the software converter and not the single to multi converter
     softwareSelected = (currentSoftware == "WebApp") ? "BlueBird" : "WebApp"
     if (inputContents.match(/%&apos;devId&apos;/) == null && inputContents.match(/%'devId'/) == null) {
@@ -128,19 +132,19 @@ function processFile(e) {
 
   switch(softwareSelected + usesFinch + usesHummingbird + robotAmount) {
     case "WebAppFinchnullSingle":
-      starterProject = "PWAFinchSingleDevice.xml";
+      starterProject = "WebFinchSingleDevice.xml";
     break;
     case "WebAppnullHummingbirdSingle":
-      starterProject = "PWAHummingbirdSingleDevice.xml";
+      starterProject = "WebHummingbirdSingleDevice.xml";
     break;
     case "WebAppFinchnullMulti":
-      starterProject = "PWAFinchMultiDevice.xml";
+      starterProject = "WebFinchMultiDevice.xml";
     break;
     case "WebAppnullHummingbirdMulti":
-      starterProject = "PWAHummingbirdMultiDevice.xml";
+      starterProject = "WebHummingbirdMultiDevice.xml";
     break;
     case "WebAppFinchHummingbirdMulti":
-      starterProject = "PWAMixedMultiDevice.xml";
+      starterProject = "WebMixedMultiDevice.xml";
     break;
     case "BlueBirdFinchnullSingle":
       starterProject = "FinchSingleDeviceStarterProject.xml";
@@ -204,7 +208,7 @@ function convert(userFile, selectedStarter) {
       userBlocksNode.replaceChild(starterBlockDefs[blockKey], userBlockDefs[blockKey])
       starterBlocksUsed.push(blockKey)
     } else if (blockKey == "BirdBrainSetup") {
-      //The BirdBrain Setup block is only used in the web app
+      //The BirdBrain Setup block is only used in the old web app
       userBlocksNode.removeChild(userBlockDefs[blockKey])
     } else {
         console.error("could not find block with key " + blockKey)
@@ -216,9 +220,9 @@ function convert(userFile, selectedStarter) {
     if (!starterBlocksUsed.includes(blockKey)) {
       console.log("adding missing block " + blockKey)
       userBlocksNode.appendChild(starterBlockDefs[blockKey])
-      if (blockKey == "BirdBrainSetup") {
+      /*if (blockKey == "BirdBrainSetup") {
         shouldAddBirdBrainSetup = true;
-      }
+      }*/
     }
   })
 
@@ -280,12 +284,25 @@ function convert(userFile, selectedStarter) {
   }
 
   //Add missing scripts to the stage
-  if (shouldAddBirdBrainSetup) {
+  /*if (shouldAddBirdBrainSetup) {
     let newNode = parseXML(`<script x="152" y="13">
       <block s="receiveGo"></block>
       <custom-block s="BirdBrain Setup"></custom-block>
     </script>`)
     //console.log(newNode)
+    stageScriptsNode.appendChild(newNode.children[0])
+  }*/
+  if (softwareSelected == "WebApp" && currentSoftware != "WebApp") {
+    let newNode = parseXML(`<script x="152" y="13">
+      <block s="receiveGo"></block>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+    </script>`)
+    console.log(newNode)
     stageScriptsNode.appendChild(newNode.children[0])
   }
 
