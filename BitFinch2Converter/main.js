@@ -229,18 +229,14 @@ function convert(userFile, selectedStarter) {
   let blockDictionary = getBlockDictionary(starterBlockDefs)
 
   //change the block calls to the new calls
-  var stageScriptsNode = getStageScriptsNode(userXML)
   var spritesNode = userXML.getElementsByTagName('sprites')[0]
 
   //Correct all of the calls to our custom blocks
   var projectNode = userXML.documentElement;
-  var stageNode;
   var switchingFromSingleDevice = false;
-  for (let i = 0; i < projectNode.childNodes.length; i++) {
-    if (projectNode.childNodes[i].nodeName === 'stage') {
-      stageNode = projectNode.childNodes[i]
-    }
-  }
+  var stageNode = projectNode.getElementsByTagName('stage')[0]
+  var stageScriptsNode = stageNode.getElementsByTagName('scripts')[0]
+
   let customBlockCalls = stageNode.getElementsByTagName('custom-block')
   for (let i = 0; i < customBlockCalls.length; i++) {
     //console.log(customBlockCalls[i])
@@ -302,7 +298,6 @@ function convert(userFile, selectedStarter) {
         </list>
       </block>
     </script>`)
-    console.log(newNode)
     stageScriptsNode.appendChild(newNode.children[0])
   }
 
@@ -329,7 +324,6 @@ function convert(userFile, selectedStarter) {
     </script>`)
     stageScriptsNode.appendChild(stopAllB.children[0])
     stageScriptsNode.appendChild(stopAllC.children[0])
-    //console.log(stageScriptsNode)
   }
 
   return userXML
@@ -385,30 +379,6 @@ function parseXML(text) {
 }
 
 /**
- * getStageScriptsNode - Find and return the scripts node within the stage of
- * a given snap! project.
- *
- * @param  {XML} project The snap project to search
- * @return {node}         The stage scripts node found
- */
-function getStageScriptsNode(project){
-  //this is the highest level node in the snap xml, the project node
-  var projectNode = project.documentElement;
-
-  var scriptsNode;
-  for (let i = 0; i < projectNode.childNodes.length; i++) {
-    if (projectNode.childNodes[i].nodeName === 'stage') {
-      for (let j = 0; j < projectNode.childNodes[i].childNodes.length; j++) {
-        if (projectNode.childNodes[i].childNodes[j].nodeName === 'scripts') {
-          scriptsNode = projectNode.childNodes[i].childNodes[j];
-        }
-      }
-    }
-  }
-  return scriptsNode;
-}
-
-/**
  * getBlocksNode - Find and return the main blocks node of a snap! project.
  *
  * @param  {XML} project The snap! project to search
@@ -422,6 +392,18 @@ function getBlocksNode(project){
   for (let i = 0; i < projectNode.childNodes.length; i++) {
     if (projectNode.childNodes[i].nodeName === 'blocks') {
       blocksNode = projectNode.childNodes[i];
+    }
+  }
+  //In snap 7, the blocks node has been moved to a child of a scene in the scenes node
+  if (!blocksNode){
+    for (let i = 0; i < projectNode.childNodes.length; i++) {
+      for (let j = 0; j < projectNode.childNodes[i].childNodes.length; j++) {
+        for (let k = 0; k < projectNode.childNodes[i].childNodes[j].childNodes.length; k++) {
+          if (projectNode.childNodes[i].childNodes[j].childNodes[k].nodeName === 'blocks') {
+            blocksNode = projectNode.childNodes[i].childNodes[j].childNodes[k];
+          }
+        }
+      }
     }
   }
   return blocksNode;
