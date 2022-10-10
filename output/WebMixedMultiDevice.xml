@@ -1,8 +1,8 @@
-<project name="WebHummingbirdMultiDevice" app="Snap! 7, https://snap.berkeley.edu" version="2">
+<project name="WebMixedMultiDevice" app="Snap! 7, https://snap.berkeley.edu" version="2">
   <notes></notes>
   <thumbnail>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAB4CAYAAAB1ovlvAAAAAXNSR0IArs4c6QAAAwlJREFUeF7t17FNYwEURNFPEVTgRmiBPuiBBpxTBCWQUgQ9kJIbaYMVyTKrlUcjLcepn96Tz7+W5ZvL5XI5vAiMBG4EOJJ39peAAIUwFRDglN9xAWpgKiDAKb/jAtTAVECAU37HBaiBqYAAp/yOC1ADUwEBTvkdF6AGpgICnPI7LkANTAUEOOV3XIAamAoIcMrvuAA1MBUQ4JTfcQFqYCogwCm/4wLUwFRAgFN+xwWogamAAKf8jgtQA1MBAU75HRegBqYCApzyOy5ADUwFBDjld1yAGpgKCHDK77gANTAVEOCU33EBamAqIMApv+MC1MBUQIBTfscFqIGpgACn/I4LUANTAQFO+R0XoAamAgKc8jsuQA1MBQQ45XdcgBqYCghwyu+4ADUwFRDglN9xAWpgKiDAKb/jAtTAVECAU37HBaiBqYAA/8B/e3t7PD8/H3d3d9MH9L8fF+A3T/j+/v73u29vb8fT05Mgr/yNEGAA/Rrh19GPj4/j5eXlyo/j560T4D8GeDqdjvP5/POKufInFuBf/gS/vr4e7+/vV+a3ToDf/Al5eHg4Hh8fVVIUEGAR1+osIMBsZKIoIMAirtVZQIDZyERRQIBFXKuzgACzkYmigACLuFZnAQFmIxNFAQEWca3OAgLMRiaKAgIs4lqdBQSYjUwUBQRYxLU6CwgwG5koCgiwiGt1FhBgNjJRFBBgEdfqLCDAbGSiKCDAIq7VWUCA2chEUUCARVyrs4AAs5GJooAAi7hWZwEBZiMTRQEBFnGtzgICzEYmigICLOJanQUEmI1MFAUEWMS1OgsIMBuZKAoIsIhrdRYQYDYyURQQYBHX6iwgwGxkoiggwCKu1VlAgNnIRFFAgEVcq7OAALORiaKAAIu4VmcBAWYjE0UBARZxrc4CAsxGJooCAiziWp0FBJiNTBQFBFjEtToLCDAbmSgKCLCIa3UWEGA2MlEUEGAR1+osIMBsZKIoIMAirtVZQIDZyERRQIBFXKuzgACzkYmigACLuFZnAQFmIxNFAQEWca3OAp+z5PmodK923wAAAABJRU5ErkJggg==</thumbnail>
   <scenes select="1">
-    <scene name="WebHummingbirdMultiDevice">
+    <scene name="WebMixedMultiDevice">
       <notes></notes>
       <hidden>
         receiveCondition</hidden>
@@ -194,6 +194,542 @@
           <l>1000</l>
         </block>
         <comment w="205" collapsed="false">block for number of seconds</comment>
+      </block>
+    </script>
+  </block-definition>
+
+
+  <block-definition s="Finch %&apos;devId&apos; %&apos;dim&apos;" type="predicate" category="sensing">
+    <header></header>
+    <code></code>
+    <translations></translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%txt" readonly="true">Beak Up<options>Beak Up&#xD;Beak Down&#xD;Tilt Left&#xD;Tilt Right&#xD;Level&#xD;Upside Down&#xD;Shake</options></input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doReport">
+        <block s="reportApplyExtension">
+          <l>bbt_finchorientation(robot, dimension)</l>
+          <list><block var="devId"/><block var="dim"/></list>
+        </block>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; %&apos;device&apos; %&apos;dim&apos;" type="reporter" category="sensing">
+    <header></header>
+    <code></code>
+    <translations></translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%txt" readonly="true">Accelerometer (m/s²)<options>Accelerometer (m/s²)&#xD;Magnetometer (µT)</options></input>
+      <input type="%txt" readonly="true">X<options>X&#xD;Y&#xD;Z</options></input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doReport">
+        <block s="reportIfElse">
+          <block s="reportEquals"><block var="device"/>
+            <l>Accelerometer (m/s²)</l>
+          </block>
+          <block s="reportApplyExtension">
+            <l>bbt_finchaccelerometer(robot, dimension)</l>
+            <list><block var="devId"/><block var="dim"/></list>
+          </block>
+          <block s="reportApplyExtension">
+            <l>bbt_finchmagnetometer(robot, dimension)</l>
+            <list><block var="devId"/><block var="dim"/></list>
+          </block>
+        </block>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; Compass" type="reporter" category="sensing">
+    <header></header>
+    <code></code>
+    <translations>ko:Finch _ 나침반 센서&#xD;de:Finch _ Kompass&#xD;pt:Finch _ Bússola&#xD;fr:Finch _ Compas&#xD;nl:Finch _ Kompas&#xD;zh_CN:Finch _ 指南针&#xD;zh_TW:Finch _ 指南針&#xD;ar:Finch _ بوصلة&#xD;dk:Finch _ Kompas&#xD;he:Finch _ מצפן&#xD;es:Finch _ Brujula&#xD;ca:Finch _ Brúixola&#xD;fi:Finch _ Kompassi&#xD;sv:Finch _ Kompass&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doReport">
+        <block s="reportApplyExtension">
+          <l>bbt_finchcompass(robot)</l>
+          <list><block var="devId"/></list>
+        </block>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; Distance (cm)" type="reporter" category="sensing">
+    <header></header>
+    <code></code>
+    <translations>ca:Finch _ Distància (cm)&#xD;de:Finch _ Entfernung (cm)&#xD;es:Finch _ Distancia (cm)&#xD;fr:Finch _ Distance (cm)&#xD;he:Finch _ מרחק (cm)&#xD;ko:Finch _ 거리 센서 (cm)&#xD;nl:Finch _ Afstand (cm)&#xD;pt:Finch _ Distância (cm)&#xD;zh_CN:Finch _ 距离 (cm)&#xD;zh_TW:Finch _ 距離 (cm)&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doReport">
+        <block s="reportApplyExtension">
+          <l>bbt_finchdistance(robot)</l>
+          <list><block var="devId"/></list>
+        </block>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; %&apos;port&apos; Light" type="reporter" category="sensing">
+    <header></header>
+    <code></code>
+    <translations>ca:Finch _ _ Llum&#xD;de:Finch _ _ Licht&#xD;es:Finch _ _ Luz&#xD;fr:Finch _ _ Lumière&#xD;he:Finch _ _ אור&#xD;ko:Finch _ _ 빛 센서&#xD;nl:Finch _ _ Licht&#xD;pt:Finch _ _ Luz&#xD;zh_CN:Finch _ _ 灯光&#xD;zh_TW:Finch _ _ 燈光&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%txt" readonly="true">Right<options>Left&#xD;Right</options></input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doReport">
+        <block s="reportApplyExtension">
+          <l>bbt_finchlight(robot, port)</l>
+          <list><block var="devId"/><block var="port"/></list>
+        </block>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; %&apos;port&apos; Line" type="reporter" category="sensing">
+    <header></header>
+    <code></code>
+    <translations>ca:Finch _ _ Línia&#xD;de:Finch _ _ Linie&#xD;es:Finch _ _ Línea&#xD;fr:Finch _ _ Ligne&#xD;he:Finch _ _ קו&#xD;ko:Finch _ _ 선&#xD;nl:Finch _ _ Lijn&#xD;pt:Finch _ _ Linha&#xD;zh_CN:Finch _ _ 线&#xD;zh_TW:Finch _ _ 線&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%txt" readonly="true">Right<options>Left&#xD;Right</options></input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doReport">
+        <block s="reportApplyExtension">
+          <l>bbt_finchline(robot, port)</l>
+          <list><block var="devId"/><block var="port"/></list>
+        </block>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; %&apos;port&apos; Encoder (rotations)" type="reporter" category="sensing">
+    <header></header>
+    <code></code>
+    <translations>ca:Finch _ Recompte de voltes _&#xD;de:Finch _ _ Kodierer&#xD;es:Finch _ Recuento de vueltas _&#xD;fr:Finch _ _ Encodeur&#xD;he:Finch _ _ קודאי&#xD;ko:Finch _ _ 인코더&#xD;nl:Finch _ _ Encoder&#xD;pt:Finch _ _ Código&#xD;zh_CN:Finch _ _ 编码器&#xD;zh_TW:Finch _ _ 編碼器&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%txt" readonly="true">Right<options>Left&#xD;Right</options></input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doReport">
+        <block s="reportApplyExtension">
+          <l>bbt_finchencoder(robot, port)</l>
+          <list><block var="devId"/><block var="port"/></list>
+        </block>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; Reset Encoders" type="command" category="sensing">
+    <header></header>
+    <code></code>
+    <translations>ca:Finch _ Reinicialitza els comptadors de voltes&#xD;de:Finch _ Kodierer Zurücksetzen&#xD;es:Finch _ Reinicializar los contadores de vueltas&#xD;fr:Finch _ Réinitialiser les encodeurs&#xD;he:Finch _ לאפס קודאי&#xD;ko:Finch _ 인코더 리셋하기&#xD;nl:Finch _ Encoders Resetten&#xD;pt:Finch _ Redefinir Código&#xD;zh_CN:Finch _ 重置编码器&#xD;zh_TW:Finch _ 重置編碼器&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doApplyExtension">
+        <l>bbt_finchencoderreset(robot)</l>
+        <list><block var="devId"/></list>
+      </block>
+      <block s="doWait">
+        <l>0.5</l>
+        <comment w="205" collapsed="false">block until reset happens</comment>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; Play Note %&apos;note&apos; for %&apos;beats&apos; beats" type="command" category="sound">
+    <header></header>
+    <code></code>
+    <translations>ko:Finch _ _ 번 음을 _ 박자로 연주하기&#xD;de:Finch _ Spiele Note _ für _ Schläge&#xD;pt:Finch _ Toque Notas _ por _ Batidas&#xD;fr:Finch _ Jouer la note _ pour _ battement(s)&#xD;nl:Finch _ Speel Noot _ voor _ Beats&#xD;zh_CN:Finch _ 演奏 音阶 _ 于 _ 拍&#xD;zh_TW:Finch _ 演奏 音階 _ 於 _ 拍&#xD;ar:Finch _ تشغيل الموسيقى _ _&#xD;dk:Finch _ Spil tone _ i _ slag&#xD;he:Finch _ נגן תו _ במשך _ פעימות&#xD;es:Finch _ Emitir un sonido _ por _ pulsos&#xD;ca:Finch _ Toca nota _ durant _ temps&#xD;fi:Finch _ Soita sävel _ _ iskun ajan&#xD;sv:Finch _ Spela not _ _&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%n">60<options>§_pianoKeyboardMenu</options></input>
+      <input type="%n">0.5</input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doIf">
+        <block s="reportGreaterThan"><block var="beats"/>
+          <l>16</l>
+        </block>
+        <script>
+          <block s="doSetVar">
+            <l>beats</l>
+            <l>16</l>
+          </block>
+        </script>
+      </block>
+      <block s="doIf">
+        <block s="reportGreaterThan">
+          <l>0</l><block var="beats"/></block>
+        <script>
+          <block s="doSetVar">
+            <l>beats</l>
+            <l>0</l>
+          </block>
+        </script>
+      </block>
+      <block s="doSetVar">
+        <l>beats</l>
+        <block s="reportRound">
+          <block s="reportVariadicProduct">
+            <list>
+              <block s="reportQuotient">
+                <l>60000</l>
+                <block s="getTempo"></block>
+              </block><block var="beats"/></list>
+          </block>
+          <comment w="242" collapsed="false">BPM = tempo&#xD;60 * 1000/BPM = BPMS beats per millisecond&#xD;beats&#xD; = Duration in ms = BPMS * number of beats&#xD;
+          </comment>
+        </block>
+      </block>
+      <block s="doApplyExtension">
+        <l>bbt_playnote(robot, note, duration)</l>
+        <list><block var="devId"/><block var="note"/><block var="beats"/></list>
+      </block>
+      <block s="doWait">
+        <block s="reportQuotient"><block var="beats"/>
+          <l>1000</l>
+        </block>
+        <comment w="205" collapsed="false">block for number of seconds</comment>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; Move %&apos;direction&apos; %&apos;distance&apos; cm at %&apos;speed&apos; %" type="command" category="motion">
+    <header></header>
+    <code></code>
+    <translations>ca:Finch _ Mou-te cap _ _ cm a velocitat _ %&#xD;de:Finch _ Gehe _ _ cm mit _ %&#xD;es:Finch _ Mover hacia _ _ cm a velocidad _ %&#xD;fr:Finch _ Déplacer _ _ cm sur _ %&#xD;he:Finch _ זוז _ _ ס&apos;&apos;מ ב _ %&#xD;ko:Finch _ _ _ cm 로 움직이기 빠르기 _ %&#xD;nl:Finch _ Beweeg _ _ cm op _ %&#xD;pt:Finch _ Mova _ _ cm a _ %&#xD;zh_CN:Finch _ 移动 _ _ cm 以 _ %&#xD;zh_TW:Finch _ 移動 _ _ 厘米在 _ %&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%txt" readonly="true">Forward<options>Forward&#xD;Backward</options></input>
+      <input type="%n">10</input>
+      <input type="%n">50</input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doDeclareVariables">
+        <list>
+          <l>wasMoving</l>
+          <l>isMoving</l>
+          <l>commandSendTime</l>
+        </list>
+      </block>
+      <block s="doSetVar">
+        <l>isMoving</l>
+        <block s="reportApplyExtension">
+          <l>bbt_finchismoving(robot)</l>
+          <list><block var="devId"/></list>
+        </block>
+      </block>
+      <block s="doSetVar">
+        <l>wasMoving</l><block var="isMoving"/></block>
+      <block s="doSetVar">
+        <l>commandSendTime</l>
+        <block s="reportDate">
+          <l>
+            <option>time in milliseconds</option>
+          </l>
+        </block>
+      </block>
+      <block s="doApplyExtension">
+        <l>bbt_finchmove(robot, direction, distance, speed)</l>
+        <list><block var="devId"/><block var="direction"/><block var="distance"/><block var="speed"/></list>
+      </block>
+      <block s="doUntil">
+        <block s="reportAnd">
+          <block s="reportOr"><block var="wasMoving"/>
+            <block s="reportGreaterThan">
+              <block s="reportDate">
+                <l>
+                  <option>time in milliseconds</option>
+                </l>
+              </block>
+              <block s="reportVariadicSum">
+                <list><block var="commandSendTime"/>
+                  <l>1000</l>
+                </list>
+                <comment w="350" collapsed="true">Timeout must be longer here to accommodate slower Chromebooks</comment>
+              </block>
+            </block>
+          </block>
+          <block s="reportNot"><block var="isMoving"/></block>
+        </block>
+        <script>
+          <block s="doSetVar">
+            <l>wasMoving</l><block var="isMoving"/></block>
+          <block s="doWait">
+            <l>0.01</l>
+          </block>
+          <block s="doSetVar">
+            <l>isMoving</l>
+            <block s="reportApplyExtension">
+              <l>bbt_finchismoving(robot)</l>
+              <list><block var="devId"/></list>
+            </block>
+          </block>
+        </script>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; Turn %&apos;direction&apos; %&apos;angle&apos; ° at %&apos;speed&apos; %" type="command" category="motion">
+    <header></header>
+    <code></code>
+    <translations>ca:Finch _ Gira cap a la _ _ ° a velocitat _ %&#xD;de:Finch _ Drehe _ _ ° mit _ %&#xD;es:Finch _ Girar hacia la _ _ ° a velocidad _ %&#xD;fr:Finch _ Tournez _ _ ° à _ %&#xD;he:Finch _ הסתובב _ _ מעלות ב _ %&#xD;ko:Finch _ _ _ ° 로 회전하기 빠르기 _ %&#xD;nl:Finch _ Draai _ _ ° op _ %&#xD;pt:Finch _ Gire _ _ ° a _ %&#xD;zh_CN:Finch _ 转动 _ _ ° 以 _ %&#xD;zh_TW:Finch _ 轉動 _ _ °在 _ %&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%txt" readonly="true">Right<options>Right&#xD;Left</options></input>
+      <input type="%n">90</input>
+      <input type="%n">50</input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doDeclareVariables">
+        <list>
+          <l>wasMoving</l>
+          <l>isMoving</l>
+          <l>commandSendTime</l>
+        </list>
+      </block>
+      <block s="doSetVar">
+        <l>isMoving</l>
+        <block s="reportApplyExtension">
+          <l>bbt_finchismoving(robot)</l>
+          <list><block var="devId"/></list>
+        </block>
+      </block>
+      <block s="doSetVar">
+        <l>wasMoving</l><block var="isMoving"/></block>
+      <block s="doSetVar">
+        <l>commandSendTime</l>
+        <block s="reportDate">
+          <l>
+            <option>time in milliseconds</option>
+          </l>
+        </block>
+      </block>
+      <block s="doApplyExtension">
+        <l>bbt_finchturn(robot, direction, angle, speed)</l>
+        <list><block var="devId"/><block var="direction"/><block var="angle"/><block var="speed"/></list>
+      </block>
+      <block s="doUntil">
+        <block s="reportAnd">
+          <block s="reportOr"><block var="wasMoving"/>
+            <block s="reportGreaterThan">
+              <block s="reportDate">
+                <l>
+                  <option>time in milliseconds</option>
+                </l>
+              </block>
+              <block s="reportVariadicSum">
+                <list><block var="commandSendTime"/>
+                  <l>1000</l>
+                </list>
+                <comment w="350" collapsed="true">Timeout must be longer here to accommodate slower Chromebooks</comment>
+              </block>
+            </block>
+          </block>
+          <block s="reportNot"><block var="isMoving"/></block>
+        </block>
+        <script>
+          <block s="doSetVar">
+            <l>wasMoving</l><block var="isMoving"/></block>
+          <block s="doWait">
+            <l>0.01</l>
+          </block>
+          <block s="doSetVar">
+            <l>isMoving</l>
+            <block s="reportApplyExtension">
+              <l>bbt_finchismoving(robot)</l>
+              <list><block var="devId"/></list>
+            </block>
+          </block>
+        </script>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; Wheels L %&apos;left&apos; % R %&apos;right&apos; %" type="command" category="motion">
+    <header></header>
+    <code></code>
+    <translations>ca:Finch _ Posa les rodes a velocitat E _ % D _ %&#xD;de:Finch _ Räder L _ % R _ %&#xD;es:Finch _ Poner las ruedas a velocidad I _ % D _ %&#xD;fr:Finch _ Roues L _ % R _ %&#xD;he:Finch _ גלגלים שמאל _ % ימין _ %&#xD;ko:Finch _ 바퀴 왼쪽 _ % 오른쪽 _ %&#xD;nl:Finch _ Wielen L _ % R _ %&#xD;pt:Finch _ Rodas E _ % D _ %&#xD;zh_CN:Finch _ 左轮 _ % 右轮 _ %&#xD;zh_TW:Finch _ 車輪 左 _ % 右 _ %&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%n">0</input>
+      <input type="%n">0</input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doApplyExtension">
+        <l>bbt_finchwheels(robot, left, right)</l>
+        <list><block var="devId"/><block var="left"/><block var="right"/></list>
+      </block>
+      <block s="doWait">
+        <l>0.03</l>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; Stop" type="command" category="motion">
+    <header></header>
+    <code></code>
+    <translations>ca:Finch _ Atura&#xD;de:Finch _ Stoppe&#xD;es:Finch _ Detener&#xD;fr:Finch _ Stop&#xD;he:Finch _ להפסיק&#xD;ko:Finch _ 멈추기&#xD;nl:Finch _ Stop&#xD;pt:Finch _ Pare&#xD;zh_CN:Finch _ 停止&#xD;zh_TW:Finch _ 停止&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doApplyExtension">
+        <l>bbt_finchstop(robot)</l>
+        <list><block var="devId"/></list>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; Beak R %&apos;redLED&apos; % G %&apos;greenLED&apos; % B %&apos;blueLED&apos; %" type="command" category="looks">
+    <header></header>
+    <code></code>
+    <translations>ca:Finch _ Encén el bec de color R _ % G _ % B _ %&#xD;de:Finch _ Schnabel R _ % G _ % B _ %&#xD;es:Finch _ Encender el pico de color R _ % V _ % A _ %&#xD;fr:Finch _ Bec R _ % G _ % B _ %&#xD;he:Finch _ מקור אדום _ % ירוק _ % כחול _ %&#xD;ko:Finch _ 부리 빨강 _ % 초록 _ % 파랑 _ %&#xD;nl:Finch _ Bek R _ % G _ % B _ %&#xD;pt:Finch _ Bico R _ % G _ % B _ %&#xD;zh_CN:Finch _ 鸟喙 R _ % G _ % B _ %&#xD;zh_TW:Finch _ 鳥嘴 紅 _ % 綠 _ % 藍 _ %&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%n">0</input>
+      <input type="%n">0</input>
+      <input type="%n">0</input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doApplyExtension">
+        <l>bbt_triled(robot, port, red, green, blue)</l>
+        <list><block var="devId"/>
+          <l>1</l><block var="redLED"/><block var="greenLED"/><block var="blueLED"/></list>
+      </block>
+      <block s="doWait">
+        <l>0.03</l>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Finch %&apos;devId&apos; Tail %&apos;port&apos; R %&apos;redLED&apos; % G %&apos;greenLED&apos; % B %&apos;blueLED&apos; %" type="command" category="looks">
+    <header></header>
+    <code></code>
+    <translations>ca:Finch _ Encén la cua de color _ R _ % G _ % B _ %&#xD;de:Finch _ Schwanz _ R _ % G _ % B _ %&#xD;es:Finch _ Encender la cola de color _ R _ % V _ % A _ %&#xD;fr:Finch _ Queue _ R _ % G _ % B _ %&#xD;he:Finch _ זנב _ אדום _ % ירוק _ %  כחול _ %&#xD;ko:Finch _ 꼬리 _ 빨강 _ % 초록 _ % 파랑 _ %&#xD;nl:Finch _ Staart _ R _ % G _ % B _ %&#xD;pt:Finch _ Cauda _ R _ % G _ % B _ %&#xD;zh_CN:Finch _ 鸟尾 _ R _ % G _ % B _ %&#xD;zh_TW:Finch _ 尾巴 _ 紅 _ % 綠 _ % 藍 _ %&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%txt" readonly="true">all<options>all&#xD;1&#xD;2&#xD;3&#xD;4</options></input>
+      <input type="%n">0</input>
+      <input type="%n">0</input>
+      <input type="%n">0</input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doIf">
+        <block s="reportNot">
+          <block s="reportEquals"><block var="port"/>
+            <l>all</l>
+          </block>
+        </block>
+        <script>
+          <block s="doSetVar">
+            <l>port</l>
+            <block s="reportVariadicSum">
+              <list><block var="port"/>
+                <l>1</l>
+              </list>
+            </block>
+          </block>
+        </script>
+      </block>
+      <block s="doApplyExtension">
+        <l>bbt_triled(robot, port, red, green, blue)</l>
+        <list><block var="devId"/><block var="port"/><block var="redLED"/><block var="greenLED"/><block var="blueLED"/></list>
+      </block>
+      <block s="doWait">
+        <l>0.03</l>
       </block>
     </script>
   </block-definition>

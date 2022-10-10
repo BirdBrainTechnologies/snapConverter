@@ -1,20 +1,20 @@
-<project name="WebHummingbirdMultiDevice" app="Snap! 7, https://snap.berkeley.edu" version="2">
+<project name="WebHummingbirdSingleDevice" app="Snap! 7, https://snap.berkeley.edu" version="2">
   <notes></notes>
   <thumbnail>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAB4CAYAAAB1ovlvAAAAAXNSR0IArs4c6QAAAwlJREFUeF7t17FNYwEURNFPEVTgRmiBPuiBBpxTBCWQUgQ9kJIbaYMVyTKrlUcjLcepn96Tz7+W5ZvL5XI5vAiMBG4EOJJ39peAAIUwFRDglN9xAWpgKiDAKb/jAtTAVECAU37HBaiBqYAAp/yOC1ADUwEBTvkdF6AGpgICnPI7LkANTAUEOOV3XIAamAoIcMrvuAA1MBUQ4JTfcQFqYCogwCm/4wLUwFRAgFN+xwWogamAAKf8jgtQA1MBAU75HRegBqYCApzyOy5ADUwFBDjld1yAGpgKCHDK77gANTAVEOCU33EBamAqIMApv+MC1MBUQIBTfscFqIGpgACn/I4LUANTAQFO+R0XoAamAgKc8jsuQA1MBQQ45XdcgBqYCghwyu+4ADUwFRDglN9xAWpgKiDAKb/jAtTAVECAU37HBaiBqYAA/8B/e3t7PD8/H3d3d9MH9L8fF+A3T/j+/v73u29vb8fT05Mgr/yNEGAA/Rrh19GPj4/j5eXlyo/j560T4D8GeDqdjvP5/POKufInFuBf/gS/vr4e7+/vV+a3ToDf/Al5eHg4Hh8fVVIUEGAR1+osIMBsZKIoIMAirtVZQIDZyERRQIBFXKuzgACzkYmigACLuFZnAQFmIxNFAQEWca3OAgLMRiaKAgIs4lqdBQSYjUwUBQRYxLU6CwgwG5koCgiwiGt1FhBgNjJRFBBgEdfqLCDAbGSiKCDAIq7VWUCA2chEUUCARVyrs4AAs5GJooAAi7hWZwEBZiMTRQEBFnGtzgICzEYmigICLOJanQUEmI1MFAUEWMS1OgsIMBuZKAoIsIhrdRYQYDYyURQQYBHX6iwgwGxkoiggwCKu1VlAgNnIRFFAgEVcq7OAALORiaKAAIu4VmcBAWYjE0UBARZxrc4CAsxGJooCAiziWp0FBJiNTBQFBFjEtToLCDAbmSgKCLCIa3UWEGA2MlEUEGAR1+osIMBsZKIoIMAirtVZQIDZyERRQIBFXKuzgACzkYmigACLuFZnAQFmIxNFAQEWca3OAp+z5PmodK923wAAAABJRU5ErkJggg==</thumbnail>
   <scenes select="1">
-    <scene name="WebHummingbirdMultiDevice">
+    <scene name="WebHummingbirdSingleDevice">
       <notes></notes>
       <hidden>
         receiveCondition</hidden>
       <headers></headers>
       <code></code>
       <blocks>
-  <block-definition s="Hummingbird %&apos;devId&apos; Position Servo %&apos;port&apos; %&apos;position&apos; °" type="command" category="motion">
+  <block-definition s="Hummingbird Position Servo %&apos;port&apos; %&apos;position&apos; °" type="command" category="motion">
     <header></header>
     <code></code>
     <translations>ko:Hummingbird _ 위치 제어 서보 _ _ °&#xD;de:Hummingbird _ Position Servo _ _ °&#xD;pt:Hummingbird _ Posição do Servo _ _ °&#xD;fr:Hummingbird _ Position Servo _ _ °&#xD;nl:Hummingbird _ Positie-Servo _ _ °&#xD;zh_CN:Hummingbird _ 位置伺服 _ _ °&#xD;zh_TW:Hummingbird _ 位置伺服 _ _ °&#xD;ar:Hummingbird _ موقف محرك سيرفو المؤازر _ _&#xD;dk:Hummingbird _ Positionsservo _ _ °&#xD;he:Hummingbird _ סרוו כיוון _ _&#xD;es:Hummingbird _ Servo de posicion _ _ °&#xD;ca:Hummingbird _ Servo posicional _ _ °&#xD;fi:Hummingbird _ Asentoservo _ _ °&#xD;sv:Hummingbird _ Positionsservo _ _ °&#xD;</translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
       <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3&#xD;4</options></input>
       <input type="%n">90</input>
     </inputs>
@@ -27,19 +27,19 @@
       </block>
       <block s="doApplyExtension">
         <l>bbt_bitpositionservo(robot, port, position)</l>
-        <list><block var="devId"/><block var="port"/><block var="position"/></list>
+        <list><l>A</l><block var="port"/><block var="position"/></list>
       </block>
       <block s="doWait">
         <l>0.03</l>
       </block>
     </script>
   </block-definition>
-  <block-definition s="Hummingbird %&apos;devId&apos; Rotation Servo %&apos;port&apos; %&apos;speed&apos; %" type="command" category="motion">
+  <block-definition s="Hummingbird Rotation Servo %&apos;port&apos; %&apos;speed&apos; %" type="command" category="motion">
     <header></header>
     <code></code>
     <translations>ko:Hummingbird _ 회전속도 제어 서보 _ _ %&#xD;de:Hummingbird _ Drehung Servo _ _ %&#xD;pt:Hummingbird _ Rotação do Servo _ _ %&#xD;fr:Hummingbird _ Rotation Servo _ _ %&#xD;nl:Hummingbird _ Draai-Servo _ _ %&#xD;zh_CN:Hummingbird _ 旋转伺服 _ _ %&#xD;zh_TW:Hummingbird _ 旋轉伺服 _ _ %&#xD;ar:Hummingbird _ فتحة دوران المحرك المؤازر _ _&#xD;dk:Hummingbird _ Rotationsservo _ _ %&#xD;he:Hummingbird _ סרוו סיבובים _ _ %&#xD;es:Hummingbird _ Servo de rotacion _ _ %&#xD;ca:Hummingbird _ Servo rotacional _ _ %&#xD;fi:Hummingbird _ Kiertoservo _ _ %&#xD;sv:Hummingbird _ Rotationsservo _ _ %&#xD;</translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
       <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3&#xD;4</options></input>
       <input type="%n">0</input>
     </inputs>
@@ -52,19 +52,19 @@
       </block>
       <block s="doApplyExtension">
         <l>bbt_bitrotationservo(robot, port, speed)</l>
-        <list><block var="devId"/><block var="port"/><block var="speed"/></list>
+        <list><l>A</l><block var="port"/><block var="speed"/></list>
       </block>
       <block s="doWait">
         <l>0.03</l>
       </block>
     </script>
   </block-definition>
-  <block-definition s="Hummingbird %&apos;devId&apos; LED %&apos;port&apos; %&apos;intensity&apos; %" type="command" category="looks">
+  <block-definition s="Hummingbird LED %&apos;port&apos; %&apos;intensity&apos; %" type="command" category="looks">
     <header></header>
     <code></code>
     <translations>ko:Hummingbird _ LED _ _ %&#xD;de:Hummingbird _ LED _ _ %&#xD;pt:Hummingbird _ LED _ _ %&#xD;fr:Hummingbird _ LED _ _ %&#xD;nl:Hummingbird _ LED _ _ %&#xD;zh_CN:Hummingbird _ LED _ _ %&#xD;zh_TW:Hummingbird _ LED _ _ %&#xD;ar:Hummingbird _ ضوء _ _&#xD;dk:Hummingbird _ LED _ _ %&#xD;he:Hummingbird _ לד % _ _&#xD;es:Hummingbird _ LED _ _ %&#xD;ca:Hummingbird _ LED _ _ %&#xD;fi:Hummingbird _ LED _ _ %&#xD;sv:Hummingbird _ LED _ _ %&#xD;</translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
       <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3</options></input>
       <input type="%n">0</input>
     </inputs>
@@ -77,19 +77,19 @@
       </block>
       <block s="doApplyExtension">
         <l>bbt_led(robot, port, intensity)</l>
-        <list><block var="devId"/><block var="port"/><block var="intensity"/></list>
+        <list><l>A</l><block var="port"/><block var="intensity"/></list>
       </block>
       <block s="doWait">
         <l>0.03</l>
       </block>
     </script>
   </block-definition>
-  <block-definition s="Hummingbird %&apos;devId&apos; Tri-LED %&apos;port&apos; R %&apos;redLED&apos; % G %&apos;greenLED&apos; % B %&apos;blueLED&apos; %" type="command" category="looks">
+  <block-definition s="Hummingbird Tri-LED %&apos;port&apos; R %&apos;redLED&apos; % G %&apos;greenLED&apos; % B %&apos;blueLED&apos; %" type="command" category="looks">
     <header></header>
     <code></code>
     <translations>ko:Hummingbird _ 삼색 LED _ 빨강 _ % 초록 _ % 파랑 _ %&#xD;de:Hummingbird _ Dreifarben-LED _ R _ % G _ % B _ %&#xD;pt:Hummingbird _ LED Tricolor _ R _ % G _ % B _ %&#xD;fr:Hummingbird _ Tri-LED _ R _ % G _ % B _ %&#xD;nl:Hummingbird _ Tri-LED _ R _ % G _ % B _ %&#xD;zh_CN:Hummingbird _ 三色LED _ 红 _ % 绿 _ % 蓝 _ %&#xD;zh_TW:Hummingbird _ 三色LED _ 紅 _ % 綠 _ % 藍 _ %&#xD;ar:Hummingbird _ ضوء الصمام الثلاثي _ _ _ _&#xD;dk:Hummingbird _ Tri-LED _ R _ % G _ % B _ %&#xD;he:Hummingbird _ לד שלושה צבעים % _ R _ % G _ % B _&#xD;es:Hummingbird _ Led tricolor _ R _ % G _ % B _ %&#xD;ca:Hummingbird _ Tri-LED _ vermell _ % verd _ % blau _ %&#xD;fi:Hummingbird _ Tri-LED _ R _ % G _ % B _ %&#xD;sv:Hummingbird _ Tri-LED _ R _ % G _ % B _ %&#xD;</translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
       <input type="%n" readonly="true">1<options>1&#xD;2</options></input>
       <input type="%n">0</input>
       <input type="%n">0</input>
@@ -104,19 +104,19 @@
       </block>
       <block s="doApplyExtension">
         <l>bbt_triled(robot, port, red, green, blue)</l>
-        <list><block var="devId"/><block var="port"/><block var="redLED"/><block var="greenLED"/><block var="blueLED"/></list>
+        <list><l>A</l><block var="port"/><block var="redLED"/><block var="greenLED"/><block var="blueLED"/></list>
       </block>
       <block s="doWait">
         <l>0.03</l>
       </block>
     </script>
   </block-definition>
-  <block-definition s="Hummingbird %&apos;devId&apos; %&apos;sensor&apos; %&apos;port&apos;" type="reporter" category="sensing">
+  <block-definition s="Hummingbird %&apos;sensor&apos; %&apos;port&apos;" type="reporter" category="sensing">
     <header></header>
     <code></code>
     <translations></translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
       <input type="%txt" readonly="true">Light<options>Distance (cm)&#xD;Dial&#xD;Light&#xD;Sound&#xD;Other (V)</options></input>
       <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3</options></input>
     </inputs>
@@ -130,17 +130,17 @@
       <block s="doReport">
         <block s="reportApplyExtension">
           <l>bbt_bitsensor(robot, sensor, port)</l>
-          <list><block var="devId"/><block var="sensor"/><block var="port"/></list>
+          <list><l>A</l><block var="sensor"/><block var="port"/></list>
         </block>
       </block>
     </script>
   </block-definition>
-  <block-definition s="Hummingbird %&apos;devId&apos; Play Note %&apos;note&apos; for %&apos;beats&apos; beats" type="command" category="sound">
+  <block-definition s="Hummingbird Play Note %&apos;note&apos; for %&apos;beats&apos; beats" type="command" category="sound">
     <header></header>
     <code></code>
     <translations>ko:Hummingbird _ _ 번 음을 _ 박자로 연주하기&#xD;de:Hummingbird _ Spiele Note _ für _ Schläge&#xD;pt:Hummingbird _ Toque Notas _ por _ Batidas&#xD;fr:Hummingbird _ Jouer la note _ pour _ battement(s)&#xD;nl:Hummingbird _ Speel Noot _ voor _ Beats&#xD;zh_CN:Hummingbird _ 演奏 音阶 _ 于 _ 拍&#xD;zh_TW:Hummingbird _ 演奏 音階 _ 於 _ 拍&#xD;ar:Hummingbird _ تشغيل الموسيقى _ _&#xD;dk:Hummingbird _ Spil tone _ i _ slag&#xD;he:Hummingbird _ נגן תו _ במשך _ פעימות&#xD;es:Hummingbird _ Emitir un sonido _ por _ pulsos&#xD;ca:Hummingbird _ Toca nota _ durant _ temps&#xD;fi:Hummingbird _ Soita sävel _ _ iskun ajan&#xD;sv:Hummingbird _ Spela not _ _&#xD;</translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
       <input type="%n">60<options>§_pianoKeyboardMenu</options></input>
       <input type="%n">0.5</input>
     </inputs>
@@ -187,7 +187,7 @@
       </block>
       <block s="doApplyExtension">
         <l>bbt_playnote(robot, note, duration)</l>
-        <list><block var="devId"/><block var="note"/><block var="beats"/></list>
+        <list><l>A</l><block var="note"/><block var="beats"/></list>
       </block>
       <block s="doWait">
         <block s="reportQuotient"><block var="beats"/>
@@ -199,12 +199,12 @@
   </block-definition>
 
 
-  <block-definition s="micro:bit %&apos;devId&apos; Button %&apos;button&apos;" type="predicate" category="sensing">
+  <block-definition s="micro:bit Button %&apos;button&apos;" type="predicate" category="sensing">
     <header></header>
     <code></code>
     <translations>ko:micro:bit _ 버튼 _&#xD;de:micro:bit _ Knopf _&#xD;pt:micro:bit _ Tecla _&#xD;fr:micro:bit _ Bouton _&#xD;nl:micro:bit _ Knop _&#xD;zh_CN:micro:bit _ 按钮 _&#xD;zh_TW:micro:bit _ 按鈕 _&#xD;ar:micro:bit _ زر _&#xD;dk:micro:bit _ Knap _&#xD;he:micro:bit _ לחצן _&#xD;es:micro:bit _ Pulsador _&#xD;ca:micro:bit _ Botó _&#xD;fi:micro:bit _ Painike _&#xD;sv:micro:bit _ Knapp _&#xD;</translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
       <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;Logo (V2)</options></input>
     </inputs>
     <script>
@@ -217,17 +217,17 @@
       <block s="doReport">
         <block s="reportApplyExtension">
           <l>bbt_button(robot, button)</l>
-          <list><block var="devId"/><block var="button"/></list>
+          <list><l>A</l><block var="button"/></list>
         </block>
       </block>
     </script>
   </block-definition>
-  <block-definition s="micro:bit %&apos;devId&apos; %&apos;dim&apos;" type="predicate" category="sensing">
+  <block-definition s="micro:bit %&apos;dim&apos;" type="predicate" category="sensing">
     <header></header>
     <code></code>
     <translations></translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
       <input type="%txt" readonly="true">Screen Up<options>Screen Up&#xD;Screen Down&#xD;Tilt Left&#xD;Tilt Right&#xD;Logo Up&#xD;Logo Down&#xD;Shake</options></input>
     </inputs>
     <script>
@@ -240,17 +240,17 @@
       <block s="doReport">
         <block s="reportApplyExtension">
           <l>bbt_orientation(robot, dimension)</l>
-          <list><block var="devId"/><block var="dim"/></list>
+          <list><l>A</l><block var="dim"/></list>
         </block>
       </block>
     </script>
   </block-definition>
-  <block-definition s="micro:bit %&apos;devId&apos; %&apos;device&apos; %&apos;dim&apos;" type="reporter" category="sensing">
+  <block-definition s="micro:bit %&apos;device&apos; %&apos;dim&apos;" type="reporter" category="sensing">
     <header></header>
     <code></code>
     <translations></translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
       <input type="%txt" readonly="true">Accelerometer (m/s²)<options>Accelerometer (m/s²)&#xD;Magnetometer (µT)</options></input>
       <input type="%txt" readonly="true">X<options>X&#xD;Y&#xD;Z</options></input>
     </inputs>
@@ -268,22 +268,22 @@
           </block>
           <block s="reportApplyExtension">
             <l>bbt_accelerometer(robot, dimension)</l>
-            <list><block var="devId"/><block var="dim"/></list>
+            <list><l>A</l><block var="dim"/></list>
           </block>
           <block s="reportApplyExtension">
             <l>bbt_magnetometer(robot, dimension)</l>
-            <list><block var="devId"/><block var="dim"/></list>
+            <list><l>A</l><block var="dim"/></list>
           </block>
         </block>
       </block>
     </script>
   </block-definition>
-  <block-definition s="micro:bit %&apos;devId&apos; Compass" type="reporter" category="sensing">
+  <block-definition s="micro:bit Compass" type="reporter" category="sensing">
     <header></header>
     <code></code>
     <translations>ko:micro:bit _ 나침반 센서&#xD;de:micro:bit _ Kompass&#xD;pt:micro:bit _ Bússola&#xD;fr:micro:bit _ Compas&#xD;nl:micro:bit _ Kompas&#xD;zh_CN:micro:bit _ 指南针&#xD;zh_TW:micro:bit _ 指南針&#xD;ar:micro:bit _ بوصلة&#xD;dk:micro:bit _ Kompas&#xD;he:micro:bit _ מצפן&#xD;es:micro:bit _ Brujula&#xD;ca:micro:bit _ Brúixola&#xD;fi:micro:bit _ Kompassi&#xD;sv:micro:bit _ Kompass&#xD;</translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
     </inputs>
     <script>
       <block s="doApplyExtension">
@@ -295,17 +295,17 @@
       <block s="doReport">
         <block s="reportApplyExtension">
           <l>bbt_compass(robot)</l>
-          <list><block var="devId"/></list>
+          <list><l>A</l></list>
         </block>
       </block>
     </script>
   </block-definition>
-  <block-definition s="micro:bit V2 %&apos;devId&apos; %&apos;sensor&apos;" type="reporter" category="sensing">
+  <block-definition s="micro:bit V2 %&apos;sensor&apos;" type="reporter" category="sensing">
     <header></header>
     <code></code>
     <translations></translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
       <input type="%txt" readonly="true">Sound<options>Sound&#xD;Temperature (°C)</options></input>
     </inputs>
     <script>
@@ -322,22 +322,22 @@
           </block>
           <block s="reportApplyExtension">
             <l>bbt_sound(robot)</l>
-            <list><block var="devId"/></list>
+            <list><l>A</l></list>
           </block>
           <block s="reportApplyExtension">
             <l>bbt_temperature(robot)</l>
-            <list><block var="devId"/></list>
+            <list><l>A</l></list>
           </block>
         </block>
       </block>
     </script>
   </block-definition>
-  <block-definition s="micro:bit Print %&apos;devId&apos; %&apos;string&apos;" type="command" category="looks">
+  <block-definition s="micro:bit Print %&apos;string&apos;" type="command" category="looks">
     <header></header>
     <code></code>
     <translations>ko:micro:bit _ 출력 _&#xD;de:micro:bit _ Drucke _&#xD;pt:micro:bit _ Imprimir _&#xD;fr:micro:bit _ Imprimer _&#xD;nl:micro:bit _ Schrijf _&#xD;zh_CN:micro:bit _ 打印 _&#xD;zh_TW:micro:bit _ 打印 _&#xD;ar:micro:bit _ طباعة _&#xD;dk:micro:bit _ Vis _&#xD;he:micro:bit _ הדפס _&#xD;es:micro:bit _ Imprimir _&#xD;ca:micro:bit _ Escriu _&#xD;fi:micro:bit _ Näytä teksti _&#xD;sv:micro:bit _ Visa text _&#xD;</translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
       <input type="%txt">Hello</input>
     </inputs>
     <script>
@@ -349,7 +349,7 @@
       </block>
       <block s="doApplyExtension">
         <l>bbt_print(robot, string)</l>
-        <list><block var="devId"/><block var="string"/></list>
+        <list><l>A</l><block var="string"/></list>
       </block>
       <block s="doWait">
         <block s="reportVariadicProduct">
@@ -362,14 +362,14 @@
     </script>
   </block-definition>
   <block-definition
-    s="micro:bit %&apos;devId&apos; Display $nl %&apos;r1c1&apos; %&apos;r1c2&apos; %&apos;r1c3&apos; %&apos;r1c4&apos; %&apos;r1c5&apos; $nl %&apos;r2c1&apos; %&apos;r2c2&apos; %&apos;r2c3&apos; %&apos;r2c4&apos; %&apos;r2c5&apos; $nl %&apos;r3c1&apos; %&apos;r3c2&apos; %&apos;r3c3&apos; %&apos;r3c4&apos; %&apos;r3c5&apos; $nl %&apos;r4c1&apos; %&apos;r4c2&apos; %&apos;r4c3&apos; %&apos;r4c4&apos; %&apos;r4c5&apos; $nl %&apos;r5c1&apos; %&apos;r5c2&apos; %&apos;r5c3&apos; %&apos;r5c4&apos; %&apos;r5c5&apos;"
+    s="micro:bit Display $nl %&apos;r1c1&apos; %&apos;r1c2&apos; %&apos;r1c3&apos; %&apos;r1c4&apos; %&apos;r1c5&apos; $nl %&apos;r2c1&apos; %&apos;r2c2&apos; %&apos;r2c3&apos; %&apos;r2c4&apos; %&apos;r2c5&apos; $nl %&apos;r3c1&apos; %&apos;r3c2&apos; %&apos;r3c3&apos; %&apos;r3c4&apos; %&apos;r3c5&apos; $nl %&apos;r4c1&apos; %&apos;r4c2&apos; %&apos;r4c3&apos; %&apos;r4c4&apos; %&apos;r4c5&apos; $nl %&apos;r5c1&apos; %&apos;r5c2&apos; %&apos;r5c3&apos; %&apos;r5c4&apos; %&apos;r5c5&apos;"
     type="command"
     category="looks">
     <header></header>
     <code></code>
     <translations>ko:micro:bit _ 보이기 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;de:micro:bit _ LED Anzeige _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;pt:micro:bit _ Visor _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;fr:micro:bit _ Display _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;nl:micro:bit _ Scherm _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;zh_CN:micro:bit _ 显示 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;zh_TW:micro:bit _ 顯示 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;ar:micro:bit _ عرض _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;dk:micro:bit _ Display _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;he:micro:bit _ מסך _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;es:micro:bit _ Monitor _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;ca:micro:bit _ Pantalla _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;fi:micro:bit _ Näytä _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;sv:micro:bit _ Skärm _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _&#xD;</translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
       <input type="%b">false</input>
       <input type="%b">false</input>
       <input type="%b">false</input>
@@ -440,7 +440,7 @@
       </block>
       <block s="doApplyExtension">
         <l>bbt_display(robot, symbol)</l>
-        <list><block var="devId"/><block var="symbolString"/></list>
+        <list><l>A</l><block var="symbolString"/></list>
       </block>
       <block s="doWait">
         <l>0.03</l>
@@ -452,7 +452,7 @@
     <code></code>
     <translations>ko:모두 멈추기 _&#xD;de:stoppe alles _&#xD;pt:pare todos _&#xD;fr:stop tout _&#xD;nl:stop alle _&#xD;zh_CN:停止 全部 _&#xD;zh_TW:停止 全部 _&#xD;ar:توقف الكل _&#xD;dk:stop alle _&#xD;he:להפסיק הכל _&#xD;es:detener todo _&#xD;ca:atura tot _&#xD;fi:pysäytä kaikki _&#xD;sv:stop allt _&#xD;</translations>
     <inputs>
-      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      
     </inputs>
     <script>
       <block s="doApplyExtension">
@@ -463,7 +463,7 @@
       </block>
       <block s="doApplyExtension">
         <l>bbt_stop(robot)</l>
-        <list><block var="devId"/></list>
+        <list><l>A</l></list>
       </block>
     </script>
   </block-definition>
