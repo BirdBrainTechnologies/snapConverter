@@ -1,0 +1,190 @@
+<blocks app="Snap! 7, https://snap.berkeley.edu" version="2">
+  <block-definition s="Hummingbird %&apos;devId&apos; Position Servo %&apos;port&apos; %&apos;position&apos; °" type="command" category="motion">
+    <header></header>
+    <code></code>
+    <translations>ko:Hummingbird _ 위치 제어 서보 _ _ °&#xD;de:Hummingbird _ Position Servo _ _ °&#xD;pt:Hummingbird _ Posição do Servo _ _ °&#xD;fr:Hummingbird _ Position Servo _ _ °&#xD;nl:Hummingbird _ Positie-Servo _ _ °&#xD;zh_CN:Hummingbird _ 位置伺服 _ _ °&#xD;zh_TW:Hummingbird _ 位置伺服 _ _ °&#xD;ar:Hummingbird _ موقف محرك سيرفو المؤازر _ _&#xD;dk:Hummingbird _ Positionsservo _ _ °&#xD;he:Hummingbird _ סרוו כיוון _ _&#xD;es:Hummingbird _ Servo de posicion _ _ °&#xD;ca:Hummingbird _ Servo posicional _ _ °&#xD;fi:Hummingbird _ Asentoservo _ _ °&#xD;sv:Hummingbird _ Positionsservo _ _ °&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3&#xD;4</options></input>
+      <input type="%n">90</input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doApplyExtension">
+        <l>bbt_bitpositionservo(robot, port, position)</l>
+        <list><block var="devId"/><block var="port"/><block var="position"/></list>
+      </block>
+      <block s="doWait">
+        <l>0.03</l>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Hummingbird %&apos;devId&apos; Rotation Servo %&apos;port&apos; %&apos;speed&apos; %" type="command" category="motion">
+    <header></header>
+    <code></code>
+    <translations>ko:Hummingbird _ 회전속도 제어 서보 _ _ %&#xD;de:Hummingbird _ Drehung Servo _ _ %&#xD;pt:Hummingbird _ Rotação do Servo _ _ %&#xD;fr:Hummingbird _ Rotation Servo _ _ %&#xD;nl:Hummingbird _ Draai-Servo _ _ %&#xD;zh_CN:Hummingbird _ 旋转伺服 _ _ %&#xD;zh_TW:Hummingbird _ 旋轉伺服 _ _ %&#xD;ar:Hummingbird _ فتحة دوران المحرك المؤازر _ _&#xD;dk:Hummingbird _ Rotationsservo _ _ %&#xD;he:Hummingbird _ סרוו סיבובים _ _ %&#xD;es:Hummingbird _ Servo de rotacion _ _ %&#xD;ca:Hummingbird _ Servo rotacional _ _ %&#xD;fi:Hummingbird _ Kiertoservo _ _ %&#xD;sv:Hummingbird _ Rotationsservo _ _ %&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3&#xD;4</options></input>
+      <input type="%n">0</input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doApplyExtension">
+        <l>bbt_bitrotationservo(robot, port, speed)</l>
+        <list><block var="devId"/><block var="port"/><block var="speed"/></list>
+      </block>
+      <block s="doWait">
+        <l>0.03</l>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Hummingbird %&apos;devId&apos; LED %&apos;port&apos; %&apos;intensity&apos; %" type="command" category="looks">
+    <header></header>
+    <code></code>
+    <translations>ko:Hummingbird _ LED _ _ %&#xD;de:Hummingbird _ LED _ _ %&#xD;pt:Hummingbird _ LED _ _ %&#xD;fr:Hummingbird _ LED _ _ %&#xD;nl:Hummingbird _ LED _ _ %&#xD;zh_CN:Hummingbird _ LED _ _ %&#xD;zh_TW:Hummingbird _ LED _ _ %&#xD;ar:Hummingbird _ ضوء _ _&#xD;dk:Hummingbird _ LED _ _ %&#xD;he:Hummingbird _ לד % _ _&#xD;es:Hummingbird _ LED _ _ %&#xD;ca:Hummingbird _ LED _ _ %&#xD;fi:Hummingbird _ LED _ _ %&#xD;sv:Hummingbird _ LED _ _ %&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3</options></input>
+      <input type="%n">0</input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doApplyExtension">
+        <l>bbt_led(robot, port, intensity)</l>
+        <list><block var="devId"/><block var="port"/><block var="intensity"/></list>
+      </block>
+      <block s="doWait">
+        <l>0.03</l>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Hummingbird %&apos;devId&apos; Tri-LED %&apos;port&apos; R %&apos;redLED&apos; % G %&apos;greenLED&apos; % B %&apos;blueLED&apos; %" type="command" category="looks">
+    <header></header>
+    <code></code>
+    <translations>ko:Hummingbird _ 삼색 LED _ 빨강 _ % 초록 _ % 파랑 _ %&#xD;de:Hummingbird _ Dreifarben-LED _ R _ % G _ % B _ %&#xD;pt:Hummingbird _ LED Tricolor _ R _ % G _ % B _ %&#xD;fr:Hummingbird _ Tri-LED _ R _ % G _ % B _ %&#xD;nl:Hummingbird _ Tri-LED _ R _ % G _ % B _ %&#xD;zh_CN:Hummingbird _ 三色LED _ 红 _ % 绿 _ % 蓝 _ %&#xD;zh_TW:Hummingbird _ 三色LED _ 紅 _ % 綠 _ % 藍 _ %&#xD;ar:Hummingbird _ ضوء الصمام الثلاثي _ _ _ _&#xD;dk:Hummingbird _ Tri-LED _ R _ % G _ % B _ %&#xD;he:Hummingbird _ לד שלושה צבעים % _ R _ % G _ % B _&#xD;es:Hummingbird _ Led tricolor _ R _ % G _ % B _ %&#xD;ca:Hummingbird _ Tri-LED _ vermell _ % verd _ % blau _ %&#xD;fi:Hummingbird _ Tri-LED _ R _ % G _ % B _ %&#xD;sv:Hummingbird _ Tri-LED _ R _ % G _ % B _ %&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%n" readonly="true">1<options>1&#xD;2</options></input>
+      <input type="%n">0</input>
+      <input type="%n">0</input>
+      <input type="%n">0</input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doApplyExtension">
+        <l>bbt_triled(robot, port, red, green, blue)</l>
+        <list><block var="devId"/><block var="port"/><block var="redLED"/><block var="greenLED"/><block var="blueLED"/></list>
+      </block>
+      <block s="doWait">
+        <l>0.03</l>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Hummingbird %&apos;devId&apos; %&apos;sensor&apos; %&apos;port&apos;" type="reporter" category="sensing">
+    <header></header>
+    <code></code>
+    <translations></translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%txt" readonly="true">Light<options>Distance (cm)&#xD;Dial&#xD;Light&#xD;Sound&#xD;Other (V)</options></input>
+      <input type="%n" readonly="true">1<options>1&#xD;2&#xD;3</options></input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doReport">
+        <block s="reportApplyExtension">
+          <l>bbt_bitsensor(robot, sensor, port)</l>
+          <list><block var="devId"/><block var="sensor"/><block var="port"/></list>
+        </block>
+      </block>
+    </script>
+  </block-definition>
+  <block-definition s="Hummingbird %&apos;devId&apos; Play Note %&apos;note&apos; for %&apos;beats&apos; beats" type="command" category="sound">
+    <header></header>
+    <code></code>
+    <translations>ko:Hummingbird _ _ 번 음을 _ 박자로 연주하기&#xD;de:Hummingbird _ Spiele Note _ für _ Schläge&#xD;pt:Hummingbird _ Toque Notas _ por _ Batidas&#xD;fr:Hummingbird _ Jouer la note _ pour _ battement(s)&#xD;nl:Hummingbird _ Speel Noot _ voor _ Beats&#xD;zh_CN:Hummingbird _ 演奏 音阶 _ 于 _ 拍&#xD;zh_TW:Hummingbird _ 演奏 音階 _ 於 _ 拍&#xD;ar:Hummingbird _ تشغيل الموسيقى _ _&#xD;dk:Hummingbird _ Spil tone _ i _ slag&#xD;he:Hummingbird _ נגן תו _ במשך _ פעימות&#xD;es:Hummingbird _ Emitir un sonido _ por _ pulsos&#xD;ca:Hummingbird _ Toca nota _ durant _ temps&#xD;fi:Hummingbird _ Soita sävel _ _ iskun ajan&#xD;sv:Hummingbird _ Spela not _ _&#xD;</translations>
+    <inputs>
+      <input type="%txt" readonly="true">A<options>A&#xD;B&#xD;C</options></input>
+      <input type="%n">60<options>§_pianoKeyboardMenu</options></input>
+      <input type="%n">0.5</input>
+    </inputs>
+    <script>
+      <block s="doApplyExtension">
+        <l>src_load(url)</l>
+        <list>
+          <l>libraries/bbtSnapExtension.js</l>
+        </list>
+      </block>
+      <block s="doIf">
+        <block s="reportGreaterThan"><block var="beats"/>
+          <l>16</l>
+        </block>
+        <script>
+          <block s="doSetVar">
+            <l>beats</l>
+            <l>16</l>
+          </block>
+        </script>
+      </block>
+      <block s="doIf">
+        <block s="reportGreaterThan">
+          <l>0</l><block var="beats"/></block>
+        <script>
+          <block s="doSetVar">
+            <l>beats</l>
+            <l>0</l>
+          </block>
+        </script>
+      </block>
+      <block s="doSetVar">
+        <l>beats</l>
+        <block s="reportRound">
+          <block s="reportVariadicProduct">
+            <list>
+              <block s="reportQuotient">
+                <l>60000</l>
+                <block s="getTempo"></block>
+              </block><block var="beats"/></list>
+          </block>
+          <comment w="242" collapsed="false">BPM = tempo&#xD;60 * 1000/BPM = BPMS beats per millisecond&#xD;beats = Duration in ms = BPMS * number of beats</comment>
+        </block>
+      </block>
+      <block s="doApplyExtension">
+        <l>bbt_playnote(robot, note, duration)</l>
+        <list><block var="devId"/><block var="note"/><block var="beats"/></list>
+      </block>
+      <block s="doWait">
+        <block s="reportQuotient"><block var="beats"/>
+          <l>1000</l>
+        </block>
+        <comment w="205" collapsed="false">block for number of seconds</comment>
+      </block>
+    </script>
+  </block-definition>
+</blocks>
