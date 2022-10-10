@@ -10,48 +10,50 @@ finch2_blocks_file = "finch2Blocks.xml"
 hummingbirdbit_blocks_file = "hummingbirdBitBlocks.xml"
 legacy_blocks_file = "legacyBlocks.xml"
 extension_script = '''
-<script x="152" y="13">
-    <block s="receiveGo"></block>
-    <block s="doApplyExtension">
-        <l>src_load(url)</l>
-        <list>
-            <l>libraries/bbtSnapExtension.js</l>
-        </list>
-    </block>
-</script>
+            <script x="20" y="20">
+                <block s="receiveGo"></block>
+                <block s="doApplyExtension">
+                    <l>src_load(url)</l>
+                    <list>
+                        <l>libraries/bbtSnapExtension.js</l>
+                    </list>
+                </block>
+            </script>
 '''
-stop_scripts = '''
-<script x="29" y="22">
-<block s="receiveInteraction">
-<l>
-<option>stopped</option>
-</l>
-</block>
-<custom-block s="stop all %txt">
-<l>A</l>
-</custom-block>
-</script>
-<script x="188" y="24">
-<block s="receiveInteraction">
-<l>
-<option>stopped</option>
-</l>
-</block>
-<custom-block s="stop all %txt">
-<l>B</l>
-</custom-block>
-</script>
-<script x="347" y="19">
-<block s="receiveInteraction">
-<l>
-<option>stopped</option>
-</l>
-</block>
-<custom-block s="stop all %txt">
-<l>C</l>
-</custom-block>
-</script>
-'''
+stop_multi_scripts = '''
+            <script x="20" y="100">
+                <block s="receiveInteraction">
+                    <l><option>stopped</option></l>
+                </block>
+                <custom-block s="stop all %txt">
+                    <l>A</l>
+                </custom-block>
+            </script>
+            <script x="170" y="100">
+                <block s="receiveInteraction">
+                    <l><option>stopped</option></l>
+                </block>
+                <custom-block s="stop all %txt">
+                    <l>B</l>
+                </custom-block>
+            </script>
+            <script x="320" y="100">
+                <block s="receiveInteraction">
+                    <l><option>stopped</option></l>
+                </block>
+                <custom-block s="stop all %txt">
+                    <l>C</l>
+                </custom-block>
+            </script>
+        '''
+stop_single_script = '''
+            <script x="20" y="100">
+                <block s="receiveInteraction">
+                    <l><option>stopped</option></l>
+                </block>
+                <custom-block s="stop all"></custom-block>
+            </script>
+        '''
 
 def get_blocks_from_xml(filename):
     file = open(components_prefix + filename, 'r')
@@ -75,8 +77,10 @@ def write_project(projectname, text):
     target = open(path, 'w')
     target.write(text)
 
-def insert_blocks(project, blocks):
-    return project.replace("<blocks></blocks>", "<blocks>" + blocks + "</blocks>", 1)
+def insert_details(project, blocks, scripts):
+    project = project.replace("<blocks></blocks>", "<blocks>" + blocks + "</blocks>", 1)
+    project = project.replace("<scripts></scripts>", "<scripts>" + scripts + "</scripts>", 1)
+    return project
 
 def generate_projects():
     project_file = open(components_prefix + "Project.xml", 'r')
@@ -86,17 +90,17 @@ def generate_projects():
     HB_multi_blocks = get_blocks_from_xml("hummingbirdBitBlocks.xml")
     Finch_multi_blocks = get_blocks_from_xml("finch2Blocks.xml")
 
-    HB_multi_project = insert_blocks(project_text, HB_multi_blocks + mb_multi_Blocks)
+    HB_multi_project = insert_details(project_text, HB_multi_blocks + mb_multi_Blocks, extension_script + stop_multi_scripts)
     write_project("WebHummingbirdMultiDevice", HB_multi_project)
-    HB_single_project = multi_to_single(HB_multi_project)
+    HB_single_project = insert_details(project_text, multi_to_single(HB_multi_blocks + mb_multi_Blocks), extension_script + stop_single_script)
     write_project("WebHummingbirdSingleDevice", HB_single_project)
 
-    Finch_multi_project = insert_blocks(project_text, Finch_multi_blocks + mb_multi_Blocks)
+    Finch_multi_project = insert_details(project_text, Finch_multi_blocks + mb_multi_Blocks, extension_script + stop_multi_scripts)
     write_project("WebFinchMultiDevice", Finch_multi_project)
-    Finch_single_project = multi_to_single(Finch_multi_project)
+    Finch_single_project = insert_details(project_text, multi_to_single(Finch_multi_blocks + mb_multi_Blocks), extension_script + stop_single_script)
     write_project("WebFinchSingleDevice", Finch_single_project)
 
-    mixed_multi_project = insert_blocks(project_text, HB_multi_blocks + Finch_multi_blocks + mb_multi_Blocks)
+    mixed_multi_project = insert_details(project_text, HB_multi_blocks + Finch_multi_blocks + mb_multi_Blocks, extension_script + stop_multi_scripts)
     write_project("WebMixedMultiDevice", mixed_multi_project)
 
 

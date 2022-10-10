@@ -36,8 +36,7 @@
         </sounds>
         <variables></variables>
         <blocks></blocks>
-        <scripts>
-        </scripts>
+        <scripts></scripts>
         <sprites select="1">
           <sprite name="Sprite" idx="1" x="0" y="0" heading="90" scale="1" volume="100" pan="0" rotation="1" draggable="true" costume="0" color="80,80,80,1" pen="tip" id="779">
             <costumes>
