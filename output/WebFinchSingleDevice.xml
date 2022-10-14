@@ -242,12 +242,12 @@
       <block s="doSetVar">
         <l>beats</l>
         <block s="reportRound">
-          <block s="reportVariadicProduct">
-            <list>
-              <block s="reportQuotient">
-                <l>60000</l>
-                <block s="getTempo"></block>
-              </block><block var="beats"/></list>
+          <block s="reportProduct">
+            <block s="reportQuotient">
+              <l>60000</l>
+              <block s="getTempo"></block>
+            </block>
+            <block var="beats"/>
           </block>
           <comment w="242" collapsed="false">BPM = tempo&#xD;60 * 1000/BPM = BPMS beats per millisecond&#xD;beats&#xD; = Duration in ms = BPMS * number of beats&#xD;
           </comment>
@@ -695,14 +695,19 @@
       </block>
       <block s="doApplyExtension">
         <l>bbt_print(robot, string)</l>
-        <list><l>A</l><block var="string"/></list>
+        <list>
+          <l>A</l>
+          <block s="reportJoinWords">
+            <list><block var="string"/>
+              <l></l>
+            </list>
+          </block>
+        </list>
       </block>
       <block s="doWait">
-        <block s="reportVariadicProduct">
-          <list>
-            <l>.6</l>
-            <block s="reportStringSize"><block var="string"/></block>
-          </list>
+        <block s="reportProduct">
+          <l>.6</l>
+          <block s="reportStringSize"><block var="string"/></block>
         </block>
       </block>
     </script>

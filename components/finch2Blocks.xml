@@ -232,12 +232,12 @@
       <block s="doSetVar">
         <l>beats</l>
         <block s="reportRound">
-          <block s="reportVariadicProduct">
-            <list>
-              <block s="reportQuotient">
-                <l>60000</l>
-                <block s="getTempo"></block>
-              </block><block var="beats"/></list>
+          <block s="reportProduct">
+            <block s="reportQuotient">
+              <l>60000</l>
+              <block s="getTempo"></block>
+            </block>
+            <block var="beats"/>
           </block>
           <comment w="242" collapsed="false">BPM = tempo&#xD;60 * 1000/BPM = BPMS beats per millisecond&#xD;beats&#xD; = Duration in ms = BPMS * number of beats&#xD;
           </comment>

@@ -149,14 +149,19 @@
       </block>
       <block s="doApplyExtension">
         <l>bbt_print(robot, string)</l>
-        <list><block var="devId"/><block var="string"/></list>
+        <list>
+          <block var="devId"/>
+          <block s="reportJoinWords">
+            <list><block var="string"/>
+              <l></l>
+            </list>
+          </block>
+        </list>
       </block>
       <block s="doWait">
-        <block s="reportVariadicProduct">
-          <list>
-            <l>.6</l>
-            <block s="reportStringSize"><block var="string"/></block>
-          </list>
+        <block s="reportProduct">
+          <l>.6</l>
+          <block s="reportStringSize"><block var="string"/></block>
         </block>
       </block>
     </script>

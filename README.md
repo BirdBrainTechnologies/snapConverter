@@ -12,7 +12,6 @@ To make a change to existing snap! blocks, follow the following steps:
 Connector.
 
 
-
 The old converters (now in the oldConverters folder) were designed to translate
 between the web app version and bluebird or robotserver version. This is no longer
 necessary. See the README in the oldConverters folder for more details.
